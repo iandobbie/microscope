@@ -107,7 +107,7 @@ class Device(object):
         self.settings = OrderedDict()
         # We fetch a logger here, but it can't log anything until
         # a handler is attached after we've identified this device.
-        self._logger = logging.getLogger()
+        self._logger = logging.getLogger(self.__class__.__name__)
         self._index = kwargs['index'] if 'index' in kwargs else None
         self._utype = UGENERIC
 
@@ -167,8 +167,9 @@ class Device(object):
     def shutdown(self):
         """Shutdown the device for a prolonged period of inactivity."""
         self.enabled = False
-        self._logger.info("Shutting down %s." % self.__class__.__name__)
+        self._logger.info("Shutting down ... ... ...")
         self._on_shutdown()
+        self._logger.info("... ... ... ... shut down completed.")
 
     @Pyro4.expose
     def make_safe(self):
@@ -212,13 +213,21 @@ class Device(object):
     @Pyro4.expose
     def get_setting(self, name):
         """Return the current value of a setting."""
-        return self.settings[name]['get']()
+        try:
+            return self.settings[name]['get']()
+        except Exception as err:
+            self._logger.error("in get_setting(%s):" % (name), exc_info=err)
+            raise
 
     @Pyro4.expose
     def get_all_settings(self):
         """Return ordered settings as a list of dicts."""
-        return {k: v['get']() if v['get'] else None
-                for k, v in iteritems(self.settings)}
+        try:
+            return {k: v['get']() if v['get'] else None
+                    for k, v in iteritems(self.settings)}
+        except Exception as err:
+            self._logger.error("in get_all_settings:", exc_info=err)
+            raise
 
     @Pyro4.expose
     def set_setting(self, name, value):
@@ -226,7 +235,11 @@ class Device(object):
         if self.settings[name]['set'] is None:
             raise NotImplementedError
         # TODO further validation.
-        self.settings[name]['set'](value)
+        try:
+            self.settings[name]['set'](value)
+        except Exception as err:
+            self._logger.error("in set_setting(%s):" % (name), exc_info=err)
+
 
     @Pyro4.expose
     def describe_setting(self, name):
@@ -331,7 +344,7 @@ class DataDevice(Device):
         # A thread to dispatch data.
         self._dispatch_thread = None
         # A buffer for data dispatch.
-        self._buffer = queue.Queue(maxsize=buffer_length)
+        self._dispatch_buffer = queue.Queue(maxsize=buffer_length)
         # A flag to indicate if device is ready to acquire.
         self._acquiring = False
 
@@ -354,10 +367,6 @@ class DataDevice(Device):
         Ensures that a data handling threads are running.
         Implement device-specific code in _on_enable .
         """
-        # Call device-specific code before starting threads.
-        if not self._on_enable():
-            self.enabled = False
-            return False
         if self._using_callback:
             if self._fetch_thread:
                 self._fetch_thread_run = False
@@ -370,6 +379,10 @@ class DataDevice(Device):
             self._dispatch_thread = Thread(target=self._dispatch_loop)
             self._dispatch_thread.daemon = True
             self._dispatch_thread.start()
+        # Call device-specific code.
+        if not self._on_enable():
+            self.enabled = False
+            return False
         self.enabled = True
 
     @Pyro4.expose
@@ -418,10 +431,10 @@ class DataDevice(Device):
     def _dispatch_loop(self):
         """Process data and send results to any client."""
         while True:
-            if self._buffer.empty():
+            if self._dispatch_buffer.empty():
                 time.sleep(0.01)
                 continue
-            data, timestamp = self._buffer.get()
+            data, timestamp = self._dispatch_buffer.get()
             err = None
             if isinstance(data, Exception):
                 standard_exception = Exception(str(data).encode('ascii'))
@@ -438,26 +451,27 @@ class DataDevice(Device):
             if err:
                 # Raising an exception will kill the dispatch loop. We need another
                 # way to notify the client that there was a problem.
-                self._logger.error("in _dispatch_loop: %s." % err)
-            self._buffer.task_done()
+                self._logger.error("in _dispatch_loop:", exc_info=err)
+            self._dispatch_buffer.task_done()
 
     def _fetch_loop(self):
         """Poll source for data and put it into dispatch buffer."""
         self._fetch_thread_run = True
+
         while self._fetch_thread_run:
             try:
                 data = self._fetch_data()
             except Exception as e:
-                self._logger.error("in _fetch_loop: %s." % e)
+                self._logger.error("in _fetch_loop:", exc_info=err)
                 # Raising an exception will kill the fetch loop. We need another
                 # way to notify the client that there was a problem.
                 timestamp = time.time()
-                self._buffer.put((e, timestamp))
+                self._dispatch_buffer.put((e, timestamp))
                 data = None
             if data is not None:
                 # ***TODO*** Add support for timestamp from hardware.
                 timestamp = time.time()
-                self._buffer.put((data, timestamp))
+                self._dispatch_buffer.put((data, timestamp))
             else:
                 time.sleep(0.001)
 
@@ -494,6 +508,10 @@ class CameraDevice(DataDevice):
 
     def __init__(self, *args, **kwargs):
         super(CameraDevice, self).__init__(**kwargs)
+        # A list of readout mode descriptions.
+        self._readout_modes = ['default']
+        # The current readout mode.
+        self._readout_mode = 'default'
         # Transforms to apply to data (fliplr, flipud, rot90)
         # Transform to correct for readout order.
         self._readout_transform = (0, 0, 0)
@@ -504,6 +522,11 @@ class CameraDevice(DataDevice):
                          self.get_transform,
                          self.set_transform,
                          lambda: CameraDevice.ALLOWED_TRANSFORMS)
+        self.add_setting('readout mode', 'enum',
+                         lambda: self._readout_mode,
+                         self.set_readout_mode,
+                         lambda: self._readout_modes)
+
 
     def _process_data(self, data):
         """Apply self._transform to data."""
@@ -516,6 +539,15 @@ class CameraDevice(DataDevice):
                 (1, 0): numpy.fliplr(numpy.rot90(data, rot)),
                 (1, 1): numpy.fliplr(numpy.flipud(numpy.rot90(data, rot)))
                 }[flips]
+
+
+    @Pyro4.expose
+    def set_readout_mode(self, description):
+        """Set the readout mode and _readout_transform.
+
+        Takes a description string from _readout_modes."""
+        pass
+
 
     @Pyro4.expose
     def get_transform(self):
@@ -530,6 +562,14 @@ class CameraDevice(DataDevice):
             transform = literal_eval(transform)
         self._transform = tuple(self._readout_transform[i] ^ transform[i]
                                 for i in range(3))
+
+
+    def _set_readout_transform(self, new_transform):
+        """Update readout transform and update resultant transform."""
+        client_transform = self.get_transform()
+        self._readout_transform = new_transform
+        self.set_transform(client_transform)
+
 
     @abc.abstractmethod
     @Pyro4.expose
@@ -634,6 +674,7 @@ class CameraDevice(DataDevice):
             TRIGGER_BEFORE or
             TRIGGER_DURATION (bulb exposure.)
         """
+        pass
 
     @Pyro4.expose
     def get_meta_data(self):
