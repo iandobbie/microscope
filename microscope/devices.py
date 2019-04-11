@@ -1100,3 +1100,25 @@ class FilterWheelBase(Device):
 
     def get_filters(self):
         return [(k,v) for k,v in self._filters.items()]
+
+class StageDevice(Device):
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
+    def __init__(self, *args, **kwargs):
+        super(StageDevice, self).__init__(*args, **kwargs)
+
+    @abc.abstractmethod
+    def get_status(self):
+        """Query and return the stage status."""
+        result = []
+        # ...
+        return result
+
+    @abc.abstractmethod
+    def get_position(self):
+        """Return the stage position."""
+        result = []
+        # ...
+        return result
+
