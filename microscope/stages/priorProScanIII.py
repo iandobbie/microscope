@@ -24,7 +24,7 @@ from microscope import devices
 
 
 @Pyro4.expose
-class PriorProScanIII(devices.SerialDeviceMixIn, devices.StageDevice):
+class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
 
     def __init__(self, com=None, baud=9600, timeout=0.5, *args, **kwargs):
         # default baufd rate is 9600
@@ -39,17 +39,18 @@ class PriorProScanIII(devices.SerialDeviceMixIn, devices.StageDevice):
         
 
     def _write(self, command):
-        count = super(PriorProScanIII, self)._write(command)
-        ## This device always writes backs something.  If echo is on,
-        ## it's the whole command, otherwise just an empty line.  Read
-        ## it and throw it away.
-        self._readline()
-        return count
+        """Send a command to the prior device.
+
+        This is not a simple passthrough to ``serial.Serial.write``,
+        it will append ``b'\\r'`` to command.  This overides the
+        defualt write method
+        """
+        return self.connection.write(command + b'\r')
 
     def send(self, command):
         """Send command and retrieve response."""
         self._write(command)
-        return self._readline()
+        return self.connection.readline()
 
 #    @devices.SerialDeviceMixIn.lock_comms
 #    def clearFault(self):
@@ -60,6 +61,19 @@ class PriorProScanIII(devices.SerialDeviceMixIn, devices.StageDevice):
         line = b' '
         while len(line) > 0:
             line = self._readline()
+
+    @devices.SerialDeviceMixIn.lock_comms
+    def get_status(self):
+        result = self.send(b'?')
+        return result.split(b'\r')
+    
+
+    @devices.SerialDeviceMixIn.lock_comms
+    def get_position(self):
+        result = self.send(b'P')
+        return result
+
+
 
 #    @devices.SerialDeviceMixIn.lock_comms
 #    def is_alive(self):
