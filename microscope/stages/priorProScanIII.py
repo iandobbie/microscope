@@ -16,6 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+#still to implement
+#get position per axis
+#getmovement time
+#set speed and accelleration
+#cleanupupafterexperiment function?
+
+
+
 import serial
 
 import Pyro4
