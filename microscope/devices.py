@@ -1119,6 +1119,18 @@ class FilterWheelBase(Device):
 class StageDevice(Device):
     __metaclass__ = abc.ABCMeta
 
+#Number of axes
+#Name of axes
+
+#Then each axis needs
+
+#Hardware range
+#Soft limits
+#Home
+#Speed (maybe accl and decl rate)
+#Get position
+#Time to move x
+
     @abc.abstractmethod
     def __init__(self, *args, **kwargs):
         super(StageDevice, self).__init__(*args, **kwargs)
@@ -1137,3 +1149,17 @@ class StageDevice(Device):
         # ...
         return result
 
+    @abc.abstractmethod
+    def stop(self):
+        """Stops all stage motion"""
+        pass
+
+    @abc.abstractmethod
+    def move_abs(self):
+        """Move to a passed absolute position"""
+        pass
+    
+    @abc.abstractmethod
+    def move_relative(self):
+        """Move to a passed absolute position"""
+        pass
