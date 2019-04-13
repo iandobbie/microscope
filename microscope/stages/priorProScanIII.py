@@ -26,7 +26,7 @@ from microscope import devices
 @Pyro4.expose
 class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
 
-    def __init__(self, com=None, baud=9600, timeout=0.5, *args, **kwargs):
+    def __init__(self, com=None, baud=9600, timeout=0.1, *args, **kwargs):
         # default baufd rate is 9600
         # no parity or flow control
         # timeout is recomended to be over 0.5
@@ -35,8 +35,17 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
             baudrate = baud, timeout = timeout,
             stopbits = serial.STOPBITS_ONE,
             bytesize = serial.EIGHTBITS, parity = serial.PARITY_NONE)
-
+        #check axis encoder states.
+        self.encoderState=self._encoder_state()
+        #turn on encoders if needed and set servo mode off
+        for axis in self.encoderState:
+            if not self.encoderState[axis]:
+                self.send(b'ENCODER,'+axis+',1')
+            
+        #turn off servo mode by default
+        self.send(b'SERVO,b,0')
         
+            
 
     def _write(self, command):
         """Send a command to the prior device.
@@ -50,7 +59,7 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
     def send(self, command):
         """Send command and retrieve response."""
         self._write(command)
-        return self.connection.readline()
+        return self._readline()
 
 #    @devices.SerialDeviceMixIn.lock_comms
 #    def clearFault(self):
@@ -70,110 +79,44 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
 
     @devices.SerialDeviceMixIn.lock_comms
     def get_position(self):
-        result = self.send(b'P')
-        return result
+        result = self.send(b'P').split(b',')
+        return ([int(result[0]),int(result[1])])
 
+    @devices.SerialDeviceMixIn.lock_comms
+    def stop(self):
+        self.send(b'I')
 
+    @devices.SerialDeviceMixIn.lock_comms
+    def move_abs(self,pos):
+        position="%f,%f"%(pos[0],pos[1])
+        self.send(b'G,'+position.encode())
+        #move returns a responce
+        self._readline()
+        
+    @devices.SerialDeviceMixIn.lock_comms
+    def move_relative(self,pos):
+        position="%f,%f"%(pos[0],pos[1])
+        responce=self.send(b'GR,'+position.encode())
+        #move returns a responce
+        if(responce==b'R\r'):
+            return
+        else:
+            #something went wrong
+            pass
 
-#    @devices.SerialDeviceMixIn.lock_comms
-#    def is_alive(self):
-#        return self.send(b'?l') in b'01'
+    @devices.SerialDeviceMixIn.lock_comms
+    def get_serialnumber(self):
+        return(self.send(b'SERIAL').strip(b'\r'))
 
-#    @devices.SerialDeviceMixIn.lock_comms
-#    def get_status(self):
-#        result = []
+    
+    @devices.SerialDeviceMixIn.lock_comms
+    def home(self):
+        self.send(b'RIS')
 
-#        status_code = self.send(b'?')
-#        result.append(('Prior status: '
-#                       + self.laser_status.get(status_code, 'Undefined')))
-#
-#        for cmd, stat in [(b'?l', 'Ligh Emission on?'),
-#                          (b'?t', 'TEC Servo on?'),
-#                          (b'?k', 'Key Switch on?'),
-#                          (b'?sp', 'Target power:'),
-#                          (b'?p', 'Measured power:'),
-#                          (b'?hh', 'Head operating hours:')]:
-#            result.append(stat + ' ' + self.send(cmd).decode())
-#
-#        self._write(b'?fl')
-#        faults = self._readline()
-#        response = self._readline()
-#        while response:
-#            faults += b' ' + response
-#            response = self._readline()
-#
-#        result.append(faults.decode())
-#        return result
-
-#    @devices.SerialDeviceMixIn.lock_comms
-#    def _on_shutdown(self):
-#        # Disable laser.
-#        self._write(b'l=0')
-#        self.flush_buffer()
-
-
-#    ##  Initialization to do when cockpit connects.
-#    @devices.SerialDeviceMixIn.lock_comms
-#    def initialize(self):
-#        self.flush_buffer()
-
-
-#    ## Turn the laser ON. Return True if we succeeded, False otherwise.
-#    @devices.SerialDeviceMixIn.lock_comms
-#    def enable(self):
-#        self._logger.info("Turning laser ON.")
-# Turn on emission.
-#        response = self.send(b'l=1')
-#        self._logger.info("l=1: [%s]" % response.decode())
-#
-#        # Enabling laser might take more than 500ms (default timeout)
-#        prevTimeout = self.connection.timeout
-#        self.connection.timeout = max(1, prevTimeout)
-    #     isON = self.get_is_on()
-    #     self.connection.timeout = prevTimeout
-
-    #     if not isON:
-    #         # Something went wrong.
-    #         self._logger.error("Failed to turn on. Current status:\r\n")
-    #         self._logger.error(self.get_status())
-    #     return isON
-
-
-    # ## Turn the laser OFF.
-    # @devices.SerialDeviceMixIn.lock_comms
-    # def disable(self):
-    #     self._logger.info("Turning laser OFF.")
-    #     return self._write(b'l=0')
-
-
-    # ## Return True if the laser is currently able to produce light.
-    # @devices.SerialDeviceMixIn.lock_comms
-    # def get_is_on(self):
-    #     return self.send(b'?l') == b'1'
-
-
-    # @devices.SerialDeviceMixIn.lock_comms
-    # def get_max_power_mw(self):
-    #     # '?maxlp' gets the maximum laser power in mW.
-    #     return float(self.send(b'?maxlp'))
-
-    # @devices.SerialDeviceMixIn.lock_comms
-    # def get_min_power_mw(self):
-    #     # '?minlp' gets the minimum laser power in mW.
-    #     return float(self.send(b'?minlp'))
-
-    # @devices.SerialDeviceMixIn.lock_comms
-    # def get_power_mw(self):
-    #     return float(self.send(b'?p'))
-
-    # @devices.SerialDeviceMixIn.lock_comms
-    # def _set_power_mw(self, mW):
-    #     mW_str = '%.3f' % mW
-    #     self._logger.info("Setting laser power to %s mW." % mW_str)
-    #     # using send instead of _write, because
-    #     # if laser is not on, warning is returned
-    #     return self.send(b'p=%s' % mW_str.encode())
-
-    # @devices.SerialDeviceMixIn.lock_comms
-    # def get_set_power_mw(self):
-    #     return float(self.send(b'?sp'))
+        
+    @devices.SerialDeviceMixIn.lock_comms
+    def _encoder_state(self):
+        encoderState=int(self.send(b'ENCODER'))
+        responce= {'X':  True if (encoderState & 1) else False ,
+                   'Y': True if (encoderState & 2) else False }
+        return (responce)
