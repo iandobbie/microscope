@@ -57,7 +57,7 @@ class PiCamera(devices.CameraDevice):
         self._acquiring = False
         self._exposure_time = 0.1
         self._triggered = False
-        self._camera = None
+        self.camera = None
 
 
     def _purge_buffers(self):
@@ -72,37 +72,21 @@ class PiCamera(devices.CameraDevice):
 
     def _fetch_data(self):
         if self._acquiring and self._triggered:
-            #setup stream, numpy from file only acepts a real file so....
-            stream = open('image.data', 'w+b')
-            #grab yuv image to stream
-            self.camera.capture(stream,format='yuv')
-            #seek back to start of stream
-            stream.seek(0)
-            #pull out the Y channel (luminessence) as 8 bit grey
-            imgConv = np.fromfile(stream, dtype=np.uint8,
-                                  count=self.width*self.height).reshape(
-                                      (self.height, self.width))
-            self._logger.info('Sending image')
-            self._triggered = False
-            return imgConv
-
-##alternate capture code which should be faster and easier to
-#import picamera.array
-
-#with picamera.PiCamera() as camera:
-#    with picamera.array.PiYUVArray(camera) as output:
-#        camera.capture(output, 'yuv')
-#        print('Captured %dx%d image' % (
-#                output.array.shape[1], output.array.shape[0]))
-
+            with picamera.array.PiYUVArray(camera) as output:
+                self.camera.capture(output, format='yuv', use_video_port = False)
+                #just return intensity values
+                self._logger.info('Sending image')
+                self._triggered = False
+                return(output[:,:,0])
 
     def initialize(self):
         """Initialise the Pi Camera camera.
         Open the connection, connect properties and populate settings dict.
         """
         if not self.camera:
-            try: 
-                self.camera  = picamera.PiCamera()
+            try:
+                #initialise camera in still image mode.
+                self.camera  = picamera.PiCamera(sensor_mode=2)
             except:
                 raise Exception("Problem opening camera.")
         self._logger.info('Initializing camera.')
@@ -110,11 +94,35 @@ class PiCamera(devices.CameraDevice):
         #disable camera LED by default
         self.setLED(False)
  
-     #set camera LED status, off is best for microscopy.
-     def setLED(self, state=False):
-         self.camera.led(state)
+    #set camera LED status, off is best for microscopy.
+    def setLED(self, state=False):
+        self.camera.led(state)
 
-        
+
+    def set_exposure_time(self, value):
+        #exposure times are set in us.
+        self.camera.shutter_sppeed=(int(value*1.0E6))
+
+
+    def get_exposure_time(self):
+        #exposure times are in us, so multiple by 1E-6 to get seconds.
+        return (self.camera.exposure_speed*1.0E-6) 
+
+
+    def _get_sensor_shape(self):
+        return (self.camera.resolution)
+
+
+#ongoing implemetation notes
+
+#should be able to use rotation and hflip to set specific output image
+# rotations
+
+#roi's can be set with the zoom function, default is (0,0,1,1) meaning all the data.
+
+
+
+
 ##old cockpit based picam driver
 #    def __init__(self):
 #         self.camera = None
