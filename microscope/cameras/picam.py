@@ -31,8 +31,9 @@ from microscope.devices import keep_acquiring
 import picamera
 import picamera.array
 from io import BytesIO
-
-
+#to allow hardware trigger.
+import RPi.GPIO as GPIO
+GPIO_Trigger=21
 
 
 # Trigger mode to type.
@@ -62,6 +63,11 @@ class PiCamera(devices.CameraDevice):
         # Cycle time
         self.exposure_time = 0.001 # in seconds
         self.cycle_time = self.exposure_time
+        #initialise in soft trigger mode
+        self.trigger=devices.TRIGGER_SOFT
+        #setup hardware triggerline
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(GPIO_Trigger.GPIO.IN)
 
 
 
@@ -111,7 +117,17 @@ class PiCamera(devices.CameraDevice):
             self._acquiring = False
                                                 
 
+    def set_trigger_type(self,trigger):
+        if (trigger == devices.TRIGGER_SOFT):
+            GPIO.remove_event_detect(GPIO_Trigger)
+            self.trigger=devices.TRIGGER_SOFT
+        elif (trigger == devices.TRIGGER_BEFORE):
+            GPIO.add_event_detect(GPIO_Trigger,RISING,
+                                  self.HWtrigger,self.exposure_time)
+            self.trigger=devices.TRIGGER_BEFORE
 
+    def get_trigger_type(self):
+        return self.trigger
 
 
 
@@ -146,13 +162,20 @@ class PiCamera(devices.CameraDevice):
         if self._acquiring:
             self._triggered = True
 
-    
+
+    def HWtrigger(self, pin):
+        self._logger.info('HWTrigger received')
+
+        
 #ongoing implemetation notes
 
 #should be able to use rotation and hflip to set specific output image
 # rotations
 
 #roi's can be set with the zoom function, default is (0,0,1,1) meaning all the data.
+
+#Need to setup a buffer for harware triggered data aquisition so we can
+#call the acquisition and then download the data at our leasure
 
 
 
