@@ -29,6 +29,7 @@ from microscope.devices import keep_acquiring
 
 #import raspberry pi specific modules
 import picamera
+import picamera.array
 from io import BytesIO
 
 
@@ -58,26 +59,20 @@ class PiCamera(devices.CameraDevice):
         self._exposure_time = 0.1
         self._triggered = False
         self.camera = None
+        # Cycle time
+        self.exposure_time = 0.001 # in seconds
+        self.cycle_time = self.exposure_time
 
 
-    def _purge_buffers(self):
-        """Purge buffers on both camera and PC."""
-        self._logger.info("Purging buffers.")
-
-    def _create_buffers(self):
-        """Create buffers and store values needed to remove padding later."""
-        self._purge_buffers()
-        self._logger.info("Creating buffers.")
-        #time.sleep(0.5)
 
     def _fetch_data(self):
         if self._acquiring and self._triggered:
-            with picamera.array.PiYUVArray(camera) as output:
+            with picamera.array.PiYUVArray(self.camera) as output:
                 self.camera.capture(output, format='yuv', use_video_port = False)
                 #just return intensity values
                 self._logger.info('Sending image')
                 self._triggered = False
-                return(output[:,:,0])
+                return(output.array[:,:,0])
 
     def initialize(self):
         """Initialise the Pi Camera camera.
@@ -93,15 +88,42 @@ class PiCamera(devices.CameraDevice):
         #create img buffer to hold images.
         #disable camera LED by default
         self.setLED(False)
- 
+        
+    def make_safe(self):
+        if self._acquiring:
+            self.abort()
+            
+    def _on_disable(self):
+        self.abort()
+
+    def _on_enable(self):
+        self._logger.info("Preparing for acquisition.")
+        if self._acquiring:
+            self.abort()
+        self._acquiring = True
+        #actually start camera
+        self._logger.info("Acquisition enabled.")
+        return True
+
+    def abort(self):
+        self._logger.info('Disabling acquisition.')
+        if self._acquiring:
+            self._acquiring = False
+                                                
+
+
+
+
+
+        
     #set camera LED status, off is best for microscopy.
     def setLED(self, state=False):
-        self.camera.led(state)
+        print ('self.camera.led(state)')
 
 
     def set_exposure_time(self, value):
         #exposure times are set in us.
-        self.camera.shutter_sppeed=(int(value*1.0E6))
+        self.camera.shutter_speed=(int(value*1.0E6))
 
 
     def get_exposure_time(self):
@@ -109,10 +131,22 @@ class PiCamera(devices.CameraDevice):
         return (self.camera.exposure_speed*1.0E-6) 
 
 
+    def get_cycle_time(self):
+        #fudge to make it work initially
+        #exposure times are in us, so multiple by 1E-6 to get seconds.
+        return (self.camera.exposure_speed*1.0E-6+.1) 
+
+    
     def _get_sensor_shape(self):
         return (self.camera.resolution)
 
+    def soft_trigger(self):
+        self._logger.info('Trigger received; self._acquiring is %s.'
+                          % self._acquiring)
+        if self._acquiring:
+            self._triggered = True
 
+    
 #ongoing implemetation notes
 
 #should be able to use rotation and hflip to set specific output image
