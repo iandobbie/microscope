@@ -66,8 +66,8 @@ class PiCamera(devices.CameraDevice):
         #initialise in soft trigger mode
         self.trigger=devices.TRIGGER_SOFT
         #setup hardware triggerline
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(GPIO_Trigger.GPIO.IN)
+#        GPIO.setmode(GPIO.BCM)
+#       GPIO.setup(GPIO_Trigger.GPIO.IN)
 
 
 
