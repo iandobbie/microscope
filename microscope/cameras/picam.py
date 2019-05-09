@@ -60,6 +60,8 @@ class PiCamera(devices.CameraDevice):
         self._exposure_time = 0.1
         self._triggered = False
         self.camera = None
+        # Region of interest.
+        self.roi = (None, None, None, None)
         # Cycle time
         self.exposure_time = 0.001 # in seconds
         self.cycle_time = self.exposure_time
@@ -94,6 +96,7 @@ class PiCamera(devices.CameraDevice):
         #create img buffer to hold images.
         #disable camera LED by default
         self.setLED(False)
+        self._get_sensor_shape()
         
     def make_safe(self):
         if self._acquiring:
@@ -129,8 +132,16 @@ class PiCamera(devices.CameraDevice):
     def get_trigger_type(self):
         return self.trigger
 
+    def _get_roi(self):
+        """Return the current ROI (left, top, width, height)."""
+        return self.roi
+            
 
-
+    @keep_acquiring
+    def _set_roi(self, left, top, width, height):
+        """Set the ROI to (left, tip, width, height)."""
+        self.roi = (left, top, width, height)
+                                        
         
     #set camera LED status, off is best for microscopy.
     def setLED(self, state=False):
@@ -154,7 +165,9 @@ class PiCamera(devices.CameraDevice):
 
     
     def _get_sensor_shape(self):
-        return (self.camera.resolution)
+        res=self.camera.resolution
+        self._set_roi(0,0,res[0],res[1])
+        return (res)
 
     def soft_trigger(self):
         self._logger.info('Trigger received; self._acquiring is %s.'
@@ -178,155 +191,3 @@ class PiCamera(devices.CameraDevice):
 #call the acquisition and then download the data at our leasure
 
 
-
-
-##old cockpit based picam driver
-#    def __init__(self):
-#         self.camera = None
-#         self.guid = None
-#         self.cameraInfo = None
-#         self.connected = False
-#         self.client = None
-#         self.lastImage = None
-#         self.imgRaw = None
-#         self.width = 512
-#         self.height = 512
-        
-        
-#     def __del__(self):
-#         c = self.camera
-#         if not c:
-#             return
-#         try:
-#             #try to close the current camera connection to release
-#             #resources.
-#             self.camera.close()
-#         except:
-#             pass
-
-
-#     def connect(self, index=0):
-#         if not self.camera:
-#             self.camera  = picamera.PiCamera()
-#         if not self.camera:
-#             raise Exception('No camera found.')
-
-#         #picam setup
-#         #set max resolutioon for still capture
-#         self.camera.resolution = (self.width, self.height)
-#         # use string CAMERA_RESOLUTION to get max resolution
-#         self.connected = True
-#         #disable camera LED by default
-#         self.setLED(False)
-                
-
-#     def enableCamera(self):
-#         if not self.connected: self.connect()
-#         return True
-
-
-#     def disableCamera(self):
-#         if not self.connected or not self.camera:
-#             return
-#         self.camera.close()
-#         return False
-
-
-#     def grabImageToDisk(self, outFileName='picam-Test.png'):
-#         stream = BytesIO()
-#         self.camera.capture(stream,format='yuv')
-#         stream.seek(0)
-#         open(outFileName, 'wb').write(stream.getvalue())
-       
-
-    
-#     def grabImageToBuffer(self):
-#         #setup stream, numpy from file only acepts a real file so....
-#         stream = open('image.data', 'w+b')
-#         #grab yuv image to stream
-#         self.camera.capture(stream,format='yuv')
-#         #seek back to start of stream
-#         stream.seek(0)
-#         #pull out the Y channel (luminessence) as 8 bit grey
-#         imgConv = np.fromfile(stream, dtype=np.uint8,
-#                               count=self.width*self.height).reshape((self.height,
-#                                                                      self.width))
-#           self.lastImage = imgConv
-
-#     def getImageSize(self):
-#         width, height = self.width, self.height
-#         return (int(width), int(height))
-
-
-#     def getImageSizes(self):
-#         return [self.width,self.height]
-
-
-#     def getTimeBetweenExposures(self, isExact=False):
-#         if isExact:
-#             return decimal.Decimal(0.1)
-#         else:
-#             return 0.1
-
-
-#     def getExposureTime(self, isExact=False):
-#         if isExact:
-#             return decimal.Decimal(0.1)
-#         else:
-#             return 0.1
-
-
-#     def setExposureTime(self, time):
-#         pass
-
-
-#     def setImageSize(self, size):
-#         pass
-
-
-#     #set camera LED status, off is best for microscopy.
-#     def setLED(self, state=False):
-#         self.camera.led(state)
-    
-#     def softTrigger(self):
-#         if self.client is not None:
-#             self.grabImageToBuffer()
-#             self.client.receiveData('new image',
-#                                      self.lastImage,
-#                                      time.time())
-
-
-#     def receiveClient(self, uri):
-#         """Handle connection request from cockpit client."""
-#         if uri is None:
-#             self.client = None
-#         else:
-#             self.client = Pyro4.Proxy(uri)
-
-
-# def main():
-#     print sys.argv
-#     host = '10.0.0.2' or sys.argv[1]
-#     port = 8000 or int(sys.argv[2])
-#     daemon = Pyro4.Daemon(port=port, host=host)
-
-#     # Start the daemon in a new thread so we can exit on ctrl-c
-#     daemonThread = threading.Thread(
-#         target=Pyro4.Daemon.serveSimple,
-#         args = ({Camera(): 'pyroCam'},),
-#         kwargs = {'daemon': daemon, 'ns': False}
-#         )
-#     daemonThread.start()
-
-#     while True:
-#         try:
-#             time.sleep(1)
-#         except KeyboardInterrupt:
-#             break
-
-#     daemon.shutdown()
-#     daemonThread.join()
-
-
-# if __name__ == '__main__':
-#     main()
