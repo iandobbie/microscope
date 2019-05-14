@@ -49,10 +49,13 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
         #turn on encoders if needed and set servo mode off
         for axis in self.encoderState:
             if not self.encoderState[axis]:
-                self.send(b'ENCODER,'+axis+',1')
+                self.send(b'ENCODER,'+axis.encode()+b',1')
             
         #turn off servo mode by default
         self.send(b'SERVO,b,0')
+        # setup individual movement axis commands
+        self.move_axis_abs=[None, self._move_Y_abs, self._move_X_abs]
+        self.move_axis_rel=[None, self._move_Y_rel, self._move_X_rel]
         
             
 
@@ -95,24 +98,41 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
     def stop(self):
         self.send(b'I')
 
+    def move_abs(self,axis,pos):
+        self.move_axis_abs[axis](pos)
+
     @devices.SerialDeviceMixIn.lock_comms
-    def move_abs(self,pos):
-        position="%f,%f"%(pos[0],pos[1])
-        self.send(b'G,'+position.encode())
+    def _move_X_abs(self,pos):
+        position="%f"%(pos)
+        self.send(b'GX,'+position.encode())
         #move returns a responce
         self._readline()
-        
-    @devices.SerialDeviceMixIn.lock_comms
-    def move_relative(self,pos):
-        position="%f,%f"%(pos[0],pos[1])
-        responce=self.send(b'GR,'+position.encode())
-        #move returns a responce
-        if(responce==b'R\r'):
-            return
-        else:
-            #something went wrong
-            pass
 
+    @devices.SerialDeviceMixIn.lock_comms
+    def _move_Y_abs(self,pos):
+        position="%f"%(pos)
+        self.send(b'GY,'+position.encode())
+        #move returns a responce
+        self._readline()
+
+    def move_relative(self,axis,pos):
+        self.move_axis_rel[axis](pos)
+
+    @devices.SerialDeviceMixIn.lock_comms
+    def _move_X_rel(self,pos):
+        position="%f"%(pos)
+        self.send(b'GR,'+position.encode()+b',0.0')
+        #move returns a responce
+        self._readline()
+
+    @devices.SerialDeviceMixIn.lock_comms
+    def _move_Y_rel(self,pos):
+        position="%f"%(pos)
+        self.send(b'GR,0.0,'+position.encode())
+        #move returns a responce
+        self._readline()
+
+        
     @devices.SerialDeviceMixIn.lock_comms
     def get_serialnumber(self):
         return(self.send(b'SERIAL').strip(b'\r'))
