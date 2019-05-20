@@ -35,11 +35,12 @@ from microscope import devices
 @Pyro4.expose
 class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
 
-    def __init__(self, com=None, baud=9600, timeout=0.1, *args, **kwargs):
+    def __init__(self, hardlimits, com=None, baud=9600, timeout=0.1, *args, **kwargs):
         # default baufd rate is 9600
         # no parity or flow control
         # timeout is recomended to be over 0.5
         super(PriorProScanIII, self).__init__(*args, **kwargs)
+        self.hardlimits=hardlimits
         self.connection = serial.Serial(port = com,
             baudrate = baud, timeout = timeout,
             stopbits = serial.STOPBITS_ONE,
@@ -54,8 +55,8 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
         #turn off servo mode by default
         self.send(b'SERVO,b,0')
         # setup individual movement axis commands
-        self.move_axis_abs=[None, self._move_Y_abs, self._move_X_abs]
-        self.move_axis_rel=[None, self._move_Y_rel, self._move_X_rel]
+        self.move_axis_abs=[self._move_X_abs, self._move_Y_abs ]
+        self.move_axis_rel=[self._move_X_rel, self._move_Y_rel ]
         
             
 
@@ -149,3 +150,6 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
         responce= {'X':  True if (encoderState & 1) else False ,
                    'Y': True if (encoderState & 2) else False }
         return (responce)
+
+    def get_hard_limits(self):
+        return(self.hardlimits)
