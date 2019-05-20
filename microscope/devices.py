@@ -1163,3 +1163,7 @@ class StageDevice(Device):
     def move_relative(self):
         """Move to a passed absolute position"""
         pass
+
+    def get_hard_limits(self):
+        """Return stage hard limits"""
+        pass
