@@ -51,14 +51,12 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
         for axis in self.encoderState:
             if not self.encoderState[axis]:
                 self.send(b'ENCODER,'+axis.encode()+b',1')
-            
+
         #turn off servo mode by default
         self.send(b'SERVO,b,0')
         # setup individual movement axis commands
         self.move_axis_abs=[self._move_X_abs, self._move_Y_abs ]
         self.move_axis_rel=[self._move_X_rel, self._move_Y_rel ]
-        
-            
 
     def _write(self, command):
         """Send a command to the prior device.
@@ -88,7 +86,6 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
     def get_status(self):
         result = self.send(b'?')
         return result.split(b'\r')
-    
 
     @devices.SerialDeviceMixIn.lock_comms
     def get_position(self):
