@@ -77,7 +77,7 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
 #        self.flush_buffer()
 #        return self.get_status()
 
-    def flush_buffer(self):
+    def _flush_buffer(self):
         line = b' '
         while len(line) > 0:
             line = self._readline()
@@ -134,9 +134,12 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
     def get_is_moving(self):
         responce=self.send(b'$')
         responce=responce.split(b'\r')[0]
-        if (responce != b'') and (int(responce) == 0):
-            return False
-        else:
+        try:
+            if int(responce) == 0:
+                return False
+            else:
+                return True
+        except AttributeError:
             return True
 
     @devices.SerialDeviceMixIn.lock_comms
