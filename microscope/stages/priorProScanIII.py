@@ -26,8 +26,8 @@
 
 
 import serial
-
 import Pyro4
+import time
 
 from microscope import devices
 
@@ -133,17 +133,23 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
         #move returns a responce
         self._readline()
 
-        
+    @devices.SerialDeviceMixIn.lock_comms
+    def get_is_moving(self):
+        responce=self.send(b'$')
+        responce=responce.split(b'\r')[0]
+        if (responce != b'') and (int(responce) == 0):
+            return False
+        else:
+            return True
+
     @devices.SerialDeviceMixIn.lock_comms
     def get_serialnumber(self):
         return(self.send(b'SERIAL').strip(b'\r'))
 
-    
     @devices.SerialDeviceMixIn.lock_comms
     def home(self):
         self.send(b'RIS')
 
-        
     @devices.SerialDeviceMixIn.lock_comms
     def _encoder_state(self):
         encoderState=int(self.send(b'ENCODER'))
