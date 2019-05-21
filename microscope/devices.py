@@ -1143,6 +1143,13 @@ class StageDevice(Device):
         return result
 
     @abc.abstractmethod
+    def send(self):
+        """Send a message to the stage."""
+        result = []
+        # ...
+        return result
+
+    @abc.abstractmethod
     def get_position(self):
         """Return the stage position."""
         result = []
@@ -1161,9 +1168,15 @@ class StageDevice(Device):
     
     @abc.abstractmethod
     def move_relative(self):
-        """Move to a passed absolute position"""
+        """Move to a passed relative position"""
         pass
 
+    @abc.abstractmethod
     def get_hard_limits(self):
         """Return stage hard limits"""
+        pass
+
+    @abc.abstractmethod
+    def get_is_moving(self):
+        """Returns True if stage is moving and False if not"""
         pass
