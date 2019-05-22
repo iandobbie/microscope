@@ -134,12 +134,9 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
     def get_is_moving(self):
         responce=self.send(b'$')
         responce=responce.split(b'\r')[0]
-        try:
-            if int(responce) == 0:
-                return False
-            else:
-                return True
-        except AttributeError:
+        if responce == b'0':
+            return False
+        else:
             return True
 
     @devices.SerialDeviceMixIn.lock_comms
