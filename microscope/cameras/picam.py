@@ -25,7 +25,7 @@ import Pyro4
 import numpy as np
 
 from microscope import devices
-from microscope.devices import keep_acquiring
+from microscope.devices import keep_acquiring, Binning, Roi
 
 #import raspberry pi specific modules
 import picamera
@@ -61,16 +61,27 @@ class PiCamera(devices.CameraDevice):
         self._triggered = False
         self.camera = None
         # Region of interest.
-        self.roi = (None, None, None, None)
+        self.roi = Roi(None, None, None, None)
         # Cycle time
         self.exposure_time = 0.001 # in seconds
         self.cycle_time = self.exposure_time
         #initialise in soft trigger mode
         self.trigger=devices.TRIGGER_SOFT
         #setup hardware triggerline
-#        GPIO.setmode(GPIO.BCM)
-#       GPIO.setup(GPIO_Trigger.GPIO.IN)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(GPIO_Trigger.GPIO.IN)
 
+        #when a rasing edge is detected on port GPIO_Trigger,
+        #regardless of whatever else is happening in the program, the
+        #function self._HW_trigger will be run
+        GPIO.add_event_detect(GPIO_Trigger, GPIO.RAISING,
+                              callback=self._HW_trigger, bouncetime=10)  
+
+
+
+    def _HW_trigger(self):
+        '''Function called by GPIO interupt, needs to trigger image capture'''
+        print ('PiCam HW trigger')
 
 
     def _fetch_data(self):
@@ -135,12 +146,17 @@ class PiCamera(devices.CameraDevice):
     def _get_roi(self):
         """Return the current ROI (left, top, width, height)."""
         return self.roi
-            
+
+    def _set_binning(self, h_bin, v_bin):
+        return True
+
+    def _get_binning(self):
+        return(Binning(1,1))
 
     @keep_acquiring
     def _set_roi(self, left, top, width, height):
         """Set the ROI to (left, tip, width, height)."""
-        self.roi = (left, top, width, height)
+        self.roi = Roi(left, top, width, height)
                                         
         
     #set camera LED status, off is best for microscopy.
