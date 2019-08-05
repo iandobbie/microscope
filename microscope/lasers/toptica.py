@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import serial
-
+import re
 import Pyro4
 
 from microscope import devices
@@ -34,22 +34,14 @@ class TopticaLaser(devices.SerialDeviceMixIn, devices.LaserDevice):
         # Start a logger.
         response = self.send(b'show serial?')
         self._logger.info("Toptica laser serial number: [%s]", response.decode())
-        # We need to ensure that autostart is disabled so that we can switch emission
-        # on/off remotely.
-        response = self.send(b'@cobas 0')
-        self._logger.info("Response to @cobas 0 [%s]", response.decode())
 
     def send(self, command):
         """Send command and retrieve response."""
-        success = False
-        while not success:
-            self._write(command)
-            response = self._readline()
-            # Catch zero-length responses to queries and retry.
-            if not command.endswith(b'?'):
-                success = True
-            elif len(response) > 0:
-                success = True
+        self._write(command)
+        response = self._readline()
+        # Catch multi-line responses by waiting for prompt.
+        while not response.endswith(b'CMD>'):
+            response = response + (self._readline())
         return response
 
     @devices.SerialDeviceMixIn.lock_comms
@@ -65,20 +57,19 @@ class TopticaLaser(devices.SerialDeviceMixIn, devices.LaserDevice):
     @devices.SerialDeviceMixIn.lock_comms
     def get_status(self):
         result = []
-        for cmd, stat in [(b'l?', 'Emission on?'),
-                          (b'p?', 'Target power:'),
-                          (b'pa?', 'Measured power:'),
-                          (b'f?', 'Fault?'),
-                          (b'hrs?', 'Head operating hours:')]:
-            response = self.send(cmd)
-            result.append(stat + " " + response.decode())
+        for function, stat in [(self.get_is_on, 'Emission on?'),
+                          (self.get_set_power_mw, 'Target power:'),
+                          (self.get_power_mw, 'Measured power:'),
+#                          (b'f?', 'Fault?'),
+                          (self.get_operating_time, 'Head operating hours:')]:
+            response = str(function())
+            result.append(stat + " " + response)
         return result
 
     @devices.SerialDeviceMixIn.lock_comms
     def _on_shutdown(self):
         # Disable laser.
         self.disable()
-        self.send(b'@cob0')
         self.connection.flushInput()
 
 
@@ -86,11 +77,7 @@ class TopticaLaser(devices.SerialDeviceMixIn, devices.LaserDevice):
     @devices.SerialDeviceMixIn.lock_comms
     def initialize(self):
         self.connection.flushInput()
-        #We don't want 'direct control' mode.
-        self.send(b'@cobasdr 0')
-        # Force laser into autostart mode.
-        self.send(b'@cob1')
-
+ 
 
     ## Turn the laser ON. Return True if we succeeded, False otherwise.
     @devices.SerialDeviceMixIn.lock_comms
@@ -98,7 +85,7 @@ class TopticaLaser(devices.SerialDeviceMixIn, devices.LaserDevice):
         self._logger.info("Turning laser ON.")
         # Turn on emission.
         response = self.send(b'la on')
-        self._logger.info("l1: [%s]", response.decode())
+        self._logger.info("TopticaLaser: [%s]", response.decode())
 
         if not self.get_is_on():
             # Something went wrong.
@@ -118,46 +105,43 @@ class TopticaLaser(devices.SerialDeviceMixIn, devices.LaserDevice):
     ## Return True if the laser is currently able to produce light.
     @devices.SerialDeviceMixIn.lock_comms
     def get_is_on(self):
-        response = self.send(b'l?')
-        return response == b'1'
+        response = self.send(b'status laser')
+        return True if (re.findall(b'ON',response)) else False
 
     def get_min_power_mw(self):
         return 0.0
 
     @devices.SerialDeviceMixIn.lock_comms
     def get_max_power_mw(self):
-        # 'gmlp?' gets the maximum laser power in mW.
-        response = self.send(b'gmlp?')
-        try:
-            return float(response)
-        except:
-            self._logger.info("Bad response to gmlp?\n    %s" % response.decode())
-
+        # 'sh data' gets internbal data and max power parsed out
+        response = self.send(b'sh data')
+        maxPower=float (re.findall(b'Pmax:\s*([0-9.]*)\s*mW',response)[0])
+        return maxPower
 
     @devices.SerialDeviceMixIn.lock_comms
     def get_power_mw(self):
-        if not self.get_is_on():
-            return 0.0
-        success = False
-        # Sometimes the controller returns b'1' rather than the power.
-        while not success:
-            response = self.send(b'show pow')
-            if response != b'1':
-                success = True
+        response = self.send(b'sh power')
+        power=int (re.findall(b"PIC\s*=\s*([0-9]*)",response)[0])
         #responce is in uW so /1000.0 to get mW
-        return float(response)/1000.0
+        return float(power)/1000.0
 
 
     @devices.SerialDeviceMixIn.lock_comms
     def _set_power_mw(self, mW):
-        ## There is no minimum power in cobolt lasers.  Any
+        ## There is no minimum power on toptica lasers.  Any
         ## non-negative number is accepted.
-        W_str = '%.4f' % (mW / 1000.0)
-        self._logger.info("Setting laser power to %s W.", W_str)
-        return self.send(b'@cobasp ' + W_str.encode())
+        self._logger.info("Setting laser power to %.2f mW." % mW)
+        return self.send(b'ch 2 power %f' % mW)
 
 
     @devices.SerialDeviceMixIn.lock_comms
     def get_set_power_mw(self):
-        response = self.send(b'p?')
-        return 1000 * float(response)
+        response = self.send(b'sh level power')
+        power=float (re.findall(b'CH2,\s*PWR:\s*([0-9.]*)\s*mW',response)[0])
+        return power
+
+    @devices.SerialDeviceMixIn.lock_comms
+    def get_operating_time(self):
+        response = self.send(b'sh time')
+        upTime=int (re.findall(b'LaserUP:\s*([0-9.]*)\s*s',response)[0])/3600
+        return upTime
