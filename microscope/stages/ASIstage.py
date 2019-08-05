@@ -23,6 +23,24 @@
 #set speed and accelleration
 #cleanupupafterexperiment function?
 
+#baud rate of ms-2000 controller setable with dip switched in controler. 
+#Switch 4 Switch 5 Baud Rate
+#  UP         UP     9600
+#  UP        DOWN   19200
+# DOWN        UP    28800
+# DOWN       DOWN  115200
+
+# results come back in the format  ":A XXX" where XXX is the actual result
+# retruns of the the form ":N" are errors with the codes
+# -1 Unknown Command
+# -2 Unrecognized Axis Parameter (valid axes are dependent on the controller)
+# -3 Missing parameters (command received requires an axis parameter such as x=1234)
+# -4 Parameter Out of Range
+# -5 Operation failed
+# -6 Undefined Error (command is incorrect, but for none of the above reasons)
+# -7..20 Reserved for filterwheel.
+# -21 Serial Command halted by the HALT command
+# -30-39 Reserved 
 
 
 import serial
@@ -33,7 +51,7 @@ from microscope import devices
 
 
 @Pyro4.expose
-class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
+class ASIMS2000( devices.SerialDeviceMixIn, devices.StageDevice):
 
     def __init__(self, hardlimits, com=None, baud=9600, timeout=0.1, *args, **kwargs):
         # default baufd rate is 9600
@@ -84,17 +102,17 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
 
     @devices.SerialDeviceMixIn.lock_comms
     def get_status(self):
-        result = self.send(b'?')
+        result = self.send(b'STATUS')
         return result.split(b'\r')
 
     @devices.SerialDeviceMixIn.lock_comms
     def get_position(self):
-        result = self.send(b'P').split(b',')
+        result = self.send(b'WHERE X Y').split(b' ')
         return ([int(result[0]),int(result[1])])
 
     @devices.SerialDeviceMixIn.lock_comms
     def stop(self):
-        self.send(b'I')
+        self.send(b'HALT')
 
     def move_abs(self,axis,pos):
         self.move_axis_abs[axis](pos)
@@ -102,14 +120,14 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
     @devices.SerialDeviceMixIn.lock_comms
     def _move_X_abs(self,pos):
         position="%f"%(pos)
-        self.send(b'GX,'+position.encode())
+        self.send(b'MOVE X='+position.encode())
         #move returns a responce
         self._readline()
 
     @devices.SerialDeviceMixIn.lock_comms
     def _move_Y_abs(self,pos):
         position="%f"%(pos)
-        self.send(b'GY,'+position.encode())
+        self.send(b'MOVE Y='+position.encode())
         #move returns a responce
         self._readline()
 
@@ -119,20 +137,20 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
     @devices.SerialDeviceMixIn.lock_comms
     def _move_X_rel(self,pos):
         position="%f"%(pos)
-        self.send(b'GR,'+position.encode()+b',0.0')
+        self.send(b'MOVREL X='+position.encode()+b',0.0')
         #move returns a responce
         self._readline()
 
     @devices.SerialDeviceMixIn.lock_comms
     def _move_Y_rel(self,pos):
         position="%f"%(pos)
-        self.send(b'GR,0.0,'+position.encode())
+        self.send(b'MOVREL Y='+position.encode())
         #move returns a responce
         self._readline()
 
     @devices.SerialDeviceMixIn.lock_comms
     def get_is_moving(self):
-        responce=self.send(b'$')
+        responce=self.send(b'STATUS')
         responce=responce.split(b'\r')[0]
         if responce == b'0':
             return False
