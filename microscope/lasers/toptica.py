@@ -25,7 +25,7 @@ from microscope import devices
 
 
 class TopticaLaser(devices.SerialDeviceMixIn, devices.LaserDevice):
-    def __init__(self, com=None, baud=115200, timeout=0.01, **kwargs):
+    def __init__(self, com, baud=115200, timeout=0.01, **kwargs):
         super(TopticaLaser, self).__init__(**kwargs)
         self.connection = serial.Serial(port = com,
             baudrate = baud, timeout = timeout,
