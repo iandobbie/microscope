@@ -89,7 +89,8 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
 
     @devices.SerialDeviceMixIn.lock_comms
     def get_position(self):
-        result = self.send(b'P').split(b',')
+        result = self.send(b'P').replace(b'\r',b'').replace(b'R', b'').split(b',')
+        print(result)
         return ([int(result[0]),int(result[1])])
 
     @devices.SerialDeviceMixIn.lock_comms
@@ -156,3 +157,15 @@ class PriorProScanIII( devices.SerialDeviceMixIn, devices.StageDevice):
 
     def get_hard_limits(self):
         return(self.hardlimits)
+
+    def _on_shutdown(self):
+        """Subclasses over-ride this with tasks to do on shutdown."""
+        pass
+
+    def initialize(self):
+        """Initialize the device."""
+        pass
+
+    def is_alive(self):
+        """Initialize the device."""
+        pass
