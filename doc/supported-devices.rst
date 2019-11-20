@@ -19,6 +19,11 @@ Cameras
 - QImaging (:class:`microscope.cameras.pvcam`)
 - Ximea (:class:`microscope.cameras.ximea`)
 
+Controllers
+-----------
+
+- Zaber daisy chain devices (:class:`microscope.controllers.zaber`)
+
 Deformable Mirrors
 ------------------
 
@@ -32,6 +37,7 @@ Filter Wheels
 - Aurox Clarity (:class:`microscope.filterwheels.aurox`)
 - Prior (:class:`microscope.controllers.prior`)
 - Thorlabs (:class:`microscope.filterwheels.thorlabs`)
+- Zaber (:class:`microscope.controllers.zaber`)
 
 Lasers
 ------
