@@ -54,3 +54,10 @@ Controllers
 - CoolLED (:class:`microscope.controllers.coolled`)
 - Prior ProScan III (:class:`microscope.controllers.prior`)
 - Lumencor Spectra III light engine (:class:`microscope.controllers.lumencor`)
+=======
+
+Stages
+------
+
+- Zaber (:class:`microscope.controllers.zaber`)
+

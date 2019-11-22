@@ -110,6 +110,8 @@ Version 0.4.0 (2020/01/07)
   * Coherent Obis laser
   * Zaber filter wheels
   * Zaber filter cube turrets
+  * Zaber xy stages
+  * Zaber focus stages
 
 * Changes to device ABCs:
 

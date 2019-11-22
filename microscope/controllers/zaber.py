@@ -111,7 +111,6 @@ class _ZaberDeviceConnection:
     """
     def __init__(self, conn: _ZaberConnection, device_address: int) -> None:
         self._conn = conn
-        self._command_prefix = b'/%02d ' % device_address
         self._address_bytes = b'%02d' % device_address
 
     def _validate_reply(self, reply: _ZaberReply) -> None:
@@ -121,7 +120,8 @@ class _ZaberDeviceConnection:
                                % (reply.address.decode(),
                                   self._address_bytes.decode()))
         elif reply.flag != b'OK':
-            raise RuntimeError('command rejected')
+            raise RuntimeError('command rejected because \'%s\''
+                               % reply.response.decode())
 
     def command(self, command: bytes, axis: int = 0) -> _ZaberReply:
         """Command
@@ -135,8 +135,8 @@ class _ZaberDeviceConnection:
         # We do not need to check whether axis number is valid because
         # the device will reject the command with BADAXIS if so.
         with self._conn.lock:
-            self._conn.write(b'%s %1d %s\n'
-                             % (self._command_prefix, axis, command))
+            self._conn.write(b'/%s %1d %s\n'
+                             % (self._address_bytes, axis, command))
             data = self._conn.readline()
         reply = _ZaberReply(data)
         self._validate_reply(reply)
@@ -170,6 +170,72 @@ class _ZaberDeviceConnection:
 
     def move_to_index(self, axis: int, index: int) -> None:
         self.command(b'move index %d' % index, axis)
+
+    def move_to_absolute_position(self, axis: int, position: int) -> None:
+        self.command(b'move abs %d' % position, axis)
+
+    def move_by_relative_position(self, axis: int, position: int) -> None:
+        self.command(b'move rel %d' % position, axis)
+
+    def get_absolute_position(self, axis: int) -> int:
+        """Current absolute position of an axis, in microsteps."""
+        return int(self.command(b'get pos', axis).response)
+
+
+class _ZaberStageAxis(microscope.devices.StageAxis):
+    def __init__(self, conn: _ZaberDeviceConnection, axis: int) -> None:
+        super().__init__()
+        self._conn = conn
+        self._axis = axis
+
+    def move(self, delta: float) -> None:
+        self._conn.move_by_relative_position(self._axis, int(delta))
+
+    def move_to(self, pos: float) -> None:
+        self._conn.move_to_absolute_position(self._axis, int(pos))
+
+    @property
+    def position(self) -> float:
+        return float(self._conn.get_absolute_position(self._axis))
+
+
+class _ZaberStage(microscope.devices.StageDevice):
+    def __init__(self, conn: _ZaberConnection, device_address: int,
+                 **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._conn = _ZaberDeviceConnection(conn, device_address)
+
+        self._axes = {str(i): _ZaberStageAxis(self._conn, i) for i in range(1,self._conn.get_number_axes()+1)}
+
+        # Before a device can moved, it first needs to establish a
+        # reference to the home position.  We won't be able to move
+        # unless we home it first.
+        if not self._conn.been_homed():
+            self._conn.home()
+
+    def initialize(self) -> None:
+        super().initialize()
+
+    def _on_shutdown(self) -> None:
+        super()._on_shutdown()
+
+    @property
+    def axes(self) -> typing.Mapping[str, microscope.devices.StageAxis]:
+        return self._axes
+
+    def move(self, delta: typing.Mapping[str, float]) -> None:
+        """Move specified axes by the specified distance. """
+        for axis_name, axis_delta in delta.items():
+            self._axes[axis_name].move(axis_delta)
+
+    def move_to(self, position: typing.Mapping[str, float]) -> None:
+        """Move specified axes by the specified distance. """
+        for axis_name, axis_position in position.items():
+            self._axes[axis_name].move_to(axis_position)
+
+    @property
+    def position(self) -> typing.Mapping[str, float]:
+        return {name : axis.position for name, axis in self._axes.items()}
 
 
 class _ZaberFilterWheel(microscope.devices.FilterWheelBase):
@@ -271,11 +337,12 @@ class ZaberDaisyChain(microscope.devices.ControllerDevice):
         self._conn = _ZaberConnection(port, baudrate=115200, timeout=0.5)
         self._devices: typing.Mapping[str, microscope.devices.Device] = {}
 
-        # Map the possible microscope device types, to concrete
+        # Map the possible microscope device types to concrete
         # implementations in this module to keep the concrete
         # implementations private for now.
         _abc2cls = {
             microscope.devices.FilterWheelBase : _ZaberFilterWheel,
+            microscope.devices.StageDevice : _ZaberStage,
         }
 
         for address, base_type in address2type.items():
