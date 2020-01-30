@@ -24,6 +24,7 @@ it can be used with A-Series and X-Series devices that have firmware
 
 """
 
+import enum
 import serial
 import threading
 import typing
@@ -299,16 +300,28 @@ class _ZaberFilterWheel(microscope.devices.FilterWheelBase):
         self._conn.move_to_index(axis=1, index=position)
 
 
+class ZaberDeviceType(enum.Enum):
+    """Enumerator for Zaber device types.
+
+    This enum is used to specify the type of device on each address
+    when constructing a :class:`ZaberDaisyChain`.
+    """
+    # We require the use of an enum instead of directly specifying the
+    # class to keep the individual device classes private.
+    STAGE = _ZaberStage
+    FILTER_WHEEL = _ZaberFilterWheel
+
+
 class ZaberDaisyChain(microscope.devices.ControllerDevice):
     """A daisy chain of Zaber devices.
 
     Args:
-        port (str): the port name to connect to.  For example,
-            `/dev/ttyS1`, `COM1`, or `/dev/cuad1`.
-        address2type (dict[type, str]): maps `microscope.Device` ABCs,
-            to a specific device address.  For example,
-            `{microscope.FilterWheelBase : 3}` to control a filter
-            wheel device with the device address 3.
+        port: the port name to connect to.  For example, `/dev/ttyS1`,
+            `COM1`, or `/dev/cuad1`.
+        address2type: maps device addresses to their
+            :class:`ZaberDeviceType`.  For example, `{3:
+            ZaberDeviceType.STAGE}` to control a stage device with the
+            device address 3.
 
     Zaber devices can be daisy-chained.  In such setup, only the first
     device is connected to the computer and there is one communication
@@ -333,9 +346,9 @@ class ZaberDaisyChain(microscope.devices.ControllerDevice):
 
     .. note::
 
-       Zaber devices need to be homed before they can be moved.  Any
-       device that has not been homed will do so when the object is
-       constructed.
+       Zaber devices need to be homed before they can be moved.  A
+       stage will be homed during :func:`enable` but a filterwheel
+       will be homed during the object construction.
 
     .. todo::
 
@@ -345,28 +358,16 @@ class ZaberDaisyChain(microscope.devices.ControllerDevice):
 
     """
     def __init__(self, port: str,
-                 address2type: typing.Mapping[int, typing.Type],
+                 address2type: typing.Mapping[int, ZaberDeviceType],
                  **kwargs) -> None:
         super().__init__(**kwargs)
         self._conn = _ZaberConnection(port, baudrate=115200, timeout=0.5)
         self._devices: typing.Mapping[str, microscope.devices.Device] = {}
 
-        # Map the possible microscope device types to concrete
-        # implementations in this module to keep the concrete
-        # implementations private for now.
-        _abc2cls = {
-            microscope.devices.FilterWheelBase : _ZaberFilterWheel,
-            microscope.devices.StageDevice : _ZaberStage,
-        }
-
-        for address, base_type in address2type.items():
+        for address, device_type in address2type.items():
             if address < 1 or address > 99:
                 raise ValueError('address must be an integer between 1-99')
-            if not base_type in _abc2cls:
-                raise ValueError('device of type \'%s\' are not supported'
-                                 % base_type)
-            self._devices[str(address)] = _abc2cls[base_type](self._conn,
-                                                              address)
+            self._devices[str(address)] = device_type.value(self._conn, address)
 
     @property
     def devices(self) -> typing.Mapping[str, microscope.devices.Device]:
