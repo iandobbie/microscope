@@ -23,7 +23,7 @@ Requires package hidapi.
 Config sample:
 
 device(microscope.filterwheels.aurox.Clarity,
-       {'camera': 'microscope.Cameras.cameramodule.SomeCamera',
+       {'camera': microscope.Cameras.cameramodule.SomeCamera,
         'camera.someSetting': value})
 
 Deconvolving data requires:
