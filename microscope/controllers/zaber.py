@@ -152,7 +152,7 @@ class _ZaberDeviceConnection:
 
     def home(self, axis: int = 0) -> None:
         """Move the axis to the home position."""
-        reply = self.command(b'home', axis)
+        self.command(b'home', axis)
 
     def get_rotation_length(self, axis: int) -> int:
         """Number of microsteps needed to complete one full rotation.
