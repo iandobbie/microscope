@@ -239,14 +239,6 @@ class _ZaberStage(microscope.devices.StageDevice):
     def axes(self) -> typing.Mapping[str, microscope.devices.StageAxis]:
         return self._axes
 
-    @property
-    def position(self) -> typing.Mapping[str, float]:
-        return {name: axis.position for name, axis in self._axes.items()}
-
-    @property
-    def limits(self) -> typing.Mapping[str, microscope.devices.AxisLimits]:
-        return {name: axis.limits for name, axis in self._axes.items()}
-
     def move_by(self, delta: typing.Mapping[str, float]) -> None:
         """Move specified axes by the specified distance. """
         for axis_name, axis_delta in delta.items():
