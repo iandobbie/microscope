@@ -181,6 +181,14 @@ class _ZaberDeviceConnection:
         """Current absolute position of an axis, in microsteps."""
         return int(self.command(b'get pos', axis).response)
 
+    def get_limit_max(self, axis: int) -> int:
+        """The maximum position the device can move to, in microsteps."""
+        return int(self.command(b'get limit.max', axis).response)
+
+    def get_limit_min(self, axis: int) -> int:
+        """The minimum position the device can move to, in microsteps."""
+        return int(self.command(b'get limit.min', axis).response)
+
 
 class _ZaberStageAxis(microscope.devices.StageAxis):
     def __init__(self, conn: _ZaberDeviceConnection, axis: int) -> None:
@@ -188,7 +196,7 @@ class _ZaberStageAxis(microscope.devices.StageAxis):
         self._conn = conn
         self._axis = axis
 
-    def move(self, delta: float) -> None:
+    def move_by(self, delta: float) -> None:
         self._conn.move_by_relative_position(self._axis, int(delta))
 
     def move_to(self, pos: float) -> None:
@@ -198,20 +206,20 @@ class _ZaberStageAxis(microscope.devices.StageAxis):
     def position(self) -> float:
         return float(self._conn.get_absolute_position(self._axis))
 
+    @property
+    def limits(self) -> microscope.devices.AxisLimits:
+        min_limit = self._conn.get_limit_min(self._axis)
+        max_limit = self._conn.get_limit_max(self._axis)
+        return microscope.devices.AxisLimits(lower=min_limit,
+                                             upper=max_limit)
+
 
 class _ZaberStage(microscope.devices.StageDevice):
     def __init__(self, conn: _ZaberConnection, device_address: int,
                  **kwargs) -> None:
         super().__init__(**kwargs)
         self._conn = _ZaberDeviceConnection(conn, device_address)
-
         self._axes = {str(i): _ZaberStageAxis(self._conn, i) for i in range(1,self._conn.get_number_axes()+1)}
-
-        # Before a device can moved, it first needs to establish a
-        # reference to the home position.  We won't be able to move
-        # unless we home it first.
-        if not self._conn.been_homed():
-            self._conn.home()
 
     def initialize(self) -> None:
         super().initialize()
@@ -219,23 +227,35 @@ class _ZaberStage(microscope.devices.StageDevice):
     def _on_shutdown(self) -> None:
         super()._on_shutdown()
 
+    def _on_enable(self) -> bool:
+        # Before a device can moved, it first needs to establish a
+        # reference to the home position.  We won't be able to move
+        # unless we home it first.
+        if not self._conn.been_homed():
+            self._conn.home()
+        return True
+
     @property
     def axes(self) -> typing.Mapping[str, microscope.devices.StageAxis]:
         return self._axes
 
-    def move(self, delta: typing.Mapping[str, float]) -> None:
+    @property
+    def position(self) -> typing.Mapping[str, float]:
+        return {name: axis.position for name, axis in self._axes.items()}
+
+    @property
+    def limits(self) -> typing.Mapping[str, microscope.devices.AxisLimits]:
+        return {name: axis.limits for name, axis in self._axes.items()}
+
+    def move_by(self, delta: typing.Mapping[str, float]) -> None:
         """Move specified axes by the specified distance. """
         for axis_name, axis_delta in delta.items():
-            self._axes[axis_name].move(axis_delta)
+            self._axes[axis_name].move_by(axis_delta)
 
     def move_to(self, position: typing.Mapping[str, float]) -> None:
         """Move specified axes by the specified distance. """
         for axis_name, axis_position in position.items():
             self._axes[axis_name].move_to(axis_position)
-
-    @property
-    def position(self) -> typing.Mapping[str, float]:
-        return {name : axis.position for name, axis in self._axes.items()}
 
 
 class _ZaberFilterWheel(microscope.devices.FilterWheelBase):
@@ -259,7 +279,9 @@ class _ZaberFilterWheel(microscope.devices.FilterWheelBase):
 
         # Before a device can moved, it first needs to establish a
         # reference to the home position.  We won't be able to move
-        # unless we home it first.
+        # unless we home it first.  On a stage this happens during
+        # enable because the stage movemenet can be dangerous but on a
+        # filter wheel this is fine.
         if not self._conn.been_homed():
             self._conn.home()
 
