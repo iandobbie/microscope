@@ -18,9 +18,16 @@
 
 """Zaber devices.
 
-This module only controls Zaber devices via the ASCII protocol meaning
-it can be used with A-Series and X-Series devices that have firmware
-6.06 or higher.
+Individual devices and daisy-chains
+-----------------------------------
+
+
+
+Devices supported
+-----------------
+
+There is support for A-Series and X-Series devices that have firmware
+version 6.06 or higher.
 
 """
 
