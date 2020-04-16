@@ -559,9 +559,6 @@ class DummyStage(devices.StageDevice):
     def _on_shutdown(self):
         pass
 
-    def axes(self,axis):
-        if axis
-    
     def move_by(self,delta):
         for name, rpos in delta.items():
             self.axes[name].move_by(rpos)
