@@ -519,3 +519,55 @@ class DummyDSP(devices.Device):
     def set_client(self, *args, **kwargs):
         ## XXX: maybe this should be on its own mixin instead of on DataDevice
         return devices.DataDevice.set_client(self, *args, **kwargs)
+
+
+class DummyStageAxis(devices.StageAxis):
+    def __init__(self, name=None, limits=None,**kwargs):
+        super().__init__(**kwargs)
+        self.name=name
+        self.limits=AxisLimits(lower=limits[0],upper=limits[1])
+        self.position=(self.limits.upper-self.limits.lower)/2.0
+
+    def move_by(self,delta):
+        self.position=self.position+delta
+        if self.positon<self.limits.lower:
+            self.position=self.limits.lower
+            
+        if self.positon>self.limits.upper:
+            self.position=self.limits.upper
+
+
+    def move_to(self,pos):
+        self.position=pos
+        if self.positon<self.limits.lower:
+            self.position=self.limits.lower
+            
+        if self.positon>self.limits.upper:
+            self.position=self.limits.upper
+
+
+class DummyStage(devices.StageDevice):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.xaxis=DummyStageAxis('x',(0,1000))
+        self.yaxis=DummyStageAxis('y',(0,1000))
+        self.axes={'x': self.xaxis,'y': self.yaxis}
+
+    def initialize(self):
+        pass
+
+    def _on_shutdown(self):
+        pass
+
+    def axes(self,axis):
+        if axis
+    
+    def move_by(self,delta):
+        for name, rpos in delta.items():
+            self.axes[name].move_by(rpos)
+        
+    def move_to(self, position):
+        for name, pos in position.items():
+            self.axes[name].move_to(pos)
+
+
