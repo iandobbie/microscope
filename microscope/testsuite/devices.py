@@ -526,11 +526,13 @@ class DummyStageAxis(devices.StageAxis):
         super().__init__(**kwargs)
         self.name=name
         self._limits=devices.AxisLimits(lower=limits[0],upper=limits[1])
+        #start dummy stage in middle of range.
         self._position=(self._limits.upper-self._limits.lower)/2.0
 
-    def position(self):
+    def get_position(self):
         return (self._position)
-
+    position= property(get_position)
+    
     def limits(self):
         return (self._limits)
     
@@ -565,15 +567,16 @@ class DummyStage(devices.StageDevice):
     def _on_shutdown(self):
         pass
 
-    def axes(self):
+    def get_axes(self):
         return ({'x': self.xaxis,'y': self.yaxis})
+    axes=property(get_axes)
 
     def move_by(self,delta):
         for name, rpos in delta.items():
-            self.axes()[name].move_by(rpos)
+            self.axes[name].move_by(rpos)
         
     def move_to(self, position):
         for name, pos in position.items():
-            self.axes()[name].move_to(pos)
+            self.axes[name].move_to(pos)
 
 
