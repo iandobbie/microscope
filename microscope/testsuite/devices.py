@@ -525,25 +525,31 @@ class DummyStageAxis(devices.StageAxis):
     def __init__(self, name=None, limits=None,**kwargs):
         super().__init__(**kwargs)
         self.name=name
-        self.limits=AxisLimits(lower=limits[0],upper=limits[1])
-        self.position=(self.limits.upper-self.limits.lower)/2.0
+        self._limits=devices.AxisLimits(lower=limits[0],upper=limits[1])
+        self._position=(self._limits.upper-self._limits.lower)/2.0
 
+    def position(self):
+        return (self._position)
+
+    def limits(self):
+        return (self._limits)
+    
     def move_by(self,delta):
-        self.position=self.position+delta
-        if self.positon<self.limits.lower:
-            self.position=self.limits.lower
+        self._position=self._position+delta
+        if self._position<self._limits.lower:
+            self._position=self._limits.lower
             
-        if self.positon>self.limits.upper:
-            self.position=self.limits.upper
+        if self._position>self._limits.upper:
+            self._position=self._limits.upper
 
 
     def move_to(self,pos):
-        self.position=pos
-        if self.positon<self.limits.lower:
-            self.position=self.limits.lower
+        self._position=pos
+        if self._position<self._limits.lower:
+            self._position=self._limits.lower
             
-        if self.positon>self.limits.upper:
-            self.position=self.limits.upper
+        if self._position>self._limits.upper:
+            self._position=self._limits.upper
 
 
 class DummyStage(devices.StageDevice):
@@ -551,7 +557,7 @@ class DummyStage(devices.StageDevice):
         super().__init__(**kwargs)
         self.xaxis=DummyStageAxis('x',(0,1000))
         self.yaxis=DummyStageAxis('y',(0,1000))
-        self.axes={'x': self.xaxis,'y': self.yaxis}
+#        self.axes={'x': self.xaxis,'y': self.yaxis}
 
     def initialize(self):
         pass
@@ -559,12 +565,15 @@ class DummyStage(devices.StageDevice):
     def _on_shutdown(self):
         pass
 
+    def axes(self):
+        return ({'x': self.xaxis,'y': self.yaxis})
+
     def move_by(self,delta):
         for name, rpos in delta.items():
-            self.axes[name].move_by(rpos)
+            self.axes()[name].move_by(rpos)
         
     def move_to(self, position):
         for name, pos in position.items():
-            self.axes[name].move_to(pos)
+            self.axes()[name].move_to(pos)
 
 
