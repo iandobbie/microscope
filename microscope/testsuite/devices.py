@@ -22,6 +22,7 @@
 import logging
 import random
 import time
+import typing
 
 import numpy as np
 from PIL import Image, ImageFont, ImageDraw
@@ -531,14 +532,14 @@ class TestStageAxis(devices.StageAxis):
                                            self._limits.lower)/2.0
 
     @property
-    def position(self):
+    def position(self)-> float:
         return (self._position)
     
     @property
-    def limits(self):
+    def limits(self)-> devices.AxisLimits:
         return (self._limits)
     
-    def move_by(self,delta):
+    def move_by(self,delta)-> None:
         self._position=self._position+delta
         if self._position<self._limits.lower:
             self._position=self._limits.lower
@@ -547,7 +548,7 @@ class TestStageAxis(devices.StageAxis):
             self._position=self._limits.upper
 
 
-    def move_to(self,pos):
+    def move_to(self,pos)-> None:
         self._position=pos
         if self._position<self._limits.lower:
             self._position=self._limits.lower
@@ -562,23 +563,23 @@ class TestStage(devices.StageDevice):
         self.xaxis=TestStageAxis('x', devices.AxisLimits(lower=-500,upper=500))
         self.yaxis=TestStageAxis('y', devices.AxisLimits(lower=0,upper=1000))
 
-    def initialize(self):
+    def initialize(self)-> None:
         pass
 
-    def _on_shutdown(self):
+    def _on_shutdown(self)-> None:
         pass
 
     @property
-    def axes(self):
+    def axes(self)-> typing.Mapping[str, devices.StageAxis]:
         return ({'x': self.xaxis,'y': self.yaxis})
 
-    def move_by(self,delta):
+    def move_by(self,delta)-> None:
         for name, rpos in delta.items():
             self.axes[name].move_by(rpos)
             #moving instantly breaks things often
             time.sleep(0.1)
         
-    def move_to(self, position):
+    def move_to(self, position)-> None:
         for name, pos in position.items():
             self.axes[name].move_to(pos)
             #moving instantly breaks things often
