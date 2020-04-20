@@ -521,18 +521,20 @@ class DummyDSP(devices.Device):
         return devices.DataDevice.set_client(self, *args, **kwargs)
 
 
-class DummyStageAxis(devices.StageAxis):
+class TestStageAxis(devices.StageAxis):
     def __init__(self, name=None, limits=None,**kwargs):
         super().__init__(**kwargs)
         self.name=name
-        self._limits=devices.AxisLimits(lower=limits[0],upper=limits[1])
+        self._limits=limits
         #start dummy stage in middle of range.
-        self._position=(self._limits.upper-self._limits.lower)/2.0
+        self._position=self._limits.lower + (self._limits.upper -
+                                           self._limits.lower)/2.0
 
     @property
     def position(self):
         return (self._position)
     
+    @property
     def limits(self):
         return (self._limits)
     
@@ -554,12 +556,11 @@ class DummyStageAxis(devices.StageAxis):
             self._position=self._limits.upper
 
 
-class DummyStage(devices.StageDevice):
+class TestStage(devices.StageDevice):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.xaxis=DummyStageAxis('x',(0,1000))
-        self.yaxis=DummyStageAxis('y',(0,1000))
-#        self.axes={'x': self.xaxis,'y': self.yaxis}
+        self.xaxis=TestStageAxis('x', devices.AxisLimits(lower=-500,upper=500))
+        self.yaxis=TestStageAxis('y', devices.AxisLimits(lower=0,upper=1000))
 
     def initialize(self):
         pass
@@ -574,9 +575,12 @@ class DummyStage(devices.StageDevice):
     def move_by(self,delta):
         for name, rpos in delta.items():
             self.axes[name].move_by(rpos)
+            #moving instantly breaks things often
+            time.sleep(0.1)
         
     def move_to(self, position):
         for name, pos in position.items():
             self.axes[name].move_to(pos)
-
+            #moving instantly breaks things often
+            time.sleep(0.1)
 
