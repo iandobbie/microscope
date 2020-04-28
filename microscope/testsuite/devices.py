@@ -560,8 +560,8 @@ class TestStageAxis(devices.StageAxis):
 class TestStage(devices.StageDevice):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.xaxis=TestStageAxis('x', devices.AxisLimits(lower=-500,upper=500))
-        self.yaxis=TestStageAxis('y', devices.AxisLimits(lower=0,upper=1000))
+        self.xaxis=TestStageAxis('x', devices.AxisLimits(lower=-5000,upper=5000))
+        self.yaxis=TestStageAxis('y', devices.AxisLimits(lower=0,upper=10000))
 
     def initialize(self)-> None:
         pass
