@@ -33,77 +33,109 @@ import microscope.testsuite.devices
 _logger = logging.getLogger(__name__)
 
 
-class TestMosaicStageCamera(microscope.devices.ControllerDevice):
-    """Test controller device 
 
-    Args:
+class StageAwareCamera(devices.CameraDevice):
+    def __init__(self, stage: devices.StageDevice, image: str, **kwargs) -> None:
+    
+        self._stage=stage
+        self.realCam=microscope.testsuite.devices.TestCamera()
+        self.realCam.update_settings({'image pattern': 6})
 
-    .. code-block:: python
 
-       # Connect to test stage and camera 
-       controller = TestMosaicStageCamera()
-    """
-    def __init__(self, **kwargs) -> None:
-        super().__init__(**kwargs)
-        #config camera for mosic mode. and find image size
-        camera = microscope.testsuite.devices.TestCamera()
-        camera.update_settings({'image pattern': 6})
+
+    def _fetch_data(self):
+        current_pos = self._stage.position
+        x=current_pos['x']
+        y=current_pos['y']
+        self.realCam.update_settings({'mosaic image X pos': x,
+                                'mosaic image Y pos': y})
+        # Compute the indices for the image ndarray from the position
+        return self.realCam._fetch_data()
+    
+    def _set_error_percent(self, value):
+        self.realCam._set_error_percent(value)
+
+
+    def _set_gain(self, value):
+        self.reCsm._set_gain(value)
+
+    def _purge_buffers(self):
+        self.reCsm._purge_buffers()
+
+    def _create_buffers(self):
+        self.reCsm._create_buffers()
+
+    def abort(self):
+        self.realCam.abort()
+
+    def initialize(self):
+        self.realCam.initialize()
+
+    def make_safe(self):
+        self.realCam.make_safe()
+
+    def _on_disable(self):
+        self.abort()
+
+    def _on_enable(self):
+        return(self.realCam._on_enable())
+
+    def set_exposure_time(self, value):
+        self.realCam.set_exposure_time(value)
+
+    def get_exposure_time(self):
+        return self.realCam._exposure_time
+
+    def get_cycle_time(self):
+        return self.realCam._exposure_time
+
+    def _get_sensor_shape(self):
+        return (512,512)
+
+    def get_trigger_type(self):
+        return devices.TRIGGER_SOFT
+
+    def soft_trigger(self):
+        self.realCam.soft_trigger()
+
+    def _get_binning(self):
+        return self.realCam._binning
+
+    def _set_binning(self, binning):
+        self.realCam._set_binning(binning)
+
+    def _get_roi(self):
+        return self.realCam._roi
+
+    def _set_roi(self, roi):
+        self.realCam._set_roi(roi)
+
+    def _on_shutdown(self):
+        pass
+
+    @property
+    def _acquiring(self):
+        return (self.realCam._aquiring)
+    @property
+    def _settings(self):
+        return(self.realCam._settings)
+    
+# The controller is not necessary at all, a user could perfectly
+# create its own camera and stage, it's only to make device server
+# easier to use.
+class CameraStageController(devices.ControllerDevice):
+    def __init__(self):
         mosaicSize=(9562,9458)
-        
-        #config stage
-        stage = StageIndirection(camera,mosaicSize)
-        self._devices = {
-            'camera' : camera,
-            'stage' : stage,
-        }
+        stage = microscope.testsuite.devices.TestStage({
+            'x' : devices.AxisLimits(-mosaicSize[0]/2, mosaicSize[0]/2),
+            'y' : devices.AxisLimits(-mosaicSize[1]/2, mosaicSize[1]/2),
+        })
+        self._stage=stage
+        camera = StageAwareCamera(stage, "microscope/testsuite/mosaicimage.tif" )
+        self._devices = {'stage' : stage, 'camera' : camera}
 
     @property
     def devices(self):
         return self._devices
-    
-class StageIndirection(devices.StageDevice):
-    '''Intercept stage calls, and adjust camera mosaic xpos before passing
-        calls on to stage itself'''
-    def __init__(self,camera,mosaicSize,**kwargs) -> None:
-        super().__init__(**kwargs)
-        self.camera=camera
-        self.realStage=microscope.testsuite.devices.TestStage({
-            'x' : devices.AxisLimits(-mosaicSize[0]/2, mosaicSize[0]/2),
-            'y' : devices.AxisLimits(-mosaicSize[1]/2, mosaicSize[1]/2),
-        })
-            
-        self._axes = self.realStage._axes
-            
-    def initialize(self):
-        pass
-            
-    def _on_shutdown(self):
-        pass
-            
-    def axes(self):
-        return self.realStage.axes()
-            
-    def move_by(self, delta):
-        curx=self.camera.get_setting('mosaic image X pos')
-        cury=self.camera.get_setting('mosaic image Y pos')
-        
-        for name, rpos in delta.items():
-            if name == 'x' :
-                newpos=curx+rpos
-                self.camera.update_setting({'mosaic image X pos': newpos})
-            if name == 'y' :
-                newpos=cury+rpos
-                self.camera.update_setting({'mosaic image Y pos': newpos})
-        self.realStage.move_by(delta)
-                    
-                
-    def move_to(self, position):
-        for name, pos in position.items():
-            if name == 'x' :
-                newpos=pos
-                self.camera.update_setting({'mosaic image X pos': newpos})
-            if name == 'y' :
-                newpos=pos
-                self.camera.update_setting({'mosaic image Y pos': newpos})
-        self.realStage.move_to(position)
+
 
