@@ -1375,3 +1375,7 @@ class StageDevice(Device, metaclass=abc.ABCMeta):
 
         """
         raise NotImplementedError()
+
+    @abc.abstractmethod
+    def is_moving(self):
+        return False
