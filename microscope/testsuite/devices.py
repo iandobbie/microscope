@@ -547,6 +547,9 @@ class TestStageAxis(devices.StageAxis):
         else:
             self._position = pos
 
+    def is_moving(self):
+        return False
+
 
 class TestStage(devices.StageDevice):
     """A test stage with any number of axis.
@@ -592,3 +595,6 @@ class TestStage(devices.StageDevice):
     def move_to(self, position: typing.Mapping[str, float]) -> None:
         for name, pos in position.items():
             self.axes[name].move_to(pos)
+
+    def is_moving(self):
+        return False
