@@ -92,11 +92,13 @@ class _ImageGenerator():
 
     def set_mosaic_xpos(self,pos):
         self.mosaic_xpos=pos
+
     def get_mosaic_xpos(self,pos):
         return self.mosaic_xpos
 
     def set_mosaic_ypos(self,pos):
         self.mosaic_ypos=pos
+        
     def get_mosaic_ypos(self,pos):
         return self.mosaic_ypos
         
@@ -166,12 +168,11 @@ class _ImageGenerator():
 
     def mosaic(self, w, h, dark, light):
         """Returns subsections of a mosaic image based on input coords""" 
-        x=self.mosaic_xpos
-        y=self.mosaic_ypos
         if not self.mosaicimage:
             self.mosaicimage =(Image.open("microscope/testsuite/mosaicimage.tif"))
             self.redmosaic,self.greenmosaic,self.bluemosaic=self.mosaicimage.split()
-            
+        x=self.mosaic_xpos+(self.mosaicimage.size[0]/2)
+        y=self.mosaic_ypos+(self.mosaicimage.size[1]/2)
         imgSection=self.redmosaic.crop((x-w/2,y-h/2,x+w/2,y+h/2))
         return (np.asarray(imgSection.getdata()).reshape(w,h))
 
@@ -201,7 +202,7 @@ class TestCamera(devices.CameraDevice):
                          lambda: self._image_generator.mosaic_xpos,
                          self._image_generator.set_mosaic_xpos,
                          lambda: (0,9562))
-        self.add_setting('mosaic image y pos', 'int',
+        self.add_setting('mosaic image Y pos', 'int',
                          lambda: self._image_generator.mosaic_ypos,
                          self._image_generator.set_mosaic_ypos,
                          lambda: (0,9458))
