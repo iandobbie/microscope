@@ -41,7 +41,15 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
         super().__init__(**kwargs)
         self._stage=stage
         self.update_settings({'image pattern': 6})
-        print (image)
+        self._pixelsize = 1
+        self.add_setting('pixelsize', 'float',
+                         lambda: self._pixelsize,
+                         self._set_pixelsize,
+                         lambda: (0, 100))
+
+    #need a pixel size as the image must be mapped the stage coords.
+    def _set_pixelsize(self, value):
+        self._pixelsize = value
 
 
     def _fetch_data(self):
@@ -54,10 +62,11 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
             self._triggered -= 1
             # Create an image
             current_pos = self._stage.position
-            x=current_pos['x']
-            y=current_pos['y']
-            self.update_settings({'mosaic image X pos': x,
-                                  'mosaic image Y pos': y})
+            x=int(current_pos['x']/self._pixelsize)
+            y=int(current_pos['y']/self._pixelsize)
+            self.update_settings({'mosaic image X pos': x})
+            self.update_settings({'mosaic image Y pos': y})
+
             dark = 0
             light = 255
             width = self._roi.width // self._binning.h
@@ -78,7 +87,11 @@ class CameraStageController(devices.ControllerDevice):
             'y' : devices.AxisLimits(-mosaicSize[1]/2, mosaicSize[1]/2),
         })
         self._stage=stage
+
+        #init camera and configure.
         camera = StageAwareCamera(stage, "microscope/testsuite/mosaicimage.tif" )
+        camera.update_settings({'pixelsize': .2})
+        #list devices
         self._devices = {'stage' : stage, 'camera' : camera}
 
         
