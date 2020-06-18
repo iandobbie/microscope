@@ -26,6 +26,8 @@ different data dependant upon the stage position.
 
 import logging
 import typing
+import random
+import time
 
 import microscope.devices as devices
 import microscope.testsuite.devices
@@ -44,13 +46,26 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
 
 
     def _fetch_data(self):
-        current_pos = self._stage.position
-        x=current_pos['x']
-        y=current_pos['y']
-        self.update_settings({'mosaic image X pos': x,
-                                'mosaic image Y pos': y})
-        # Compute the indices for the image ndarray from the position
-        return self._fetch_data()
+        if self._acquiring and self._triggered > 0:
+            if random.randint(0, 100) < self._error_percent:
+                _logger.info('Raising exception')
+                raise Exception('Exception raised in TestCamera._fetch_data')
+            _logger.info('Sending image')
+            time.sleep(self._exposure_time)
+            self._triggered -= 1
+            # Create an image
+            current_pos = self._stage.position
+            x=current_pos['x']
+            y=current_pos['y']
+            self.update_settings({'mosaic image X pos': x,
+                                  'mosaic image Y pos': y})
+            dark = 0
+            light = 255
+            width = self._roi.width // self._binning.h
+            height = self._roi.height // self._binning.v
+            image = self._image_generator.get_image(width, height, dark, light, index=self._sent)
+            self._sent += 1
+            return image
     
 # The controller is not necessary at all, a user could perfectly
 # create its own camera and stage, it's only to make device server
