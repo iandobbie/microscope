@@ -65,16 +65,12 @@ class _ImageGenerator():
     """Generates test images, with methods for configuration via a Setting."""
     def __init__(self):
         self._methods = (self.noise, self.gradient, self.sawtooth,
-                         self.one_gaussian, self.black, self.white,
-                         self.mosaic)
+                         self.one_gaussian, self.black, self.white)
         self._method_index = 0
         self._datatypes = (np.uint8, np.uint16, np.float)
         self._datatype_index = 0
         self._theta = _theta_generator()
         self.numbering = True
-        self.mosaicimage = None
-        self.mosaic_xpos= 5000
-        self.mosaic_ypos= 5000
         # Font for rendering counter in images.
         self._font = ImageFont.load_default()
 
@@ -90,18 +86,6 @@ class _ImageGenerator():
     def set_data_type(self, index):
         self._datatype_index = index
 
-    def set_mosaic_xpos(self,pos):
-        self.mosaic_xpos=pos
-
-    def get_mosaic_xpos(self,pos):
-        return self.mosaic_xpos
-
-    def set_mosaic_ypos(self,pos):
-        self.mosaic_ypos=pos
-        
-    def get_mosaic_ypos(self,pos):
-        return self.mosaic_ypos
-        
     def get_methods(self):
         """Return the names of available image generation methods"""
         return (m.__name__ for m in self._methods)
@@ -166,15 +150,6 @@ class _ImageGenerator():
         wrap = 0.1 * max(xx.max(), yy.max())
         return dark + light * ((np.sin(th)*xx + np.cos(th)*yy) % wrap) / (wrap)
 
-    def mosaic(self, w, h, dark, light):
-        """Returns subsections of a mosaic image based on input coords""" 
-        if not self.mosaicimage:
-            self.mosaicimage =(Image.open("microscope/testsuite/mosaicimage.tif"))
-            self.redmosaic,self.greenmosaic,self.bluemosaic=self.mosaicimage.split()
-        x=self.mosaic_xpos+(self.mosaicimage.size[0]/2)
-        y=self.mosaic_ypos+(self.mosaicimage.size[1]/2)
-        imgSection=self.redmosaic.crop((x-w/2,y-h/2,x+w/2,y+h/2))
-        return (np.asarray(imgSection.getdata()).reshape(w,h))
 
 
         
@@ -198,15 +173,7 @@ class TestCamera(devices.CameraDevice):
                          lambda: self._image_generator.numbering,
                          self._image_generator.enable_numbering,
                          None)
-        self.add_setting('mosaic image X pos', 'int',
-                         lambda: self._image_generator.mosaic_xpos,
-                         self._image_generator.set_mosaic_xpos,
-                         lambda: (0,9562))
-        self.add_setting('mosaic image Y pos', 'int',
-                         lambda: self._image_generator.mosaic_ypos,
-                         self._image_generator.set_mosaic_ypos,
-                         lambda: (0,9458))
-
+        
         # Software buffers and parameters for data conversion.
         self._a_setting = 0
         self.add_setting('a_setting', 'int',

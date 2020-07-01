@@ -28,6 +28,8 @@ import logging
 import typing
 import random
 import time
+import numpy as np
+from PIL import Image
 
 import microscope.devices as devices
 import microscope.testsuite.devices
@@ -37,15 +39,41 @@ _logger = logging.getLogger(__name__)
 
 
 class StageAwareCamera(microscope.testsuite.devices.TestCamera):
-    def __init__(self, stage: devices.StageDevice, image: str, **kwargs) -> None:
+    def __init__(self, stage: devices.StageDevice, image, **kwargs) -> None:
         super().__init__(**kwargs)
         self._stage=stage
-        self.update_settings({'image pattern': 6})
+        self.mosaicimage = image
+        #add mosaic image pattern function.
+        methods=list(self._image_generator._methods)
+        methods.append(self.mosaic)
+        self._image_generator._methods=tuple (methods)
+        #and select it.
+        self.update_settings({'image pattern': len(
+            self._image_generator._methods)-1})
+        #load image so we can find size and channels.
+        #add settings for mosaic im`ge pattern.
+
+        self.mosaic_xpos= 0
+        self.mosaic_ypos= 0
+        self.mosaic_channel=0
         self._pixelsize = 1
         self.add_setting('pixelsize', 'float',
                          lambda: self._pixelsize,
                          self._set_pixelsize,
                          lambda: (0, 100))
+        self.add_setting('mosaic image X pos', 'int',
+                         lambda: self.mosaic_xpos,
+                         self.set_mosaic_xpos,
+                         lambda: (0,9562))
+        self.add_setting('mosaic image Y pos', 'int',
+                         lambda: self.mosaic_ypos,
+                         self.set_mosaic_ypos,
+                         lambda: (0,9458))
+        self.add_setting('mosaic channel', 'int',
+                         lambda: self.mosaic_channel,
+                         self.set_mosaic_channel,
+                         lambda: (0,3))
+
 
     #need a pixel size as the image must be mapped the stage coords.
     def _set_pixelsize(self, value):
@@ -74,14 +102,50 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
             image = self._image_generator.get_image(width, height, dark, light, index=self._sent)
             self._sent += 1
             return image
-    
+
+#mosaic getters and setters. 
+    def set_mosaic_xpos(self,pos):
+        self.mosaic_xpos=pos
+
+    def get_mosaic_xpos(self):
+        return self.mosaic_xpos
+
+    def set_mosaic_ypos(self,pos):
+        self.mosaic_ypos=pos
+
+    def get_mosaic_ypos(self):
+        return self.mosaic_ypos
+
+    def set_mosaic_channel(self,channel):
+        self.mosaic_channel=channel
+
+    def get_mosaic_channel(self):
+        return self.mosaic_channel
+
+    def mosaic(self, w, h, dark, light):
+        """Returns subsections of a mosaic image based on input coords"""
+        if not self.mosaicimage:
+            self.loadimage("microscope/testsuite/mosaicimage.tif")
+#            self.redmosaic,self.greenmosaic,self.bluemosaic=self.mosaicimage.split()
+        x=self.mosaic_xpos+(self.mosaicimage.size[0]/2)
+        y=self.mosaic_ypos+(self.mosaicimage.size[1]/2)
+        imgSection=self.mosaicimage.getchannel(self.mosaic_channel).crop((x-w/2,y-h/2,x+w/2,y+h/2))
+        return (np.asarray(imgSection.getdata()).reshape(w,h))
+
+    def loadimage(self, imagefile):
+        self.moasaicimage=Image.open(imagefile)
+
 # The controller is not necessary at all, a user could perfectly
 # create its own camera and stage, it's only to make device server
 # easier to use.
 class CameraStageController(devices.ControllerDevice):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        mosaicSize=(9562,9458)
+
+        #load image and set moasic size for stage.
+        self.mosaicimage=Image.open("microscope/testsuite/mosaicimage.tif")
+        mosaicSize=self.mosaicimage.size[:2]
+        #initialise stage
         stage = microscope.testsuite.devices.TestStage({
             'x' : devices.AxisLimits(-mosaicSize[0]/2, mosaicSize[0]/2),
             'y' : devices.AxisLimits(-mosaicSize[1]/2, mosaicSize[1]/2),
@@ -89,10 +153,14 @@ class CameraStageController(devices.ControllerDevice):
         self._stage=stage
 
         #init camera and configure.
-        camera = StageAwareCamera(stage, "microscope/testsuite/mosaicimage.tif" )
+        camera = StageAwareCamera(stage, self.mosaicimage)
         camera.update_settings({'pixelsize': .2})
+     
+        # filterwheel = microscope.testsuite.devices.TestFilterWheel()
+        # self._filterwheel = filterwheel
         #list devices
         self._devices = {'stage' : stage, 'camera' : camera}
+#                         'filterwheel': filterwheel}
 
         
     @property
