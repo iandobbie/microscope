@@ -30,6 +30,7 @@ import random
 import time
 import numpy as np
 from PIL import Image
+import scipy.ndimage
 
 import microscope.devices as devices
 import microscope.testsuite.devices
@@ -55,6 +56,7 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
 
         self.mosaic_xpos= 0
         self.mosaic_ypos= 0
+        self.mosaic_zpos=0.0
         self.mosaic_channel=0
         self._pixelsize = 1
         self.add_setting('pixelsize', 'float',
@@ -64,11 +66,15 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
         self.add_setting('mosaic image X pos', 'int',
                          lambda: self.mosaic_xpos,
                          self.set_mosaic_xpos,
-                         lambda: (0,9562))
+                         lambda: (0,self.mosaicimage.size[0]))
         self.add_setting('mosaic image Y pos', 'int',
                          lambda: self.mosaic_ypos,
                          self.set_mosaic_ypos,
-                         lambda: (0,9458))
+                         lambda: (0,self.mosaicimage.size[0]))
+        self.add_setting('mosaic image Z pos', 'float',
+                         lambda: self.mosaic_zpos,
+                         self.set_mosaic_zpos,
+                         lambda: (-50,50))
         self.add_setting('mosaic channel', 'int',
                          lambda: self.mosaic_channel,
                          self.set_mosaic_channel,
@@ -92,8 +98,11 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
             current_pos = self._stage.position
             x=int(current_pos['x']/self._pixelsize)
             y=int(current_pos['y']/self._pixelsize)
+            z=current_pos['z']
             self.update_settings({'mosaic image X pos': x})
             self.update_settings({'mosaic image Y pos': y})
+            self.update_settings({'mosaic image Z pos': z})
+            
 
             dark = 0
             light = 255
@@ -116,6 +125,12 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
     def get_mosaic_ypos(self):
         return self.mosaic_ypos
 
+    def set_mosaic_zpos(self,pos):
+        self.mosaic_zpos=pos
+
+    def get_mosaic_zpos(self):
+        return self.mosaic_zpos
+
     def set_mosaic_channel(self,channel):
         self.mosaic_channel=channel
 
@@ -129,8 +144,10 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
 #            self.redmosaic,self.greenmosaic,self.bluemosaic=self.mosaicimage.split()
         x=self.mosaic_xpos+(self.mosaicimage.size[0]/2)
         y=self.mosaic_ypos+(self.mosaicimage.size[1]/2)
+        blur=abs((self.mosaic_zpos)/10)
         imgSection=self.mosaicimage.getchannel(self.mosaic_channel).crop((x-w/2,y-h/2,x+w/2,y+h/2))
-        return (np.asarray(imgSection.getdata()).reshape(w,h))
+        return (scipy.ndimage.gaussian_filter(np.asarray(
+            imgSection.getdata()).reshape(w,h),blur))
 
     def loadimage(self, imagefile):
         self.moasaicimage=Image.open(imagefile)
@@ -149,6 +166,7 @@ class CameraStageController(devices.ControllerDevice):
         stage = microscope.testsuite.devices.TestStage({
             'x' : devices.AxisLimits(-mosaicSize[0]/2, mosaicSize[0]/2),
             'y' : devices.AxisLimits(-mosaicSize[1]/2, mosaicSize[1]/2),
+            'z' : devices.AxisLimits(-50, 50)
         })
         self._stage=stage
 
