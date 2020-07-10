@@ -137,6 +137,7 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
     def get_mosaic_channel(self):
         return self.mosaic_channel
 
+    #deal with actual mosaic image return.
     def mosaic(self, w, h, dark, light):
         """Returns subsections of a mosaic image based on input coords"""
         if not self.mosaicimage:
@@ -145,7 +146,11 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
         x=self.mosaic_xpos+(self.mosaicimage.size[0]/2)
         y=self.mosaic_ypos+(self.mosaicimage.size[1]/2)
         blur=abs((self.mosaic_zpos)/10)
-        imgSection=self.mosaicimage.getchannel(self.mosaic_channel).crop((x-w/2,y-h/2,x+w/2,y+h/2))
+        #return a section of the image
+        #take moasic channel mod number of channels. 
+        imgSection=self.mosaicimage.getchannel(
+            self.mosaic_channel%len(self.mosaicimage.getbands())).crop((x-w/2,y-h/2,x+w/2,y+h/2))
+        #gaussian filter on abs Z position to simulate focus
         return (scipy.ndimage.gaussian_filter(np.asarray(
             imgSection.getdata()).reshape(w,h),blur))
 
