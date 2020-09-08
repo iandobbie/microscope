@@ -26,7 +26,6 @@ different data dependant upon the stage position.
 
 import logging
 import typing
-import random
 import time
 import numpy as np
 from PIL import Image
@@ -88,9 +87,6 @@ class StageAwareCamera(microscope.testsuite.devices.TestCamera):
 
     def _fetch_data(self):
         if self._acquiring and self._triggered > 0:
-            if random.randint(0, 100) < self._error_percent:
-                _logger.info('Raising exception')
-                raise Exception('Exception raised in TestCamera._fetch_data')
             _logger.info('Sending image')
             time.sleep(self._exposure_time)
             self._triggered -= 1
@@ -177,7 +173,7 @@ class CameraStageController(devices.ControllerDevice):
 
         #init camera and configure.
         camera = StageAwareCamera(stage, self.mosaicimage)
-        camera.update_settings({'pixelsize': .2})
+        camera.update_settings({'pixelsize': 1.0})
      
         # filterwheel = microscope.testsuite.devices.TestFilterWheel()
         # self._filterwheel = filterwheel
