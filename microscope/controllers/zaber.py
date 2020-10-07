@@ -258,12 +258,11 @@ class _ZaberStage(microscope.devices.StageDevice):
             self._axes[axis_name].move_to(axis_position)
 
 
-class _ZaberFilterWheel(microscope.devices.FilterWheelBase):
+class _ZaberFilterWheel(microscope.abc.FilterWheel):
     """Zaber filter wheels and filter cube turrets.
     """
     def __init__(self, conn: _ZaberConnection, device_address: int,
                  **kwargs) -> None:
-        super().__init__(**kwargs)
         self._conn = _ZaberDeviceConnection(conn, device_address)
 
         if self._conn.get_number_axes() != 1:
@@ -276,6 +275,9 @@ class _ZaberFilterWheel(microscope.devices.FilterWheelBase):
                                % (device_address))
         self._positions = int(rotation_length
                               / self._conn.get_index_distance(1))
+
+
+        super().__init__(positions=self._positions,**kwargs)
 
         # Before a device can moved, it first needs to establish a
         # reference to the home position.  We won't be able to move
@@ -291,13 +293,13 @@ class _ZaberFilterWheel(microscope.devices.FilterWheelBase):
     def _on_shutdown(self) -> None:
         super()._on_shutdown()
 
-    def get_position(self) -> int:
+    def _do_get_position(self) -> int:
         # Zaber positions start at one.
         # FIXME: Microscope is not clear on what position number it
         # counts from (issue #119).  This might require fixing later.
         return self._conn.get_current_index(axis=1)
 
-    def set_position(self, position: int) -> None:
+    def _do_set_position(self, position: int) -> None:
         # Zaber positions start at one.
         # FIXME: Microscope is not clear on what position number it
         # counts from (issue #119).  This might require fixing later.
@@ -372,9 +374,12 @@ class ZaberDaisyChain(microscope.devices.ControllerDevice):
         self._devices: typing.Mapping[str, microscope.devices.Device] = {}
 
         for address, device_type in address2type.items():
+            print(address, device_type)
             if address < 1 or address > 99:
                 raise ValueError('address must be an integer between 1-99')
-            self._devices[str(address)] = device_type.value(self._conn, address)
+ 
+            self._devices[str(address)] = device_type.value(self._conn,
+                                                            address)
 
     @property
     def devices(self) -> typing.Mapping[str, microscope.devices.Device]:
