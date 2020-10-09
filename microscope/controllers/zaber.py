@@ -35,7 +35,7 @@ import enum
 import serial
 import threading
 import typing
-
+import time
 import microscope.devices
 
 
@@ -197,6 +197,15 @@ class _ZaberDeviceConnection:
         """The minimum position the device can move to, in microsteps."""
         return int(self.command(b'get limit.min', axis).response)
 
+    def get_LED_status(self, led: int):
+        """Get the LEDs connected to a X-LCA4 controller.
+        0 - off : 1 - on"""
+        self.command(b'get lamp.status', led).response
+
+    def LED_on(self, led: int):
+        self.command(b'%d lamp on' % led)
+
+
 
 class _ZaberStageAxis(microscope.devices.StageAxis):
     def __init__(self, conn: _ZaberDeviceConnection, axis: int) -> None:
@@ -297,6 +306,8 @@ class _ZaberFilterWheel(microscope.abc.FilterWheel):
         # Zaber positions start at one.
         # FIXME: Microscope is not clear on what position number it
         # counts from (issue #119).  This might require fixing later.
+        while(self._conn.get_current_index(axis=1)==0):
+            time.sleep(0.1)
         return self._conn.get_current_index(axis=1)
 
     def _do_set_position(self, position: int) -> None:
@@ -308,7 +319,88 @@ class _ZaberFilterWheel(microscope.abc.FilterWheel):
                              % self._positions)
         self._conn.move_to_index(axis=1, index=position)
 
+class _ZaberLEDChannel(microscope.abc.Laser):
+    """A single light channel from a light engine.
+    A channel is not necessarily a lasers although it subclasses from
+    `LaserDevice`.  Constituent light sources may include LEDs,
+    luminescent light pipes, or lasers.
+    """
+    def __init__(self, conn: _ZaberDeviceConnection, channel: int) -> None:
+        super().__init__()
+        self._conn = conn
+        self._channel = channel
+        self._maxFlux = (self._conn.command(b'get lamp.flux.max',
+                                            self._channel).response)
+        self._wavelength = (self._conn.command(b'get lamp.wavelength.peak',
+                                               self._channel).response)
+        self._wavelengthFWHM = (self._conn.command(b'get lamp.wavelength.fwhm',
+                                                   self._channel).response)
 
+    def initialize(self):
+        pass
+                         
+    def enable(self):
+        self._conn.command(b'lamp on',self._channel)
+
+    def disable(self):
+        self._conn.command(b'lamp off',self._channel)
+
+    def _do_get_power(self):
+        return (100.0 * self._conn.command(b'get lamp.flux',
+                                           self._channel).response/
+                self.maxFlux)
+
+    def _do_set_power(self, power: float):
+       flux = (power/100.0) * self._maxFlux 
+       self._conn.command(b'set lamp.flux %f' % flux, self._channel)
+
+    #not sure what this should return.
+    def get_status(self):
+        return(self._conn.command(b'get lamp.status', self._channel).response)
+   
+    def get_is_on(self):
+        state= self._conn.command(b'get lamp.status', self._channel).response
+        return (True if state==b'2' else False)
+
+    
+    def _on_shutdown(self):
+        self._conn.command(b'lamp off', self._channel)
+
+    def _get_temperature(self):
+        return(self._conn.command(b'get lamp.temperature',
+                                  self._channel).response)
+
+class _ZaberLEDs():
+    """Zaber LED controller X-LCA4.
+    """
+    def __init__(self, conn: _ZaberConnection, device_address: int,
+                 **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._conn = _ZaberDeviceConnection(conn, device_address)
+        self._lights: typing.Mapping[str,microscope.abc.Device] = {}
+        led_status = self._conn.command(b'get lamp.status').response
+        i=0
+        for i, led_state in enumerate(led_status.split()):
+            if led_state == b'1' or led_state == b'2':
+                self._lights[str(device_address)+'_'+str(i+1)]=_ZaberLEDChannel(self._conn, i+1)
+                print ('found LED %d' % (i+1))
+        print (self._lights)
+
+    def initialize(self):
+        pass
+
+    def shutdown(self):
+        for name, light in self._lights.items():
+            light._on_shutdown()
+            print ('shutdown light %s' % name)
+
+#lamp commands: lamp on, lamp off
+#lamp settings: lamp.status, lamp.current, lamp.current.max,
+#lamp.flux, lamp.flux.max lamp.temperature, lamp.wavelength.fwhm,
+#lamp.wavelength.peak
+        
+
+        
 class ZaberDeviceType(enum.Enum):
     """Enumerator for Zaber device types.
 
@@ -319,7 +411,7 @@ class ZaberDeviceType(enum.Enum):
     # class to keep the individual device classes private.
     STAGE = _ZaberStage
     FILTER_WHEEL = _ZaberFilterWheel
-
+    LED = _ZaberLEDs
 
 class ZaberDaisyChain(microscope.devices.ControllerDevice):
     """A daisy chain of Zaber devices.
@@ -380,7 +472,11 @@ class ZaberDaisyChain(microscope.devices.ControllerDevice):
  
             self._devices[str(address)] = device_type.value(self._conn,
                                                             address)
+            if device_type == ZaberDeviceType.LED:
+                for name, device in self._devices[str(address)]._lights.items():
+                    self._devices[name] = device
 
+   
     @property
     def devices(self) -> typing.Mapping[str, microscope.devices.Device]:
         return self._devices
