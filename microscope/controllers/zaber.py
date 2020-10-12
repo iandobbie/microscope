@@ -329,8 +329,9 @@ class _ZaberLEDChannel(microscope.abc.Laser):
         super().__init__()
         self._conn = conn
         self._channel = channel
-        self._maxFlux = (self._conn.command(b'get lamp.flux.max',
+        self._maxFlux = float(self._conn.command(b'get lamp.flux.max',
                                             self._channel).response)
+        print('maxflux=',(self._maxFlux))
         self._wavelength = (self._conn.command(b'get lamp.wavelength.peak',
                                                self._channel).response)
         self._wavelengthFWHM = (self._conn.command(b'get lamp.wavelength.fwhm',
@@ -346,13 +347,15 @@ class _ZaberLEDChannel(microscope.abc.Laser):
         self._conn.command(b'lamp off',self._channel)
 
     def _do_get_power(self):
-        return (100.0 * self._conn.command(b'get lamp.flux',
-                                           self._channel).response/
-                self.maxFlux)
+        return ( float(self._conn.command(b'get lamp.flux',
+                                           self._channel).response)/
+                self._maxFlux)
 
     def _do_set_power(self, power: float):
-       flux = (power/100.0) * self._maxFlux 
-       self._conn.command(b'set lamp.flux %f' % flux, self._channel)
+
+        flux = (power * self._maxFlux)
+        print ('set power ',flux)
+        self._conn.command(b'set lamp.flux %f' % flux, self._channel)
 
     #not sure what this should return.
     def get_status(self):
