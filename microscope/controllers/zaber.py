@@ -331,7 +331,6 @@ class _ZaberLEDChannel(microscope.abc.Laser):
         self._channel = channel
         self._maxFlux = float(self._conn.command(b'get lamp.flux.max',
                                             self._channel).response)
-        print('maxflux=',(self._maxFlux))
         self._wavelength = (self._conn.command(b'get lamp.wavelength.peak',
                                                self._channel).response)
         self._wavelengthFWHM = (self._conn.command(b'get lamp.wavelength.fwhm',
@@ -354,7 +353,6 @@ class _ZaberLEDChannel(microscope.abc.Laser):
     def _do_set_power(self, power: float):
 
         flux = (power * self._maxFlux)
-        print ('set power ',flux)
         self._conn.command(b'set lamp.flux %f' % flux, self._channel)
 
     #not sure what this should return.
@@ -386,8 +384,6 @@ class _ZaberLEDs():
         for i, led_state in enumerate(led_status.split()):
             if led_state == b'1' or led_state == b'2':
                 self._lights[str(device_address)+'_'+str(i+1)]=_ZaberLEDChannel(self._conn, i+1)
-                print ('found LED %d' % (i+1))
-        print (self._lights)
 
     def initialize(self):
         pass
@@ -395,7 +391,6 @@ class _ZaberLEDs():
     def shutdown(self):
         for name, light in self._lights.items():
             light._on_shutdown()
-            print ('shutdown light %s' % name)
 
 #lamp commands: lamp on, lamp off
 #lamp settings: lamp.status, lamp.current, lamp.current.max,
@@ -469,7 +464,6 @@ class ZaberDaisyChain(microscope.devices.ControllerDevice):
         self._devices: typing.Mapping[str, microscope.devices.Device] = {}
 
         for address, device_type in address2type.items():
-            print(address, device_type)
             if address < 1 or address > 99:
                 raise ValueError('address must be an integer between 1-99')
  
