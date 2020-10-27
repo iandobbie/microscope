@@ -409,6 +409,9 @@ class DataDevice(Device, metaclass=abc.ABCMeta):
         self._acquiring = False
         # A condition to signal arrival of a new data and unblock grab_next_data
         self._new_data_condition = threading.Condition()
+                # A data processing pipeline: a list of f(data) -> data.
+        self.pipeline = []
+        
 
     def __del__(self):
         self.disable()
@@ -484,8 +487,12 @@ class DataDevice(Device, metaclass=abc.ABCMeta):
         return None
 
     def _process_data(self, data):
-        """Do any data processing and return data."""
-        return data
+        """Do any data processing and return data.        
+        
+        Subclasses should call super()._process_data(data) after doing their
+        own processing."""
+        import functools
+        return functools.reduce(lambda x, f: f(x), self.pipeline, data)
 
     def _send_data(self, client, data, timestamp):
         """Dispatch data to the client."""
