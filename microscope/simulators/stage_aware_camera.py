@@ -150,11 +150,20 @@ def simulated_setup_from_image(
             "z": microscope.AxisLimits(-50, 50),
         }
     )
-    filterwheel = SimulatedFilterWheel(positions=image.shape[2])
-    camera = StageAwareCamera(image, stage, filterwheel)
+    filterwheelR = SimulatedFilterWheel(positions=image.shape[2])
+    filterwheelG = SimulatedFilterWheel(positions=image.shape[2])
+    filterwheelB = SimulatedFilterWheel(positions=image.shape[2])
+   
+    cameraR = StageAwareCamera(image, stage, filterwheelR)
+    cameraG = StageAwareCamera(image, stage, filterwheelG)
+    cameraB = StageAwareCamera(image, stage, filterwheelB)
 
     return {
-        "camera": camera,
-        "filterwheel": filterwheel,
+        "cameraR": cameraR,
+        "filterwheelR": filterwheelR,
+        "cameraG": cameraG,
+        "filterwheelG": filterwheelG,
+        "cameraB": cameraB,
+        "filterwheelB": filterwheelB,
         "stage": stage,
     }
