@@ -1375,7 +1375,6 @@ class StageAxis(metaclass=abc.ABCMeta):
         """Move axis to specified position."""
         raise NotImplementedError()
 
-    @abc.abstractmethod
     def setupDigitalStack(self, start: float, moveSize: float,
                           numMoves: int) -> int:
         """Setup a digitally trigger stack.
@@ -1387,7 +1386,7 @@ class StageAxis(metaclass=abc.ABCMeta):
         The function should set the axis to the start position and
         configure the controller to move ther set distance with each 
         trigger. Generally the number of moves is not used."""
-        return None
+        return 0
         
 
 
