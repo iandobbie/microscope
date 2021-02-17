@@ -323,6 +323,27 @@ class _ZaberStageAxis(microscope.abc.StageAxis):
         max_limit = self._dev_conn.get_limit_max(self._axis)
         return microscope.AxisLimits(lower=min_limit, upper=max_limit)
 
+    def setupDigitalStack(self, start: float, moveSize: float,
+                          numMoves: int) -> int:
+        #move to initial position for stack
+        self.move_to(start)
+        #program digital Z stack into controller.
+        # trigger when digitial in 1 goes to 1
+        self.command(b"trigger 1 when io di 1 == 1", axis)
+        #set trigger to move stage 1 relative by movesize
+        self.command(b"trigger 1 action a 1 move rel %d" % moveSize, axis)
+        #enable trigger
+        self.command(b"trigger 1 enable",axis)
+
+        # need to return to start at end of stack for time series collection
+        
+        return numMoves
+
+
+    def cancelDigitalStack(self) -> None:
+        #disable trigger
+        self.command(b"trigger 1 disable",axis)
+
 
 class _ZaberStage(microscope.abc.Stage):
     def __init__(
