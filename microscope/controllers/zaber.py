@@ -338,22 +338,22 @@ class _ZaberStageAxis(microscope.abc.StageAxis):
         #move to initial position for stack
         self.move_to(start)
         #program digital Z stack into controller.
-        # trigger when digitial in 1 goes to 1
+        # trigger when io digitial in 1 goes to 1
+        # axis -1 means dont included the axis in the string sent to the
+        # controller. 
         self._dev_conn.command(b"trigger 1 when io di 1 == 1", -1)
         #set trigger to move stage 1 relative by movesize
         self._dev_conn.command(b"trigger 1 action a 1 move rel %d" % moveSize, 
             -1)
         #enable trigger
         self._dev_conn.command(b"trigger 1 enable", -1)
-
         # need to return to start at end of stack for time series collection
-        
         return numMoves
 
 
     def cancelDigitalStack(self) -> None:
         #disable trigger
-        self.command(b"trigger 1 disable",axis)
+        self._dev_conn.command(b"trigger 1 disable",-1)
 
 
 class _ZaberStage(microscope.abc.Stage):
