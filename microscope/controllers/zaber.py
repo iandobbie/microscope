@@ -198,13 +198,23 @@ class _ZaberDeviceConnection:
         # We do not need to check whether axis number is valid because
         # the device will reject the command with BADAXIS if so.
         with self._conn.lock:
-            self._conn.write(
-                b"/%s %1d %s\n" % (self._address_bytes, axis, command)
-            )
+            if axis>=0 :
+                #default to include axis info
+                self._conn.write(
+                    b"/%s %1d %s\n" % (self._address_bytes, axis, command)
+                )
+            else:
+                #if axis is <0 then dont include axis
+                self._conn.write(
+                    b"/%s %s\n" % (self._address_bytes, command)
+                )
             data = self._conn.readline()
         reply = _ZaberReply(data)
         self._validate_reply(reply)
         return reply
+
+
+
 
     def is_busy(self) -> bool:
         return self.command(b"").status == b"BUSY"
@@ -329,11 +339,12 @@ class _ZaberStageAxis(microscope.abc.StageAxis):
         self.move_to(start)
         #program digital Z stack into controller.
         # trigger when digitial in 1 goes to 1
-        self.command(b"trigger 1 when io di 1 == 1", axis)
+        self._dev_conn.command(b"trigger 1 when io di 1 == 1", -1)
         #set trigger to move stage 1 relative by movesize
-        self.command(b"trigger 1 action a 1 move rel %d" % moveSize, axis)
+        self._dev_conn.command(b"trigger 1 action a 1 move rel %d" % moveSize, 
+            -1)
         #enable trigger
-        self.command(b"trigger 1 enable",axis)
+        self._dev_conn.command(b"trigger 1 enable", -1)
 
         # need to return to start at end of stack for time series collection
         
