@@ -348,13 +348,26 @@ class _ZaberStageAxis(microscope.abc.StageAxis):
         #enable trigger
         self._dev_conn.command(b"trigger 1 enable", -1)
         # need to return to start at end of stack for time series collection
+        #calc end height of stack plus half a step
+        trigheight=(start+(moveSize*(numMoves-1))+moveSize/2.)
+        #trigger on 
+        if moveSize >0 :
+            self._dev_conn.command(b"trigger 2 when 1 pos >= %d" % trigheight, -1)
+        else:
+            self._dev_conn.command(b"trigger 2 when 1 pos <= %d" % trigheight, -1)
+        #set trigger to move stage 1 relative by movesize
+        self._dev_conn.command(b"trigger 2 action a 1 move abs %d" % start, 
+            -1)
+        #enable trigger
+        self._dev_conn.command(b"trigger 2 enable", -1)
+        
         return numMoves
 
 
     def cancelDigitalStack(self) -> None:
         #disable trigger
         self._dev_conn.command(b"trigger 1 disable",-1)
-
+        self._dev_conn.command(b"trigger 2 disable",-1)
 
 class _ZaberStage(microscope.abc.Stage):
     def __init__(
