@@ -47,7 +47,7 @@ from collections.abc import Iterable
 from logging import StreamHandler
 from logging.handlers import RotatingFileHandler
 from threading import Thread
-
+import os
 import Pyro4
 
 import microscope.abc
@@ -327,9 +327,15 @@ class DeviceServer(multiprocessing.Process):
 
         pyro_daemon = Pyro4.Daemon(port=port, host=host)
 
-        log_handler = RotatingFileHandler(
-            "%s_%s_%s.log" % (cls_name, host, port)
-        )
+        if (sys.platform == "darwin" ):
+            log_path= os.path.join(os.path.join(os.path.join(
+                os.path.expanduser("~"),"Library"),
+            "Logs"),"cockpit")
+            log_handler = RotatingFileHandler(
+                os.path.join(log_path,"%s_%s_%s.log" % (cls_name, host, port)))
+        else:
+            log_handler = RotatingFileHandler("%s_%s_%s.log"
+                                              % (cls_name, host, port))
         log_handler.setFormatter(_create_log_formatter(cls_name))
         root_logger.addHandler(log_handler)
 
