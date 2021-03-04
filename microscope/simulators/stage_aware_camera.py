@@ -139,20 +139,24 @@ def simulated_setup_from_image(
         ]
     """
     PIL.Image.MAX_IMAGE_PIXELS = None
-    image = np.array(PIL.Image.open(filepath))
+    inputImage = PIL.Image.open(filepath)
+    #assume xy res the same
+    pixelsize=1.0 / inputImage.info['resolution'][0]
+    image = np.array(inputImage)
     if len(image.shape) < 3:
         raise ValueError("not an RGB image")
 
     stage = SimulatedStage(
         {
-            "x": microscope.AxisLimits(0, image.shape[0]),
-            "y": microscope.AxisLimits(0, image.shape[1]),
+            "x": microscope.AxisLimits(0, image.shape[0]*pixelsize),
+            "y": microscope.AxisLimits(0, image.shape[1]*pixelsize),
             "z": microscope.AxisLimits(-50, 50),
         }
     )
     filterwheel = SimulatedFilterWheel(positions=image.shape[2])
     camera = StageAwareCamera(image, stage, filterwheel)
-
+    camera._pixel_size = pixelsize
+    
     return {
         "camera": camera,
         "filterwheel": filterwheel,
