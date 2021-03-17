@@ -282,7 +282,7 @@ class SimulatedCamera(
 
     def get_trigger_type(self):
         # deprecated, use trigger_type and trigger_mode properties
-        return microscope.abc.TRIGGER_SOFT
+        return microscope.TriggerType.SOFTWARE
 
     def soft_trigger(self):
         # deprecated, use self.trigger()
