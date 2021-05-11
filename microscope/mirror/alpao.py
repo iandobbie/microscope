@@ -32,7 +32,7 @@ except Exception as e:
     raise microscope.LibraryLoadError(e) from e
 
 
-class AlpaoDeformableMirror(microscope.abc.DeformableMirror):
+class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stage):
     """Alpao deformable mirror.
 
     The Alpao mirrors support hardware triggers modes
@@ -204,3 +204,67 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror):
         if status != asdk.SUCCESS:
             msg = self._find_error_str()
             warnings.warn(msg)
+
+    #Functions for the remotez stage functionality.
+    #Required by the stage abc
+    #Properties:
+    #  axes
+    #  position
+    #  limits
+    #Methds:
+    #  move_by
+    #  move_to
+    #
+
+    #needs calling with a dict {'z': microscope.AxisLimits(-10, 10)}
+    def __init__(
+        self, limits: typing.Mapping[str, microscope.AxisLimits], **kwargs
+    ) -> None:
+        super().__init__(**kwargs)
+        self._axes = {
+            name: remoteFocusStageAxis(lim) for name, lim in limits.items()
+        }
+
+    def _do_shutdown(self) -> None:
+        pass
+
+    @property
+    def axes(self) -> typing.Mapping[str, microscope.abc.StageAxis]:
+        return self._axes
+
+
+    def move_by(self, delta: typing.Mapping[str, float]) -> None:
+        for name, rpos in delta.items():
+            self.axes[name].move_by(rpos)
+
+    def move_to(self, position: typing.Mapping[str, float]) -> None:
+        for name, pos in position.items():
+            self.axes[name].move_to(pos)
+
+class remoteFocusStageAxis(microsocpe.abc.StageAxis):
+    def __init__(self, limits: microscope.AxisLimits) -> None:
+        super().__init__()
+        self._limits = limits
+        # Start axis in the middle of its range.
+        self._position = self._limits.lower + (
+            (self._limits.upper - self._limits.lower) / 2.0
+        )
+    @property
+    def position(self) -> float:
+        return self._position
+
+    @property
+    def limits(self) -> microscope.AxisLimits:
+        return self._limits
+
+    def move_by(self, delta: float) -> None:
+        self.move_to(self._position + delta)
+
+#This needs to be made to calculate a Dm shape, load and trigger it
+    def move_to(self, pos: float) -> None:
+        if pos < self._limits.lower:
+            self._position = self._limits.lower
+        elif pos > self._limits.upper:
+            self._position = self._limits.upper
+        else:
+            self._position = pos
