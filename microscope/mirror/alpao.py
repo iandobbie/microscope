@@ -19,6 +19,7 @@
 
 import ctypes
 import warnings
+import typing
 
 import numpy
 
@@ -94,8 +95,7 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stag
                 raise exception_cls(msg)
 
     def __init__(self, serial_number: str, **kwargs) -> None:
-        super().__init__(limits: typing.Mapping[str, microscope.AxisLimits],
-                         **kwargs)
+        super().__init__(**kwargs)
         self._dm = asdk.Init(serial_number.encode())
         if not self._dm:
             raise microscope.InitialiseError(
@@ -114,9 +114,7 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stag
         self._trigger_type = microscope.TriggerType.SOFTWARE
         self._trigger_mode = microscope.TriggerMode.ONCE
         # setup remote focus axis
-        self._axes = {
-            name: remoteFocusStageAxis(lim) for name, lim in limits.items()
-        }
+        self._axes = {'Z': remoteFocusStageAxis(microscope.AxisLimits(-10,10))}
 
     @property
     def n_actuators(self) -> int:
@@ -238,8 +236,8 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stag
         for name, pos in position.items():
             self.axes[name].move_to(pos)
 
-class remoteFocusStageAxis(microsocpe.abc.StageAxis):
-    def __init__(self, limits: microscope.AxisLimits, dm) -> None:
+class remoteFocusStageAxis(microscope.abc.StageAxis):
+    def __init__(self, limits: microscope.AxisLimits) -> None:
         super().__init__()
         self._limits = limits
         # Start axis in the middle of its range.
@@ -256,7 +254,7 @@ class remoteFocusStageAxis(microsocpe.abc.StageAxis):
 
     @zCalibration.setter
     def setzCalibartion(self, calibration):
-        self._zCalibartation = calibration
+        self._zCalibration = calibration
 
         
     @property
@@ -272,7 +270,7 @@ class remoteFocusStageAxis(microsocpe.abc.StageAxis):
 
 #This needs to be made to calculate a Dm shape, load and trigger it
     def move_to(self, pos: float) -> None:
-        if self._zCalibration[0,0]>pos:
+        if self._zCalibration[0][0]<pos:
             #position is below lower calibrated pos
             raise('position below z calibration')
 
@@ -282,18 +280,22 @@ class remoteFocusStageAxis(microsocpe.abc.StageAxis):
         
 
     def calcDMShape(self,pos):
-        calsteps = len(self._zCalibartion)
-        lastpos = self._zCalibration[0,0]
+        calsteps = len(self._zCalibration)
+        lastpos = self._zCalibration[0][0]
+        print(lastpos)
         #find cal bracketing calibration and linearly interpolate.
-        for i in range (len(self._zCalibration)) :
-            currentpos = self._zCalibration[1,0]
-            if (current > pos ):
+        for i in range (1,len(self._zCalibration)) :
+            currentpos = self._zCalibration[i][0]
+            print(currentpos)
+            if (currentpos > pos ):
                 #this cal point and the last bracket the pos
                 interpolate = (pos-lastpos) / (currentpos-lastpos)
-                dmshape = (self._zCalibration[i-1,1:]+
-                         (self._zCalibration[i,1:]-self._zCalibration[i-1,1:]) *
+                print(interpolate)
+                dmshape = (self._zCalibration[i-1][1:]+
+                         (self._zCalibration[i][1:]-self._zCalibration[i-1][1:]) *
                          interpolate)
                 return(dmshape)
+            lastpos=currentpos
         raise('position above z calibration')
                 
                 
