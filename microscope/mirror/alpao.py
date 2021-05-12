@@ -32,7 +32,7 @@ except Exception as e:
     raise microscope.LibraryLoadError(e) from e
 
 
-class AlpaoDeformableMirror(microscope.abc.DeformableMirror):
+class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stage):
     """Alpao deformable mirror.
 
     The Alpao mirrors support hardware triggers modes
@@ -94,7 +94,8 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror):
                 raise exception_cls(msg)
 
     def __init__(self, serial_number: str, **kwargs) -> None:
-        super().__init__(**kwargs)
+        super().__init__(limits: typing.Mapping[str, microscope.AxisLimits],
+                         **kwargs)
         self._dm = asdk.Init(serial_number.encode())
         if not self._dm:
             raise microscope.InitialiseError(
@@ -112,6 +113,10 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror):
         self._n_actuators = int(value.contents.value)
         self._trigger_type = microscope.TriggerType.SOFTWARE
         self._trigger_mode = microscope.TriggerMode.ONCE
+        # setup remote focus axis
+        self._axes = {
+            name: remoteFocusStageAxis(lim) for name, lim in limits.items()
+        }
 
     @property
     def n_actuators(self) -> int:
@@ -204,3 +209,96 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror):
         if status != asdk.SUCCESS:
             msg = self._find_error_str()
             warnings.warn(msg)
+
+    #Functions for the remotez stage functionality.
+    #Required by the stage abc
+    #Properties:
+    #  axes
+    #  position
+    #  limits
+    #Methds:
+    #  move_by
+    #  move_to
+    #Additional stuff
+    #  zCalibration an array of [[pos, dm accuators pos...],[]]
+    #  calcDMShape takes a position and interpolates dm shape
+    #      from the calibration array
+    #  setupDigitalStack to preload positons ready ofr triggers.
+
+    @property
+    def axes(self) -> typing.Mapping[str, microscope.abc.StageAxis]:
+        return self._axes
+
+
+    def move_by(self, delta: typing.Mapping[str, float]) -> None:
+        for name, rpos in delta.items():
+            self.axes[name].move_by(rpos)
+
+    def move_to(self, position: typing.Mapping[str, float]) -> None:
+        for name, pos in position.items():
+            self.axes[name].move_to(pos)
+
+class remoteFocusStageAxis(microsocpe.abc.StageAxis):
+    def __init__(self, limits: microscope.AxisLimits, dm) -> None:
+        super().__init__()
+        self._limits = limits
+        # Start axis in the middle of its range.
+        self._position = self._limits.lower + (
+            (self._limits.upper - self._limits.lower) / 2.0
+        )
+        #calibration array is zposition followed by the zernike mode amps?
+        self._zCalibration=[]
+
+
+    @property
+    def zCalibration(self):
+        return self._zCalibration
+
+    @zCalibration.setter
+    def setzCalibartion(self, calibration):
+        self._zCalibartation = calibration
+
+        
+    @property
+    def position(self) -> float:
+        return self._position
+
+    @property
+    def limits(self) -> microscope.AxisLimits:
+        return self._limits
+
+    def move_by(self, delta: float) -> None:
+        self.move_to(self._position + delta)
+
+#This needs to be made to calculate a Dm shape, load and trigger it
+    def move_to(self, pos: float) -> None:
+        if self._zCalibration[0,0]>pos:
+            #position is below lower calibrated pos
+            raise('position below z calibration')
+
+        shape = self.calDMShape(pos)
+        #need to be able to call the dm shape functions. 
+        
+        
+
+    def calcDMShape(self,pos):
+        calsteps = len(self._zCalibartion)
+        lastpos = self._zCalibration[0,0]
+        #find cal bracketing calibration and linearly interpolate.
+        for i in range (len(self._zCalibration)) :
+            currentpos = self._zCalibration[1,0]
+            if (current > pos ):
+                #this cal point and the last bracket the pos
+                interpolate = (pos-lastpos) / (currentpos-lastpos)
+                dmshape = (self._zCalibration[i-1,1:]+
+                         (self._zCalibration[i,1:]-self._zCalibration[i-1,1:]) *
+                         interpolate)
+                return(dmshape)
+        raise('position above z calibration')
+                
+                
+    def setupDigitalStack(self, start: float, moveSize: float,
+                          numMoves: int) -> int:
+
+        
+        return numMoves

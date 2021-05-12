@@ -432,6 +432,10 @@ class SimulatedStageAxis(microscope.abc.StageAxis):
         else:
             self._position = pos
 
+    def setupDigitalStack(self,start,step,num):
+        self.move_to(start)
+        _logger.info("Digitial stack.", start, step, num)
+        return(1)
 
 class SimulatedStage(microscope.abc.Stage):
     """A test stage with any number of axis.
