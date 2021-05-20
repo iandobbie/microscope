@@ -22,6 +22,7 @@ import warnings
 
 import numpy
 import weakref
+import typing
 
 import microscope
 import microscope.abc
@@ -95,8 +96,7 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stag
                 raise exception_cls(msg)
 
     def __init__(self, serial_number: str, **kwargs) -> None:
-        super().__init__(limits: typing.Mapping[str, microscope.AxisLimits],
-                         **kwargs)
+        super().__init__( **kwargs)
         self._dm = asdk.Init(serial_number.encode())
         if not self._dm:
             raise microscope.InitialiseError(
@@ -115,9 +115,10 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stag
         self._trigger_type = microscope.TriggerType.SOFTWARE
         self._trigger_mode = microscope.TriggerMode.ONCE
         # setup remote focus axis
-        self._axes = {
-            name: remoteFocusStageAxis(lim) for name, lim in limits.items()
-        }
+        self._axes = {'Z': remoteFocusStageAxis(limits=microscope.AxisLimits(-10.0,10.0), dm=self)}
+#        self._axes = {
+#            name: remoteFocusStageAxis(lim) for name, lim in limits.items()
+#        }
 
     @property
     def n_actuators(self) -> int:
@@ -239,7 +240,7 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stag
         for name, pos in position.items():
             self.axes[name].move_to(pos)
 
-class remoteFocusStageAxis(microsocpe.abc.StageAxis,dm ):
+class remoteFocusStageAxis(microscope.abc.StageAxis):
     def __init__(self, limits: microscope.AxisLimits,
                  dm: AlpaoDeformableMirror) -> None:
         super().__init__()
