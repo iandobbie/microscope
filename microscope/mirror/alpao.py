@@ -21,6 +21,7 @@ import ctypes
 import warnings
 
 import numpy
+import weakref
 
 import microscope
 import microscope.abc
@@ -238,9 +239,11 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stag
         for name, pos in position.items():
             self.axes[name].move_to(pos)
 
-class remoteFocusStageAxis(microsocpe.abc.StageAxis):
-    def __init__(self, limits: microscope.AxisLimits, dm) -> None:
+class remoteFocusStageAxis(microsocpe.abc.StageAxis,dm ):
+    def __init__(self, limits: microscope.AxisLimits,
+                 dm: AlpaoDeformableMirror) -> None:
         super().__init__()
+        self._dm = weakref.ref(dm)
         self._limits = limits
         # Start axis in the middle of its range.
         self._position = self._limits.lower + (
@@ -278,7 +281,7 @@ class remoteFocusStageAxis(microsocpe.abc.StageAxis):
 
         shape = self.calDMShape(pos)
         #need to be able to call the dm shape functions. 
-        
+        self._dm.set_phase(shape)
         
 
     def calcDMShape(self,pos):
@@ -299,6 +302,22 @@ class remoteFocusStageAxis(microsocpe.abc.StageAxis):
                 
     def setupDigitalStack(self, start: float, moveSize: float,
                           numMoves: int) -> int:
+        stacksize = moveSize * numMoves
+        dm_shapes = []
+        for i in range(numMoves):
+            dm_shapes.append(calcDmShape(start+moveSize*i))
 
-        
+        #set the first position
+        self._dm.move_to(start)
+        #store current trigger type to restor later
+        #self.dm_trigger_mode = dm._trigger_mode
+        #self.dm_trigger_type = dm._trigger_type
+            #set trigger to HW
+        #dm.setTrigger( microscope.TriggerType.RISING_EDGE,
+        #                microscope.TriggerMode.START)
+        #set the first pattern
+        #queue the patterns
+        self._dm.queue_patterns(dm_shapes[1:])
         return numMoves
+
+    #reset the trigger type in post experiment cleanup
