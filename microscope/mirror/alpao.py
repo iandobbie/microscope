@@ -285,7 +285,7 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
 
         shape = self.calcDMShape(pos)
         #need to be able to call the dm shape functions. 
-        self._dm.set_phase(shape)
+        self._dm._do_apply_pattern(shape)
         
 
     def calcDMShape(self,pos):
@@ -308,11 +308,16 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
                           numMoves: int) -> int:
         stacksize = moveSize * numMoves
         dm_shapes = []
+        #set the initial position
+        self._dm.move_to(start)
+        #set trigger to hardware
+        self.ttype = self._dm.trgger_type
+        self.tmode = delf._dm.trigger_mode
+        self.dm.set_trigger(microscope.TriggerType.RISING_EDGE,
+                            microscpe.TriggerMode.START)
         for i in range(numMoves):
             dm_shapes.append(self.calcDMShape(start+moveSize*i))
 
-        #set the first position
-        self._dm.move_to(start)
         #store current trigger type to restor later
         #self.dm_trigger_mode = dm._trigger_mode
         #self.dm_trigger_type = dm._trigger_type
