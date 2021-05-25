@@ -315,6 +315,7 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
                           numMoves: int) -> int:
         #stacksize = moveSize * numMoves
         dm_shapes = numpy.zeros((numMoves+1,self.zCalibration.shape[1]-1))
+        self.saved_pos=self._position
         #set the initial position
         self.move_to(start)
         #set trigger to hardware
@@ -337,3 +338,9 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
         return numMoves
 
     #reset the trigger type in post experiment cleanup
+
+    def cancelDigitalStack(self) -> None:
+        #disable HW trigger
+        self._dm.set_teigger(self.ttype,self.tmode)
+        #return to original pos
+        self.move_to(self.saved_pos)
