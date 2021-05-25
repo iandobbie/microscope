@@ -240,6 +240,9 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stag
         for name, pos in position.items():
             self.axes[name].move_to(pos)
 
+    def set_zCal(self,axis,zCalibration):
+        self.axes[axis].setzCalibration=zCalibration
+
 class remoteFocusStageAxis(microscope.abc.StageAxis):
     def __init__(self, limits: microscope.AxisLimits,
                  dm: AlpaoDeformableMirror) -> None:
@@ -259,8 +262,8 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
         return self._zCalibration
 
     @zCalibration.setter
-    def setzCalibartion(self, calibration):
-        self._zCalibartation = calibration
+    def setzCalibration(self, calibration):
+        self._zCalibration = calibration
 
         
     @property
@@ -280,19 +283,19 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
             #position is below lower calibrated pos
             raise('position below z calibration')
 
-        shape = self.calDMShape(pos)
+        shape = self.calcDMShape(pos)
         #need to be able to call the dm shape functions. 
         self._dm.set_phase(shape)
         
 
     def calcDMShape(self,pos):
-        calsteps = len(self._zCalibartion)
+       # calsteps = len(self._zCalibration)
         lastpos = self._zCalibration[0,0]
         #find cal bracketing calibration and linearly interpolate.
         for i in range (len(self._zCalibration)) :
-            currentpos = self._zCalibration[1,0]
-            if (current > pos ):
-                #this cal point and the last bracket the pos
+            currentpos = self._zCalibration[i,0]
+            if (currentpos > pos ):
+                #this cal point and the last to bracket the pos
                 interpolate = (pos-lastpos) / (currentpos-lastpos)
                 dmshape = (self._zCalibration[i-1,1:]+
                          (self._zCalibration[i,1:]-self._zCalibration[i-1,1:]) *
@@ -306,7 +309,7 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
         stacksize = moveSize * numMoves
         dm_shapes = []
         for i in range(numMoves):
-            dm_shapes.append(calcDmShape(start+moveSize*i))
+            dm_shapes.append(self.calcDMShape(start+moveSize*i))
 
         #set the first position
         self._dm.move_to(start)
