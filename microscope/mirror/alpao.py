@@ -247,8 +247,8 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
     def __init__(self, limits: microscope.AxisLimits,
                  dm: AlpaoDeformableMirror) -> None:
         super().__init__()
-        self._dm = weakref.ref(dm)
         self._limits = limits
+        self._dm=dm
         # Start axis in the middle of its range.
         self._position = self._limits.lower + (
             (self._limits.upper - self._limits.lower) / 2.0
@@ -265,7 +265,12 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
     def setzCalibration(self, calibration):
         self._zCalibration = calibration
 
-        
+    def save_zcalibration(self):
+        numpy.save('remotez-calibration.npy',self._zCalibration)
+
+    def load_zcalibration(self):
+        self._zCalibration=numpy.load('remotez-calibration.npy')
+
     @property
     def position(self) -> float:
         return self._position
@@ -284,9 +289,11 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
             raise('position below z calibration')
 
         shape = self.calcDMShape(pos)
-        #need to be able to call the dm shape functions. 
-        self._dm._do_apply_pattern(shape)
-        
+        #need to be able to call the dm shape functions.
+        #apply pattern requires sw trigger
+        self._dm.set_trigger(microscope.TriggerType.SOFTWARE,microscope.TriggerMode.ONCE)
+        self._dm.apply_pattern(shape)
+        self._position=pos
 
     def calcDMShape(self,pos):
        # calsteps = len(self._zCalibration)
@@ -306,17 +313,17 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
                 
     def setupDigitalStack(self, start: float, moveSize: float,
                           numMoves: int) -> int:
-        stacksize = moveSize * numMoves
-        dm_shapes = []
+        #stacksize = moveSize * numMoves
+        dm_shapes = numpy.zeros((numMoves+1,self.zCalibration.shape[1]-1))
         #set the initial position
-        self._dm.move_to(start)
+        self.move_to(start)
         #set trigger to hardware
-        self.ttype = self._dm.trgger_type
-        self.tmode = delf._dm.trigger_mode
-        self.dm.set_trigger(microscope.TriggerType.RISING_EDGE,
-                            microscpe.TriggerMode.START)
+        self.ttype = self._dm.trigger_type
+        self.tmode = self._dm.trigger_mode
+        self._dm.set_trigger(microscope.TriggerType.RISING_EDGE,
+                            microscope.TriggerMode.START)
         for i in range(numMoves):
-            dm_shapes.append(self.calcDMShape(start+moveSize*i))
+            dm_shapes[i]=(self.calcDMShape(start+moveSize*i))
 
         #store current trigger type to restor later
         #self.dm_trigger_mode = dm._trigger_mode
