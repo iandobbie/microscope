@@ -284,7 +284,7 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
 
 #This needs to be made to calculate a Dm shape, load and trigger it
     def move_to(self, pos: float) -> None:
-        if self._zCalibration[0,0]>pos:
+        if self._zCalibration[0][0]>pos:
             #position is below lower calibrated pos
             raise('position below z calibration')
 
@@ -297,15 +297,15 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
 
     def calcDMShape(self,pos):
        # calsteps = len(self._zCalibration)
-        lastpos = self._zCalibration[0,0]
+        lastpos = self._zCalibration[0][0]
         #find cal bracketing calibration and linearly interpolate.
         for i in range (len(self._zCalibration)) :
-            currentpos = self._zCalibration[i,0]
+            currentpos = self._zCalibration[i][0]
             if (currentpos > pos ):
                 #this cal point and the last to bracket the pos
                 interpolate = (pos-lastpos) / (currentpos-lastpos)
-                dmshape = (self._zCalibration[i-1,1:]+
-                         (self._zCalibration[i,1:]-self._zCalibration[i-1,1:]) *
+                dmshape = (self._zCalibration[i-1][1:]+
+                         (self._zCalibration[i][1:]-self._zCalibration[i-1][1:]) *
                          interpolate)
                 return(dmshape)
         raise('position above z calibration')
