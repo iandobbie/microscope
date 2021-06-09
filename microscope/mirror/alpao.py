@@ -308,6 +308,7 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
                          (self._zCalibration[i][1:]-self._zCalibration[i-1][1:]) *
                          interpolate)
                 return(dmshape)
+            lastpos=currentpos
         raise('position above z calibration')
                 
                 
@@ -325,6 +326,7 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
                             microscope.TriggerMode.START)
         for i in range(numMoves):
             dm_shapes[i]=(self.calcDMShape(start+moveSize*i))
+        dm_shape[numMoves+1]=self.calcDMShape(start+moveSize*numMoves)
 
         #store current trigger type to restor later
         #self.dm_trigger_mode = dm._trigger_mode
@@ -334,7 +336,7 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
         #                microscope.TriggerMode.START)
         #set the first pattern
         #queue the patterns
-        self._dm.queue_patterns(dm_shapes[1:])
+        self._dm.queue_patterns(dm_shapes)
         return numMoves
 
     #reset the trigger type in post experiment cleanup
