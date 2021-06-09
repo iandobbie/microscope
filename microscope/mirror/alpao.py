@@ -325,8 +325,9 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
         self._dm.set_trigger(microscope.TriggerType.RISING_EDGE,
                             microscope.TriggerMode.START)
         for i in range(numMoves):
-            dm_shapes[i]=(self.calcDMShape(start+moveSize*i))
-        dm_shape[numMoves+1]=self.calcDMShape(start+moveSize*numMoves)
+            dm_shapes[i]=(self.calcDMShape(start+moveSize*i+1))
+        #final pattern is back to start to prep for next repeat
+        dm_shape[numMoves+1]=self.calcDMShape(start)
 
         #store current trigger type to restor later
         #self.dm_trigger_mode = dm._trigger_mode
