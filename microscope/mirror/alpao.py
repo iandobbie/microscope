@@ -169,7 +169,6 @@ class AlpaoDeformableMirror(microscope.abc.DeformableMirror, microscope.abc.Stag
         if self._trigger_type == microscope.TriggerType.SOFTWARE:
             super().queue_patterns(patterns)
             return
-
         self._validate_patterns(patterns)
         patterns = self._normalize_patterns(patterns)
         patterns = numpy.atleast_2d(patterns)
@@ -279,6 +278,15 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
     def limits(self) -> microscope.AxisLimits:
         return self._limits
 
+    @property
+    def ttype(self) -> microscope.TriggerType:
+        return self._dm.trigger_type
+
+    @property
+    def tmode(self) ->microscope.TriggerMode:
+        return self._dm.trigger_mode
+    
+
     def move_by(self, delta: float) -> None:
         self.move_to(self._position + delta)
 
@@ -315,27 +323,18 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
     def setupDigitalStack(self, start: float, moveSize: float,
                           numMoves: int) -> int:
         #stacksize = moveSize * numMoves
-        dm_shapes = numpy.zeros((numMoves+1,self.zCalibration.shape[1]-1))
+        dm_shapes = numpy.zeros((numMoves,self.zCalibration.shape[1]-1))
         self.saved_pos=self._position
         #set the initial position
-        self.move_to(start)
+#        self.move_to(start)
         #set trigger to hardware
-        self.ttype = self._dm.trigger_type
-        self.tmode = self._dm.trigger_mode
-        self._dm.set_trigger(microscope.TriggerType.RISING_EDGE,
-                            microscope.TriggerMode.START)
+        self._saved_ttype = self.ttype
+        self._saved_tmode = self.tmode
+        self._dm.set_trigger(microscope.TriggerType.FALLING_EDGE,
+                             microscope.TriggerMode.ONCE)
         for i in range(numMoves):
-            dm_shapes[i]= self.calcDMShape(start+(moveSize*(i+1)))
+            dm_shapes[i]= self.calcDMShape(start+(moveSize*i))
         #final pattern is back to start to prep for next repeat
-        dm_shape[numMoves]=self.calcDMShape(start)
-
-        #store current trigger type to restor later
-        #self.dm_trigger_mode = dm._trigger_mode
-        #self.dm_trigger_type = dm._trigger_type
-            #set trigger to HW
-        #dm.setTrigger( microscope.TriggerType.RISING_EDGE,
-        #                microscope.TriggerMode.START)
-        #set the first pattern
         #queue the patterns
         self._dm.queue_patterns(dm_shapes)
         return numMoves
@@ -344,6 +343,6 @@ class remoteFocusStageAxis(microscope.abc.StageAxis):
 
     def cancelDigitalStack(self) -> None:
         #disable HW trigger
-        self._dm.set_teigger(self.ttype,self.tmode)
+        self._dm.set_trigger(self._saved_ttype,self._saved_tmode)
         #return to original pos
         self.move_to(self.saved_pos)
