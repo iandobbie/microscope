@@ -1,0 +1,1232 @@
+2019-05-23 14:23:51,890:LinkamCMS:INFO:PID 7828: Device initialized; starting daemon.
+2019-05-23 14:23:51,890:LinkamCMS:INFO:PID 7828: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-23 14:23:51,906:LinkamCMS:INFO:PID 7828: Device UID on port 9000 is 
+2019-05-23 14:29:41,440:LinkamCMS:INFO:PID 7828: Shutting down ... ... ...
+2019-05-23 14:29:41,440:LinkamCMS:INFO:PID 7828: ... ... ... ... shut down completed.
+2019-05-23 14:32:32,781:LinkamCMS:INFO:PID 3080: Device initialized; starting daemon.
+2019-05-23 14:32:32,782:LinkamCMS:INFO:PID 3080: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-23 14:32:32,783:LinkamCMS:INFO:PID 3080: Device UID on port 9000 is 
+2019-05-23 14:56:22,812:LinkamCMS:INFO:PID 3080: Shutting down ... ... ...
+2019-05-23 14:56:22,812:LinkamCMS:INFO:PID 3080: ... ... ... ... shut down completed.
+2019-05-23 14:56:38,631:LinkamCMS:INFO:PID 10020: Device initialized; starting daemon.
+2019-05-23 14:56:38,631:LinkamCMS:INFO:PID 10020: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-23 14:56:38,631:LinkamCMS:INFO:PID 10020: Device UID on port 9000 is 
+2019-05-23 14:57:18,192:LinkamCMS:INFO:PID 1796: Device initialized; starting daemon.
+2019-05-23 14:57:18,192:LinkamCMS:INFO:PID 1796: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-23 14:57:18,192:LinkamCMS:INFO:PID 1796: Device UID on port 9000 is 
+2019-05-23 15:33:02,212:LinkamCMS:INFO:PID 1796: Shutting down ... ... ...
+2019-05-23 15:33:02,212:LinkamCMS:INFO:PID 1796: ... ... ... ... shut down completed.
+2019-05-23 15:34:03,552:LinkamCMS:INFO:PID 7240: Device initialized; starting daemon.
+2019-05-23 15:34:03,553:LinkamCMS:INFO:PID 7240: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-23 15:34:03,553:LinkamCMS:INFO:PID 7240: Device UID on port 9000 is 
+2019-05-23 15:35:43,428:LinkamCMS:INFO:PID 7240: Shutting down ... ... ...
+2019-05-23 15:35:43,428:LinkamCMS:INFO:PID 7240: ... ... ... ... shut down completed.
+2019-05-23 15:38:02,763:LinkamCMS:INFO:PID 9416: Device initialized; starting daemon.
+2019-05-23 15:38:02,764:LinkamCMS:INFO:PID 9416: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-23 15:38:02,764:LinkamCMS:INFO:PID 9416: Device UID on port 9000 is 
+2019-05-23 15:53:51,769:LinkamCMS:INFO:PID 9640: Device initialized; starting daemon.
+2019-05-23 15:53:51,769:LinkamCMS:INFO:PID 9640: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-23 15:53:51,769:LinkamCMS:INFO:PID 9640: Device UID on port 9000 is 
+2019-05-24 10:47:26,848:LinkamCMS:INFO:PID 9640: Shutting down ... ... ...
+2019-05-24 10:47:26,848:LinkamCMS:INFO:PID 9640: ... ... ... ... shut down completed.
+2019-05-24 10:47:32,745:LinkamCMS:INFO:PID 8540: Device initialized; starting daemon.
+2019-05-24 10:47:32,745:LinkamCMS:INFO:PID 8540: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-24 10:47:32,745:LinkamCMS:INFO:PID 8540: Device UID on port 9000 is 
+2019-05-24 10:48:12,681:LinkamCMS:INFO:PID 8540: Shutting down ... ... ...
+2019-05-24 10:48:12,681:LinkamCMS:INFO:PID 8540: ... ... ... ... shut down completed.
+2019-05-24 10:48:17,501:LinkamCMS:INFO:PID 6308: Device initialized; starting daemon.
+2019-05-24 10:48:17,501:LinkamCMS:INFO:PID 6308: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-24 10:48:17,501:LinkamCMS:INFO:PID 6308: Device UID on port 9000 is 
+2019-05-24 10:48:57,531:LinkamCMS:INFO:PID 9596: Device initialized; starting daemon.
+2019-05-24 10:48:57,531:LinkamCMS:INFO:PID 9596: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-05-24 10:48:57,531:LinkamCMS:INFO:PID 9596: Device UID on port 9000 is 
+2019-06-12 09:25:34,507:LinkamCMS:INFO:PID 9596: Shutting down ... ... ...
+2019-06-12 09:25:34,507:LinkamCMS:INFO:PID 9596: ... ... ... ... shut down completed.
+2019-06-12 09:25:54,975:LinkamCMS:INFO:PID 9356: Device initialized; starting daemon.
+2019-06-12 09:25:54,975:LinkamCMS:INFO:PID 9356: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-12 09:25:54,975:LinkamCMS:INFO:PID 9356: Device UID on port 9000 is 
+2019-06-12 10:08:42,745:LinkamCMS:INFO:PID 9356: Shutting down ... ... ...
+2019-06-12 10:08:42,745:LinkamCMS:INFO:PID 9356: ... ... ... ... shut down completed.
+2019-06-12 10:08:53,166:LinkamCMS:INFO:PID 1796: Device initialized; starting daemon.
+2019-06-12 10:08:53,166:LinkamCMS:INFO:PID 1796: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-12 10:08:53,181:LinkamCMS:INFO:PID 1796: Device UID on port 9000 is 
+2019-06-17 10:04:07,828:LinkamCMS:INFO:PID 10040: Device initialized; starting daemon.
+2019-06-17 10:04:07,828:LinkamCMS:INFO:PID 10040: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-17 10:04:07,828:LinkamCMS:INFO:PID 10040: Device UID on port 9000 is 
+2019-06-17 10:06:51,054:LinkamCMS:INFO:PID 10168: Device initialized; starting daemon.
+2019-06-17 10:06:51,054:LinkamCMS:INFO:PID 10168: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-17 10:06:51,054:LinkamCMS:INFO:PID 10168: Device UID on port 9000 is 
+2019-06-17 15:17:13,292:LinkamCMS:INFO:PID 10184: Device initialized; starting daemon.
+2019-06-17 15:17:13,292:LinkamCMS:INFO:PID 10184: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-17 15:17:13,292:LinkamCMS:INFO:PID 10184: Device UID on port 9000 is 
+2019-06-17 16:48:26,115:LinkamCMS:INFO:PID 9280: Device initialized; starting daemon.
+2019-06-17 16:48:26,115:LinkamCMS:INFO:PID 9280: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-17 16:48:26,115:LinkamCMS:INFO:PID 9280: Device UID on port 9000 is 
+2019-06-18 10:58:54,827:LinkamCMS:INFO:PID 8892: Device initialized; starting daemon.
+2019-06-18 10:58:54,827:LinkamCMS:INFO:PID 8892: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-18 10:58:54,827:LinkamCMS:INFO:PID 8892: Device UID on port 9000 is 
+2019-06-18 11:18:52,314:LinkamCMS:INFO:PID 8984: Device initialized; starting daemon.
+2019-06-18 11:18:52,314:LinkamCMS:INFO:PID 8984: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-18 11:18:52,314:LinkamCMS:INFO:PID 8984: Device UID on port 9000 is 
+2019-06-22 14:24:48,345:LinkamCMS:INFO:PID 9272: Device initialized; starting daemon.
+2019-06-22 14:24:48,345:LinkamCMS:INFO:PID 9272: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-22 14:24:48,345:LinkamCMS:INFO:PID 9272: Device UID on port 9000 is 
+2019-06-22 14:28:29,211:LinkamCMS:INFO:PID 9496: Device initialized; starting daemon.
+2019-06-22 14:28:29,211:LinkamCMS:INFO:PID 9496: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-22 14:28:29,211:LinkamCMS:INFO:PID 9496: Device UID on port 9000 is 
+2019-06-22 14:35:16,857:LinkamCMS:INFO:PID 8420: Device initialized; starting daemon.
+2019-06-22 14:35:16,857:LinkamCMS:INFO:PID 8420: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-22 14:35:16,857:LinkamCMS:INFO:PID 8420: Device UID on port 9000 is 
+2019-06-22 14:37:19,646:LinkamCMS:INFO:PID 1996: Device initialized; starting daemon.
+2019-06-22 14:37:19,646:LinkamCMS:INFO:PID 1996: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-22 14:37:19,646:LinkamCMS:INFO:PID 1996: Device UID on port 9000 is 
+2019-06-22 14:55:52,073:LinkamCMS:INFO:PID 9616: Device initialized; starting daemon.
+2019-06-22 14:55:52,073:LinkamCMS:INFO:PID 9616: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-22 14:55:52,073:LinkamCMS:INFO:PID 9616: Device UID on port 9000 is 
+2019-06-22 14:58:36,935:LinkamCMS:INFO:PID 7916: Device initialized; starting daemon.
+2019-06-22 14:58:36,935:LinkamCMS:INFO:PID 7916: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-22 14:58:36,935:LinkamCMS:INFO:PID 7916: Device UID on port 9000 is 
+2019-06-22 15:24:05,433:LinkamCMS:INFO:PID 5948: Device initialized; starting daemon.
+2019-06-22 15:24:05,433:LinkamCMS:INFO:PID 5948: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-22 15:24:05,433:LinkamCMS:INFO:PID 5948: Device UID on port 9000 is 
+2019-06-22 15:31:00,335:LinkamCMS:INFO:PID 10140: Device initialized; starting daemon.
+2019-06-22 15:31:00,335:LinkamCMS:INFO:PID 10140: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-22 15:31:00,335:LinkamCMS:INFO:PID 10140: Device UID on port 9000 is 
+2019-06-25 10:49:19,267:LinkamCMS:INFO:PID 10204: Device initialized; starting daemon.
+2019-06-25 10:49:19,267:LinkamCMS:INFO:PID 10204: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-06-25 10:49:19,267:LinkamCMS:INFO:PID 10204: Device UID on port 9000 is 
+2019-07-02 10:15:58,565:LinkamCMS:INFO:PID 8484: Device initialized; starting daemon.
+2019-07-02 10:15:58,565:LinkamCMS:INFO:PID 8484: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-02 10:15:58,565:LinkamCMS:INFO:PID 8484: Device UID on port 9000 is 
+2019-07-15 11:01:22,762:LinkamCMS:INFO:PID 9384: Device initialized; starting daemon.
+2019-07-15 11:01:22,762:LinkamCMS:INFO:PID 9384: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-15 11:01:22,762:LinkamCMS:INFO:PID 9384: Device UID on port 9000 is 
+2019-07-15 11:40:29,422:LinkamCMS:INFO:PID 10168: Device initialized; starting daemon.
+2019-07-15 11:40:29,422:LinkamCMS:INFO:PID 10168: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-15 11:40:29,422:LinkamCMS:INFO:PID 10168: Device UID on port 9000 is 
+2019-07-16 10:42:20,368:LinkamCMS:INFO:PID 9492: Device initialized; starting daemon.
+2019-07-16 10:42:20,368:LinkamCMS:INFO:PID 9492: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-16 10:42:20,368:LinkamCMS:INFO:PID 9492: Device UID on port 9000 is 
+2019-07-22 14:47:35,099:LinkamCMS:INFO:PID 10220: Device initialized; starting daemon.
+2019-07-22 14:47:35,099:LinkamCMS:INFO:PID 10220: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-22 14:47:35,099:LinkamCMS:INFO:PID 10220: Device UID on port 9000 is 
+2019-07-23 09:39:37,896:LinkamCMS:INFO:PID 7436: Device initialized; starting daemon.
+2019-07-23 09:39:37,896:LinkamCMS:INFO:PID 7436: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-23 09:39:37,896:LinkamCMS:INFO:PID 7436: Device UID on port 9000 is 
+2019-07-23 13:17:22,112:LinkamCMS:INFO:PID 3940: Device initialized; starting daemon.
+2019-07-23 13:17:22,112:LinkamCMS:INFO:PID 3940: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-23 13:17:22,112:LinkamCMS:INFO:PID 3940: Device UID on port 9000 is 
+2019-07-29 10:00:48,919:LinkamCMS:INFO:PID 9316: Device initialized; starting daemon.
+2019-07-29 10:00:48,919:LinkamCMS:INFO:PID 9316: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-29 10:00:48,919:LinkamCMS:INFO:PID 9316: Device UID on port 9000 is 
+2019-07-29 19:15:19,339:LinkamCMS:INFO:PID 8600: Device initialized; starting daemon.
+2019-07-29 19:15:19,339:LinkamCMS:INFO:PID 8600: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-29 19:15:19,339:LinkamCMS:INFO:PID 8600: Device UID on port 9000 is 
+2019-07-29 19:19:34,791:LinkamCMS:INFO:PID 2120: Device initialized; starting daemon.
+2019-07-29 19:19:34,791:LinkamCMS:INFO:PID 2120: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-29 19:19:34,791:LinkamCMS:INFO:PID 2120: Device UID on port 9000 is 
+2019-07-29 19:20:27,239:LinkamCMS:INFO:PID 9552: Device initialized; starting daemon.
+2019-07-29 19:20:27,239:LinkamCMS:INFO:PID 9552: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-29 19:20:27,239:LinkamCMS:INFO:PID 9552: Device UID on port 9000 is 
+2019-07-29 19:22:30,682:LinkamCMS:INFO:PID 8900: Device initialized; starting daemon.
+2019-07-29 19:22:30,682:LinkamCMS:INFO:PID 8900: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-07-29 19:22:30,682:LinkamCMS:INFO:PID 8900: Device UID on port 9000 is 
+2019-08-01 09:33:53,860:LinkamCMS:INFO:PID 8196: Device initialized; starting daemon.
+2019-08-01 09:33:53,860:LinkamCMS:INFO:PID 8196: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-01 09:33:53,860:LinkamCMS:INFO:PID 8196: Device UID on port 9000 is 
+2019-08-01 13:06:45,170:LinkamCMS:INFO:PID 9604: Device initialized; starting daemon.
+2019-08-01 13:06:45,170:LinkamCMS:INFO:PID 9604: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-01 13:06:45,170:LinkamCMS:INFO:PID 9604: Device UID on port 9000 is 
+2019-08-02 08:46:07,212:LinkamCMS:INFO:PID 7872: Device initialized; starting daemon.
+2019-08-02 08:46:07,212:LinkamCMS:INFO:PID 7872: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-02 08:46:07,212:LinkamCMS:INFO:PID 7872: Device UID on port 9000 is 
+2019-08-02 12:03:47,221:LinkamCMS:INFO:PID 9892: Device initialized; starting daemon.
+2019-08-02 12:03:47,221:LinkamCMS:INFO:PID 9892: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-02 12:03:47,221:LinkamCMS:INFO:PID 9892: Device UID on port 9000 is 
+2019-08-02 12:18:43,847:LinkamCMS:INFO:PID 9760: Device initialized; starting daemon.
+2019-08-02 12:18:43,847:LinkamCMS:INFO:PID 9760: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-02 12:18:43,847:LinkamCMS:INFO:PID 9760: Device UID on port 9000 is 
+2019-08-02 12:25:59,945:LinkamCMS:INFO:PID 7980: Device initialized; starting daemon.
+2019-08-02 12:25:59,945:LinkamCMS:INFO:PID 7980: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-02 12:25:59,945:LinkamCMS:INFO:PID 7980: Device UID on port 9000 is 
+2019-08-06 14:18:32,914:LinkamCMS:INFO:PID 6496: Device initialized; starting daemon.
+2019-08-06 14:18:32,914:LinkamCMS:INFO:PID 6496: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-06 14:18:32,914:LinkamCMS:INFO:PID 6496: Device UID on port 9000 is 
+2019-08-06 15:08:45,516:LinkamCMS:INFO:PID 9044: Device initialized; starting daemon.
+2019-08-06 15:08:45,516:LinkamCMS:INFO:PID 9044: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-06 15:08:45,516:LinkamCMS:INFO:PID 9044: Device UID on port 9000 is 
+2019-08-06 15:17:57,077:LinkamCMS:INFO:PID 2152: Device initialized; starting daemon.
+2019-08-06 15:17:57,077:LinkamCMS:INFO:PID 2152: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-06 15:17:57,077:LinkamCMS:INFO:PID 2152: Device UID on port 9000 is 
+2019-08-06 18:05:15,194:LinkamCMS:INFO:PID 7836: Device initialized; starting daemon.
+2019-08-06 18:05:15,194:LinkamCMS:INFO:PID 7836: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-08-06 18:05:15,194:LinkamCMS:INFO:PID 7836: Device UID on port 9000 is 
+2019-09-02 15:25:20,926:LinkamCMS:INFO:PID 8784: Device initialized; starting daemon.
+2019-09-02 15:25:20,926:LinkamCMS:INFO:PID 8784: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-09-02 15:25:20,942:LinkamCMS:INFO:PID 8784: Device UID on port 9000 is 
+2019-09-09 14:40:41,727:LinkamCMS:INFO:PID 10004: Device initialized; starting daemon.
+2019-09-09 14:40:41,727:LinkamCMS:INFO:PID 10004: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-09-09 14:40:41,727:LinkamCMS:INFO:PID 10004: Device UID on port 9000 is 
+2019-09-09 14:42:59,305:LinkamCMS:INFO:PID 10104: Device initialized; starting daemon.
+2019-09-09 14:42:59,305:LinkamCMS:INFO:PID 10104: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-09-09 14:42:59,305:LinkamCMS:INFO:PID 10104: Device UID on port 9000 is 
+2019-09-10 10:23:44,543:LinkamCMS:INFO:PID 8808: Device initialized; starting daemon.
+2019-09-10 10:23:44,543:LinkamCMS:INFO:PID 8808: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-09-10 10:23:44,543:LinkamCMS:INFO:PID 8808: Device UID on port 9000 is 
+2019-09-10 13:05:57,049:LinkamCMS:INFO:PID 8808: Shutting down ... ... ...
+2019-09-10 13:05:57,049:LinkamCMS:INFO:PID 8808: ... ... ... ... shut down completed.
+2019-09-10 13:08:15,311:LinkamCMS:INFO:PID 8480: Device initialized; starting daemon.
+2019-09-10 13:08:15,311:LinkamCMS:INFO:PID 8480: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-09-10 13:08:15,311:LinkamCMS:INFO:PID 8480: Device UID on port 9000 is 
+2019-09-27 14:21:31,312:LinkamCMS:INFO:PID 9812: Device initialized; starting daemon.
+2019-09-27 14:21:31,312:LinkamCMS:INFO:PID 9812: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-09-27 14:21:31,312:LinkamCMS:INFO:PID 9812: Device UID on port 9000 is 
+2019-09-27 16:11:50,589:LinkamCMS:INFO:PID 7536: Device initialized; starting daemon.
+2019-09-27 16:11:50,589:LinkamCMS:INFO:PID 7536: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-09-27 16:11:50,589:LinkamCMS:INFO:PID 7536: Device UID on port 9000 is 
+2019-09-27 17:12:38,967:LinkamCMS:INFO:PID 8024: Device initialized; starting daemon.
+2019-09-27 17:12:38,967:LinkamCMS:INFO:PID 8024: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-09-27 17:12:38,967:LinkamCMS:INFO:PID 8024: Device UID on port 9000 is 
+2019-10-03 16:33:12,724:LinkamCMS:INFO:PID 8468: Device initialized; starting daemon.
+2019-10-03 16:33:12,724:LinkamCMS:INFO:PID 8468: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-10-03 16:33:12,724:LinkamCMS:INFO:PID 8468: Device UID on port 9000 is 
+2019-10-03 16:35:02,672:LinkamCMS:INFO:PID 10224: Device initialized; starting daemon.
+2019-10-03 16:35:02,672:LinkamCMS:INFO:PID 10224: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-10-03 16:35:02,672:LinkamCMS:INFO:PID 10224: Device UID on port 9000 is 
+2019-10-17 12:49:57,509:LinkamCMS:INFO:PID 9688: Device initialized; starting daemon.
+2019-10-17 12:49:57,509:LinkamCMS:INFO:PID 9688: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-10-17 12:49:57,509:LinkamCMS:INFO:PID 9688: Device UID on port 9000 is 
+2019-11-07 13:08:24,671:LinkamCMS:INFO:PID 4880: Device initialized; starting daemon.
+2019-11-07 13:08:24,671:LinkamCMS:INFO:PID 4880: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-11-07 13:08:24,671:LinkamCMS:INFO:PID 4880: Device UID on port 9000 is 
+2019-11-12 15:50:09,545:LinkamCMS:INFO:PID 4024: Device initialized; starting daemon.
+2019-11-12 15:50:09,545:LinkamCMS:INFO:PID 4024: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2019-11-12 15:50:09,545:LinkamCMS:INFO:PID 4024: Device UID on port 9000 is 
+2020-01-17 11:04:19,427:LinkamCMS:INFO:PID 4364: Device initialized; starting daemon.
+2020-01-17 11:04:19,427:LinkamCMS:INFO:PID 4364: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-17 11:04:19,427:LinkamCMS:INFO:PID 4364: Device UID on port 9000 is 
+2020-01-17 11:05:24,806:LinkamCMS:INFO:PID 3684: Device initialized; starting daemon.
+2020-01-17 11:05:24,806:LinkamCMS:INFO:PID 3684: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-17 11:05:24,806:LinkamCMS:INFO:PID 3684: Device UID on port 9000 is 
+2020-01-17 12:15:21,136:LinkamCMS:INFO:PID 2348: Device initialized; starting daemon.
+2020-01-17 12:15:21,136:LinkamCMS:INFO:PID 2348: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-17 12:15:21,136:LinkamCMS:INFO:PID 2348: Device UID on port 9000 is 
+2020-01-20 11:23:50,206:LinkamCMS:INFO:PID 3768: Device initialized; starting daemon.
+2020-01-20 11:23:50,206:LinkamCMS:INFO:PID 3768: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-20 11:23:50,206:LinkamCMS:INFO:PID 3768: Device UID on port 9000 is 
+2020-01-21 12:17:36,918:LinkamCMS:INFO:PID 3156: Device initialized; starting daemon.
+2020-01-21 12:17:36,918:LinkamCMS:INFO:PID 3156: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-21 12:17:36,918:LinkamCMS:INFO:PID 3156: Device UID on port 9000 is 
+2020-01-21 13:51:42,475:LinkamCMS:INFO:PID 4896: Device initialized; starting daemon.
+2020-01-21 13:51:42,475:LinkamCMS:INFO:PID 4896: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-21 13:51:42,475:LinkamCMS:INFO:PID 4896: Device UID on port 9000 is 
+2020-01-23 11:21:12,701:LinkamCMS:INFO:PID 3452: Device initialized; starting daemon.
+2020-01-23 11:21:12,701:LinkamCMS:INFO:PID 3452: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-23 11:21:12,701:LinkamCMS:INFO:PID 3452: Device UID on port 9000 is 
+2020-01-23 11:38:45,828:LinkamCMS:INFO:PID 3328: Device initialized; starting daemon.
+2020-01-23 11:38:45,828:LinkamCMS:INFO:PID 3328: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-23 11:38:45,828:LinkamCMS:INFO:PID 3328: Device UID on port 9000 is 
+2020-01-27 08:37:40,398:LinkamCMS:INFO:PID 3748: Device initialized; starting daemon.
+2020-01-27 08:37:40,398:LinkamCMS:INFO:PID 3748: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-27 08:37:40,398:LinkamCMS:INFO:PID 3748: Device UID on port 9000 is 
+2020-01-27 09:39:25,810:LinkamCMS:INFO:PID 3480: Device initialized; starting daemon.
+2020-01-27 09:39:25,810:LinkamCMS:INFO:PID 3480: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-27 09:39:25,810:LinkamCMS:INFO:PID 3480: Device UID on port 9000 is 
+2020-01-27 09:40:24,622:LinkamCMS:INFO:PID 3052: Device initialized; starting daemon.
+2020-01-27 09:40:24,622:LinkamCMS:INFO:PID 3052: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-27 09:40:24,622:LinkamCMS:INFO:PID 3052: Device UID on port 9000 is 
+2020-01-27 09:42:33,385:LinkamCMS:INFO:PID 1128: Device initialized; starting daemon.
+2020-01-27 09:42:33,385:LinkamCMS:INFO:PID 1128: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-27 09:42:33,385:LinkamCMS:INFO:PID 1128: Device UID on port 9000 is 
+2020-01-27 10:56:40,297:LinkamCMS:INFO:PID 4440: Device initialized; starting daemon.
+2020-01-27 10:56:40,297:LinkamCMS:INFO:PID 4440: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-27 10:56:40,297:LinkamCMS:INFO:PID 4440: Device UID on port 9000 is 
+2020-01-27 10:57:50,591:LinkamCMS:INFO:PID 916: Device initialized; starting daemon.
+2020-01-27 10:57:50,591:LinkamCMS:INFO:PID 916: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-27 10:57:50,591:LinkamCMS:INFO:PID 916: Device UID on port 9000 is 
+2020-01-27 10:58:49,778:LinkamCMS:INFO:PID 3692: Device initialized; starting daemon.
+2020-01-27 10:58:49,778:LinkamCMS:INFO:PID 3692: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-27 10:58:49,778:LinkamCMS:INFO:PID 3692: Device UID on port 9000 is 
+2020-01-27 11:04:23,743:LinkamCMS:INFO:PID 3316: Device initialized; starting daemon.
+2020-01-27 11:04:23,743:LinkamCMS:INFO:PID 3316: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-27 11:04:23,743:LinkamCMS:INFO:PID 3316: Device UID on port 9000 is 
+2020-01-28 11:20:17,953:LinkamCMS:INFO:PID 4372: Device initialized; starting daemon.
+2020-01-28 11:20:17,953:LinkamCMS:INFO:PID 4372: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-28 11:20:17,953:LinkamCMS:INFO:PID 4372: Device UID on port 9000 is 
+2020-01-28 12:33:20,250:LinkamCMS:INFO:PID 1800: Device initialized; starting daemon.
+2020-01-28 12:33:20,250:LinkamCMS:INFO:PID 1800: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-28 12:33:20,250:LinkamCMS:INFO:PID 1800: Device UID on port 9000 is 
+2020-01-28 12:34:11,122:LinkamCMS:INFO:PID 3656: Device initialized; starting daemon.
+2020-01-28 12:34:11,122:LinkamCMS:INFO:PID 3656: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-28 12:34:11,122:LinkamCMS:INFO:PID 3656: Device UID on port 9000 is 
+2020-01-28 12:53:14,526:LinkamCMS:INFO:PID 3976: Device initialized; starting daemon.
+2020-01-28 12:53:14,526:LinkamCMS:INFO:PID 3976: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-28 12:53:14,526:LinkamCMS:INFO:PID 3976: Device UID on port 9000 is 
+2020-01-28 13:48:56,021:LinkamCMS:INFO:PID 1960: Device initialized; starting daemon.
+2020-01-28 13:48:56,021:LinkamCMS:INFO:PID 1960: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-28 13:48:56,021:LinkamCMS:INFO:PID 1960: Device UID on port 9000 is 
+2020-01-28 13:56:56,049:LinkamCMS:INFO:PID 4524: Device initialized; starting daemon.
+2020-01-28 13:56:56,049:LinkamCMS:INFO:PID 4524: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-28 13:56:56,049:LinkamCMS:INFO:PID 4524: Device UID on port 9000 is 
+2020-01-28 14:08:03,964:LinkamCMS:INFO:PID 5008: Device initialized; starting daemon.
+2020-01-28 14:08:03,964:LinkamCMS:INFO:PID 5008: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-28 14:08:03,964:LinkamCMS:INFO:PID 5008: Device UID on port 9000 is 
+2020-01-28 14:09:52,556:LinkamCMS:INFO:PID 1956: Device initialized; starting daemon.
+2020-01-28 14:09:52,556:LinkamCMS:INFO:PID 1956: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-28 14:09:52,556:LinkamCMS:INFO:PID 1956: Device UID on port 9000 is 
+2020-01-28 14:34:15,792:LinkamCMS:INFO:PID 4356: Device initialized; starting daemon.
+2020-01-28 14:34:15,792:LinkamCMS:INFO:PID 4356: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-28 14:34:15,792:LinkamCMS:INFO:PID 4356: Device UID on port 9000 is 
+2020-01-29 08:53:11,039:LinkamCMS:INFO:PID 1952: Device initialized; starting daemon.
+2020-01-29 08:53:11,039:LinkamCMS:INFO:PID 1952: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-29 08:53:11,039:LinkamCMS:INFO:PID 1952: Device UID on port 9000 is 
+2020-01-29 10:06:05,037:LinkamCMS:INFO:PID 4556: Device initialized; starting daemon.
+2020-01-29 10:06:05,037:LinkamCMS:INFO:PID 4556: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-29 10:06:05,037:LinkamCMS:INFO:PID 4556: Device UID on port 9000 is 
+2020-01-29 11:11:34,201:LinkamCMS:INFO:PID 2836: Device initialized; starting daemon.
+2020-01-29 11:11:34,201:LinkamCMS:INFO:PID 2836: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-29 11:11:34,201:LinkamCMS:INFO:PID 2836: Device UID on port 9000 is 
+2020-01-29 11:13:32,184:LinkamCMS:INFO:PID 3860: Device initialized; starting daemon.
+2020-01-29 11:13:32,184:LinkamCMS:INFO:PID 3860: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-29 11:13:32,184:LinkamCMS:INFO:PID 3860: Device UID on port 9000 is 
+2020-01-30 09:33:22,245:LinkamCMS:INFO:PID 4828: Device initialized; starting daemon.
+2020-01-30 09:33:22,245:LinkamCMS:INFO:PID 4828: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-30 09:33:22,245:LinkamCMS:INFO:PID 4828: Device UID on port 9000 is 
+2020-01-30 11:14:30,577:LinkamCMS:INFO:PID 3608: Device initialized; starting daemon.
+2020-01-30 11:14:30,577:LinkamCMS:INFO:PID 3608: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-30 11:14:30,577:LinkamCMS:INFO:PID 3608: Device UID on port 9000 is 
+2020-01-30 11:17:15,017:LinkamCMS:INFO:PID 4200: Device initialized; starting daemon.
+2020-01-30 11:17:15,017:LinkamCMS:INFO:PID 4200: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-30 11:17:15,017:LinkamCMS:INFO:PID 4200: Device UID on port 9000 is 
+2020-01-30 12:35:44,244:LinkamCMS:INFO:PID 436: Device initialized; starting daemon.
+2020-01-30 12:35:44,244:LinkamCMS:INFO:PID 436: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-30 12:35:44,244:LinkamCMS:INFO:PID 436: Device UID on port 9000 is 
+2020-01-30 13:28:53,311:LinkamCMS:INFO:PID 4720: Device initialized; starting daemon.
+2020-01-30 13:28:53,311:LinkamCMS:INFO:PID 4720: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-30 13:28:53,311:LinkamCMS:INFO:PID 4720: Device UID on port 9000 is 
+2020-01-30 13:31:49,061:LinkamCMS:INFO:PID 2260: Device initialized; starting daemon.
+2020-01-30 13:31:49,061:LinkamCMS:INFO:PID 2260: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-30 13:31:49,061:LinkamCMS:INFO:PID 2260: Device UID on port 9000 is 
+2020-01-30 15:18:49,707:LinkamCMS:INFO:PID 4312: Device initialized; starting daemon.
+2020-01-30 15:18:49,707:LinkamCMS:INFO:PID 4312: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-30 15:18:49,708:LinkamCMS:INFO:PID 4312: Device UID on port 9000 is 
+2020-01-30 17:04:03,672:LinkamCMS:INFO:PID 4268: Device initialized; starting daemon.
+2020-01-30 17:04:03,672:LinkamCMS:INFO:PID 4268: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-30 17:04:03,672:LinkamCMS:INFO:PID 4268: Device UID on port 9000 is 
+2020-01-31 09:24:14,403:LinkamCMS:INFO:PID 4312: Device initialized; starting daemon.
+2020-01-31 09:24:14,403:LinkamCMS:INFO:PID 4312: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-31 09:24:14,403:LinkamCMS:INFO:PID 4312: Device UID on port 9000 is 
+2020-01-31 10:34:27,252:LinkamCMS:INFO:PID 2900: Device initialized; starting daemon.
+2020-01-31 10:34:27,252:LinkamCMS:INFO:PID 2900: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-31 10:34:27,252:LinkamCMS:INFO:PID 2900: Device UID on port 9000 is 
+2020-01-31 12:31:24,051:LinkamCMS:INFO:PID 4316: Device initialized; starting daemon.
+2020-01-31 12:31:24,051:LinkamCMS:INFO:PID 4316: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-31 12:31:24,051:LinkamCMS:INFO:PID 4316: Device UID on port 9000 is 
+2020-01-31 12:46:13,456:LinkamCMS:INFO:PID 4980: Device initialized; starting daemon.
+2020-01-31 12:46:13,456:LinkamCMS:INFO:PID 4980: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-31 12:46:13,456:LinkamCMS:INFO:PID 4980: Device UID on port 9000 is 
+2020-01-31 13:56:12,187:LinkamCMS:INFO:PID 4772: Device initialized; starting daemon.
+2020-01-31 13:56:12,187:LinkamCMS:INFO:PID 4772: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-01-31 13:56:12,187:LinkamCMS:INFO:PID 4772: Device UID on port 9000 is 
+2020-02-03 10:33:18,950:LinkamCMS:INFO:PID 2260: Device initialized; starting daemon.
+2020-02-03 10:33:18,950:LinkamCMS:INFO:PID 2260: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-03 10:33:18,950:LinkamCMS:INFO:PID 2260: Device UID on port 9000 is 
+2020-02-03 12:48:51,603:LinkamCMS:INFO:PID 1124: Device initialized; starting daemon.
+2020-02-03 12:48:51,603:LinkamCMS:INFO:PID 1124: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-03 12:48:51,603:LinkamCMS:INFO:PID 1124: Device UID on port 9000 is 
+2020-02-03 17:53:42,976:LinkamCMS:INFO:PID 3104: Device initialized; starting daemon.
+2020-02-03 17:53:42,976:LinkamCMS:INFO:PID 3104: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-03 17:53:42,976:LinkamCMS:INFO:PID 3104: Device UID on port 9000 is 
+2020-02-03 17:56:03,267:LinkamCMS:INFO:PID 3108: Device initialized; starting daemon.
+2020-02-03 17:56:03,267:LinkamCMS:INFO:PID 3108: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-03 17:56:03,267:LinkamCMS:INFO:PID 3108: Device UID on port 9000 is 
+2020-02-03 19:44:21,552:LinkamCMS:INFO:PID 1248: Device initialized; starting daemon.
+2020-02-03 19:44:21,552:LinkamCMS:INFO:PID 1248: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-03 19:44:21,552:LinkamCMS:INFO:PID 1248: Device UID on port 9000 is 
+2020-02-03 20:03:22,148:LinkamCMS:INFO:PID 4032: Device initialized; starting daemon.
+2020-02-03 20:03:22,148:LinkamCMS:INFO:PID 4032: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-03 20:03:22,148:LinkamCMS:INFO:PID 4032: Device UID on port 9000 is 
+2020-02-04 08:47:18,523:LinkamCMS:INFO:PID 1068: Device initialized; starting daemon.
+2020-02-04 08:47:18,523:LinkamCMS:INFO:PID 1068: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-04 08:47:18,523:LinkamCMS:INFO:PID 1068: Device UID on port 9000 is 
+2020-02-04 11:55:34,018:LinkamCMS:INFO:PID 4184: Device initialized; starting daemon.
+2020-02-04 11:55:34,018:LinkamCMS:INFO:PID 4184: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-04 11:55:34,018:LinkamCMS:INFO:PID 4184: Device UID on port 9000 is 
+2020-02-04 13:23:35,657:LinkamCMS:INFO:PID 3832: Device initialized; starting daemon.
+2020-02-04 13:23:35,657:LinkamCMS:INFO:PID 3832: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-04 13:23:35,657:LinkamCMS:INFO:PID 3832: Device UID on port 9000 is 
+2020-02-04 13:33:57,973:LinkamCMS:INFO:PID 4984: Device initialized; starting daemon.
+2020-02-04 13:33:57,973:LinkamCMS:INFO:PID 4984: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-04 13:33:57,973:LinkamCMS:INFO:PID 4984: Device UID on port 9000 is 
+2020-02-04 14:34:12,921:LinkamCMS:INFO:PID 4240: Device initialized; starting daemon.
+2020-02-04 14:34:12,921:LinkamCMS:INFO:PID 4240: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-04 14:34:12,921:LinkamCMS:INFO:PID 4240: Device UID on port 9000 is 
+2020-02-04 18:09:04,643:LinkamCMS:INFO:PID 4864: Device initialized; starting daemon.
+2020-02-04 18:09:04,643:LinkamCMS:INFO:PID 4864: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-04 18:09:04,643:LinkamCMS:INFO:PID 4864: Device UID on port 9000 is 
+2020-02-06 09:40:37,158:LinkamCMS:INFO:PID 2308: Device initialized; starting daemon.
+2020-02-06 09:40:37,158:LinkamCMS:INFO:PID 2308: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-06 09:40:37,158:LinkamCMS:INFO:PID 2308: Device UID on port 9000 is 
+2020-02-06 09:55:54,798:LinkamCMS:INFO:PID 4620: Device initialized; starting daemon.
+2020-02-06 09:55:54,798:LinkamCMS:INFO:PID 4620: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-06 09:55:54,798:LinkamCMS:INFO:PID 4620: Device UID on port 9000 is 
+2020-02-10 12:01:04,836:LinkamCMS:INFO:PID 3336: Device initialized; starting daemon.
+2020-02-10 12:01:04,836:LinkamCMS:INFO:PID 3336: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-10 12:01:04,836:LinkamCMS:INFO:PID 3336: Device UID on port 9000 is 
+2020-02-10 14:57:02,763:LinkamCMS:INFO:PID 2588: Device initialized; starting daemon.
+2020-02-10 14:57:02,763:LinkamCMS:INFO:PID 2588: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-10 14:57:02,763:LinkamCMS:INFO:PID 2588: Device UID on port 9000 is 
+2020-02-10 15:58:50,157:LinkamCMS:INFO:PID 3620: Device initialized; starting daemon.
+2020-02-10 15:58:50,157:LinkamCMS:INFO:PID 3620: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-10 15:58:50,157:LinkamCMS:INFO:PID 3620: Device UID on port 9000 is 
+2020-02-10 16:18:01,673:LinkamCMS:INFO:PID 2540: Device initialized; starting daemon.
+2020-02-10 16:18:01,673:LinkamCMS:INFO:PID 2540: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-10 16:18:01,673:LinkamCMS:INFO:PID 2540: Device UID on port 9000 is 
+2020-02-13 13:24:02,767:LinkamCMS:INFO:PID 4776: Device initialized; starting daemon.
+2020-02-13 13:24:02,767:LinkamCMS:INFO:PID 4776: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-13 13:24:02,767:LinkamCMS:INFO:PID 4776: Device UID on port 9000 is 
+2020-02-13 13:32:12,093:LinkamCMS:INFO:PID 1548: Device initialized; starting daemon.
+2020-02-13 13:32:12,093:LinkamCMS:INFO:PID 1548: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-13 13:32:12,093:LinkamCMS:INFO:PID 1548: Device UID on port 9000 is 
+2020-02-13 13:33:29,828:LinkamCMS:INFO:PID 2536: Device initialized; starting daemon.
+2020-02-13 13:33:29,828:LinkamCMS:INFO:PID 2536: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-13 13:33:29,828:LinkamCMS:INFO:PID 2536: Device UID on port 9000 is 
+2020-02-14 12:21:46,314:LinkamCMS:INFO:PID 4120: Device initialized; starting daemon.
+2020-02-14 12:21:46,314:LinkamCMS:INFO:PID 4120: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-14 12:21:46,314:LinkamCMS:INFO:PID 4120: Device UID on port 9000 is 
+2020-02-14 15:45:01,120:LinkamCMS:INFO:PID 1876: Device initialized; starting daemon.
+2020-02-14 15:45:01,120:LinkamCMS:INFO:PID 1876: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-14 15:45:01,120:LinkamCMS:INFO:PID 1876: Device UID on port 9000 is 
+2020-02-14 15:51:13,103:LinkamCMS:INFO:PID 400: Device initialized; starting daemon.
+2020-02-14 15:51:13,103:LinkamCMS:INFO:PID 400: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-14 15:51:13,103:LinkamCMS:INFO:PID 400: Device UID on port 9000 is 
+2020-02-15 10:37:46,072:LinkamCMS:INFO:PID 3972: Device initialized; starting daemon.
+2020-02-15 10:37:46,072:LinkamCMS:INFO:PID 3972: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-15 10:37:46,072:LinkamCMS:INFO:PID 3972: Device UID on port 9000 is 
+2020-02-15 11:21:36,205:LinkamCMS:INFO:PID 3516: Device initialized; starting daemon.
+2020-02-15 11:21:36,205:LinkamCMS:INFO:PID 3516: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-15 11:21:36,205:LinkamCMS:INFO:PID 3516: Device UID on port 9000 is 
+2020-02-15 11:24:54,778:LinkamCMS:INFO:PID 2584: Device initialized; starting daemon.
+2020-02-15 11:24:54,778:LinkamCMS:INFO:PID 2584: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-15 11:24:54,778:LinkamCMS:INFO:PID 2584: Device UID on port 9000 is 
+2020-02-15 11:34:13,384:LinkamCMS:INFO:PID 4948: Device initialized; starting daemon.
+2020-02-15 11:34:13,384:LinkamCMS:INFO:PID 4948: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-15 11:34:13,384:LinkamCMS:INFO:PID 4948: Device UID on port 9000 is 
+2020-02-15 13:35:25,009:LinkamCMS:INFO:PID 3980: Device initialized; starting daemon.
+2020-02-15 13:35:25,009:LinkamCMS:INFO:PID 3980: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-15 13:35:25,009:LinkamCMS:INFO:PID 3980: Device UID on port 9000 is 
+2020-02-15 16:38:26,399:LinkamCMS:INFO:PID 4228: Device initialized; starting daemon.
+2020-02-15 16:38:26,399:LinkamCMS:INFO:PID 4228: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-15 16:38:26,399:LinkamCMS:INFO:PID 4228: Device UID on port 9000 is 
+2020-02-15 17:01:52,991:LinkamCMS:INFO:PID 3676: Device initialized; starting daemon.
+2020-02-15 17:01:52,991:LinkamCMS:INFO:PID 3676: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-15 17:01:52,991:LinkamCMS:INFO:PID 3676: Device UID on port 9000 is 
+2020-02-15 17:29:39,822:LinkamCMS:INFO:PID 4944: Device initialized; starting daemon.
+2020-02-15 17:29:39,822:LinkamCMS:INFO:PID 4944: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-15 17:29:39,822:LinkamCMS:INFO:PID 4944: Device UID on port 9000 is 
+2020-02-18 13:33:55,052:LinkamCMS:INFO:PID 3580: Device initialized; starting daemon.
+2020-02-18 13:33:55,052:LinkamCMS:INFO:PID 3580: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-18 13:33:55,052:LinkamCMS:INFO:PID 3580: Device UID on port 9000 is 
+2020-02-19 08:32:29,819:LinkamCMS:INFO:PID 3820: Device initialized; starting daemon.
+2020-02-19 08:32:29,819:LinkamCMS:INFO:PID 3820: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-19 08:32:29,819:LinkamCMS:INFO:PID 3820: Device UID on port 9000 is 
+2020-02-19 10:21:32,112:LinkamCMS:INFO:PID 3436: Device initialized; starting daemon.
+2020-02-19 10:21:32,112:LinkamCMS:INFO:PID 3436: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-19 10:21:32,112:LinkamCMS:INFO:PID 3436: Device UID on port 9000 is 
+2020-02-20 14:51:30,840:LinkamCMS:INFO:PID 3104: Device initialized; starting daemon.
+2020-02-20 14:51:30,840:LinkamCMS:INFO:PID 3104: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-20 14:51:30,840:LinkamCMS:INFO:PID 3104: Device UID on port 9000 is 
+2020-02-20 15:01:48,024:LinkamCMS:INFO:PID 4488: Device initialized; starting daemon.
+2020-02-20 15:01:48,024:LinkamCMS:INFO:PID 4488: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-20 15:01:48,024:LinkamCMS:INFO:PID 4488: Device UID on port 9000 is 
+2020-02-20 15:10:09,486:LinkamCMS:INFO:PID 3564: Device initialized; starting daemon.
+2020-02-20 15:10:09,486:LinkamCMS:INFO:PID 3564: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-20 15:10:09,486:LinkamCMS:INFO:PID 3564: Device UID on port 9000 is 
+2020-02-21 09:46:08,392:LinkamCMS:INFO:PID 3884: Device initialized; starting daemon.
+2020-02-21 09:46:08,392:LinkamCMS:INFO:PID 3884: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-21 09:46:08,392:LinkamCMS:INFO:PID 3884: Device UID on port 9000 is 
+2020-02-21 12:40:37,461:LinkamCMS:INFO:PID 1128: Device initialized; starting daemon.
+2020-02-21 12:40:37,461:LinkamCMS:INFO:PID 1128: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-21 12:40:37,461:LinkamCMS:INFO:PID 1128: Device UID on port 9000 is 
+2020-02-21 14:56:32,547:LinkamCMS:INFO:PID 3372: Device initialized; starting daemon.
+2020-02-21 14:56:32,547:LinkamCMS:INFO:PID 3372: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-21 14:56:32,547:LinkamCMS:INFO:PID 3372: Device UID on port 9000 is 
+2020-02-22 13:34:22,473:LinkamCMS:INFO:PID 4680: Device initialized; starting daemon.
+2020-02-22 13:34:22,473:LinkamCMS:INFO:PID 4680: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-22 13:34:22,473:LinkamCMS:INFO:PID 4680: Device UID on port 9000 is 
+2020-02-22 13:34:49,555:LinkamCMS:INFO:PID 2932: Device initialized; starting daemon.
+2020-02-22 13:34:49,555:LinkamCMS:INFO:PID 2932: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-22 13:34:49,555:LinkamCMS:INFO:PID 2932: Device UID on port 9000 is 
+2020-02-22 13:49:39,287:LinkamCMS:INFO:PID 4780: Device initialized; starting daemon.
+2020-02-22 13:49:39,287:LinkamCMS:INFO:PID 4780: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-22 13:49:39,287:LinkamCMS:INFO:PID 4780: Device UID on port 9000 is 
+2020-02-22 16:22:28,952:LinkamCMS:INFO:PID 904: Device initialized; starting daemon.
+2020-02-22 16:22:28,952:LinkamCMS:INFO:PID 904: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-22 16:22:28,952:LinkamCMS:INFO:PID 904: Device UID on port 9000 is 
+2020-02-23 10:09:54,462:LinkamCMS:INFO:PID 4032: Device initialized; starting daemon.
+2020-02-23 10:09:54,462:LinkamCMS:INFO:PID 4032: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-23 10:09:54,462:LinkamCMS:INFO:PID 4032: Device UID on port 9000 is 
+2020-02-24 10:17:14,620:LinkamCMS:INFO:PID 576: Device initialized; starting daemon.
+2020-02-24 10:17:14,620:LinkamCMS:INFO:PID 576: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 10:17:14,620:LinkamCMS:INFO:PID 576: Device UID on port 9000 is 
+2020-02-24 10:57:56,804:LinkamCMS:INFO:PID 2468: Device initialized; starting daemon.
+2020-02-24 10:57:56,804:LinkamCMS:INFO:PID 2468: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 10:57:56,804:LinkamCMS:INFO:PID 2468: Device UID on port 9000 is 
+2020-02-24 11:33:56,378:LinkamCMS:INFO:PID 1164: Device initialized; starting daemon.
+2020-02-24 11:33:56,378:LinkamCMS:INFO:PID 1164: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 11:33:56,378:LinkamCMS:INFO:PID 1164: Device UID on port 9000 is 
+2020-02-24 11:58:57,881:LinkamCMS:INFO:PID 3996: Device initialized; starting daemon.
+2020-02-24 11:58:57,881:LinkamCMS:INFO:PID 3996: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 11:58:57,881:LinkamCMS:INFO:PID 3996: Device UID on port 9000 is 
+2020-02-24 13:59:55,684:LinkamCMS:INFO:PID 4788: Device initialized; starting daemon.
+2020-02-24 13:59:55,684:LinkamCMS:INFO:PID 4788: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 13:59:55,684:LinkamCMS:INFO:PID 4788: Device UID on port 9000 is 
+2020-02-24 14:02:46,520:LinkamCMS:INFO:PID 160: Device initialized; starting daemon.
+2020-02-24 14:02:46,520:LinkamCMS:INFO:PID 160: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 14:02:46,520:LinkamCMS:INFO:PID 160: Device UID on port 9000 is 
+2020-02-24 14:05:02,006:LinkamCMS:INFO:PID 3812: Device initialized; starting daemon.
+2020-02-24 14:05:02,006:LinkamCMS:INFO:PID 3812: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 14:05:02,006:LinkamCMS:INFO:PID 3812: Device UID on port 9000 is 
+2020-02-24 14:13:35,945:LinkamCMS:INFO:PID 4616: Device initialized; starting daemon.
+2020-02-24 14:13:35,945:LinkamCMS:INFO:PID 4616: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 14:13:35,945:LinkamCMS:INFO:PID 4616: Device UID on port 9000 is 
+2020-02-24 14:21:30,600:LinkamCMS:INFO:PID 2552: Device initialized; starting daemon.
+2020-02-24 14:21:30,600:LinkamCMS:INFO:PID 2552: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 14:21:30,600:LinkamCMS:INFO:PID 2552: Device UID on port 9000 is 
+2020-02-24 15:39:54,008:LinkamCMS:INFO:PID 1060: Device initialized; starting daemon.
+2020-02-24 15:39:54,008:LinkamCMS:INFO:PID 1060: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-24 15:39:54,008:LinkamCMS:INFO:PID 1060: Device UID on port 9000 is 
+2020-02-25 16:36:31,946:LinkamCMS:INFO:PID 4880: Device initialized; starting daemon.
+2020-02-25 16:36:31,946:LinkamCMS:INFO:PID 4880: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-25 16:36:31,946:LinkamCMS:INFO:PID 4880: Device UID on port 9000 is 
+2020-02-25 18:24:27,128:LinkamCMS:INFO:PID 3472: Device initialized; starting daemon.
+2020-02-25 18:24:27,128:LinkamCMS:INFO:PID 3472: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-25 18:24:27,128:LinkamCMS:INFO:PID 3472: Device UID on port 9000 is 
+2020-02-26 11:49:09,286:LinkamCMS:INFO:PID 4956: Device initialized; starting daemon.
+2020-02-26 11:49:09,286:LinkamCMS:INFO:PID 4956: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-26 11:49:09,286:LinkamCMS:INFO:PID 4956: Device UID on port 9000 is 
+2020-02-26 15:08:11,169:LinkamCMS:INFO:PID 516: Device initialized; starting daemon.
+2020-02-26 15:08:11,169:LinkamCMS:INFO:PID 516: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-26 15:08:11,169:LinkamCMS:INFO:PID 516: Device UID on port 9000 is 
+2020-02-26 15:16:04,377:LinkamCMS:INFO:PID 5048: Device initialized; starting daemon.
+2020-02-26 15:16:04,393:LinkamCMS:INFO:PID 5048: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-26 15:16:04,393:LinkamCMS:INFO:PID 5048: Device UID on port 9000 is 
+2020-02-27 13:48:07,739:LinkamCMS:INFO:PID 4924: Device initialized; starting daemon.
+2020-02-27 13:48:07,739:LinkamCMS:INFO:PID 4924: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-27 13:48:07,739:LinkamCMS:INFO:PID 4924: Device UID on port 9000 is 
+2020-02-27 14:10:51,525:LinkamCMS:INFO:PID 3828: Device initialized; starting daemon.
+2020-02-27 14:10:51,525:LinkamCMS:INFO:PID 3828: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-27 14:10:51,525:LinkamCMS:INFO:PID 3828: Device UID on port 9000 is 
+2020-02-28 10:42:40,976:LinkamCMS:INFO:PID 1732: Device initialized; starting daemon.
+2020-02-28 10:42:40,976:LinkamCMS:INFO:PID 1732: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-28 10:42:40,976:LinkamCMS:INFO:PID 1732: Device UID on port 9000 is 
+2020-02-28 15:05:42,073:LinkamCMS:INFO:PID 3852: Device initialized; starting daemon.
+2020-02-28 15:05:42,073:LinkamCMS:INFO:PID 3852: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-28 15:05:42,073:LinkamCMS:INFO:PID 3852: Device UID on port 9000 is 
+2020-02-28 15:14:23,473:LinkamCMS:INFO:PID 4672: Device initialized; starting daemon.
+2020-02-28 15:14:23,473:LinkamCMS:INFO:PID 4672: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-28 15:14:23,473:LinkamCMS:INFO:PID 4672: Device UID on port 9000 is 
+2020-02-28 15:33:40,355:LinkamCMS:INFO:PID 4484: Device initialized; starting daemon.
+2020-02-28 15:33:40,355:LinkamCMS:INFO:PID 4484: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-02-28 15:33:40,355:LinkamCMS:INFO:PID 4484: Device UID on port 9000 is 
+2020-03-02 09:12:32,039:LinkamCMS:INFO:PID 3376: Device initialized; starting daemon.
+2020-03-02 09:12:32,039:LinkamCMS:INFO:PID 3376: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-02 09:12:32,039:LinkamCMS:INFO:PID 3376: Device UID on port 9000 is 
+2020-03-02 10:00:55,656:LinkamCMS:INFO:PID 5020: Device initialized; starting daemon.
+2020-03-02 10:00:55,656:LinkamCMS:INFO:PID 5020: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-02 10:00:55,656:LinkamCMS:INFO:PID 5020: Device UID on port 9000 is 
+2020-03-02 12:04:18,930:LinkamCMS:INFO:PID 5104: Device initialized; starting daemon.
+2020-03-02 12:04:18,930:LinkamCMS:INFO:PID 5104: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-02 12:04:18,930:LinkamCMS:INFO:PID 5104: Device UID on port 9000 is 
+2020-03-02 12:11:05,763:LinkamCMS:INFO:PID 4060: Device initialized; starting daemon.
+2020-03-02 12:11:05,763:LinkamCMS:INFO:PID 4060: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-02 12:11:05,763:LinkamCMS:INFO:PID 4060: Device UID on port 9000 is 
+2020-03-04 11:29:57,704:LinkamCMS:INFO:PID 1732: Device initialized; starting daemon.
+2020-03-04 11:29:57,704:LinkamCMS:INFO:PID 1732: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-04 11:29:57,704:LinkamCMS:INFO:PID 1732: Device UID on port 9000 is 
+2020-03-04 15:02:17,030:LinkamCMS:INFO:PID 3884: Device initialized; starting daemon.
+2020-03-04 15:02:17,030:LinkamCMS:INFO:PID 3884: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-04 15:02:17,030:LinkamCMS:INFO:PID 3884: Device UID on port 9000 is 
+2020-03-04 15:21:23,211:LinkamCMS:INFO:PID 4012: Device initialized; starting daemon.
+2020-03-04 15:21:23,211:LinkamCMS:INFO:PID 4012: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-04 15:21:23,211:LinkamCMS:INFO:PID 4012: Device UID on port 9000 is 
+2020-03-04 18:01:42,609:LinkamCMS:INFO:PID 4444: Device initialized; starting daemon.
+2020-03-04 18:01:42,609:LinkamCMS:INFO:PID 4444: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-04 18:01:42,609:LinkamCMS:INFO:PID 4444: Device UID on port 9000 is 
+2020-03-05 16:42:46,038:LinkamCMS:INFO:PID 1044: Device initialized; starting daemon.
+2020-03-05 16:42:46,038:LinkamCMS:INFO:PID 1044: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-05 16:42:46,038:LinkamCMS:INFO:PID 1044: Device UID on port 9000 is 
+2020-03-06 10:03:21,981:LinkamCMS:INFO:PID 4936: Device initialized; starting daemon.
+2020-03-06 10:03:21,981:LinkamCMS:INFO:PID 4936: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-06 10:03:21,981:LinkamCMS:INFO:PID 4936: Device UID on port 9000 is 
+2020-03-06 10:20:03,237:LinkamCMS:INFO:PID 3756: Device initialized; starting daemon.
+2020-03-06 10:20:03,237:LinkamCMS:INFO:PID 3756: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-06 10:20:03,237:LinkamCMS:INFO:PID 3756: Device UID on port 9000 is 
+2020-03-06 11:26:03,647:LinkamCMS:INFO:PID 1176: Device initialized; starting daemon.
+2020-03-06 11:26:03,647:LinkamCMS:INFO:PID 1176: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-06 11:26:03,647:LinkamCMS:INFO:PID 1176: Device UID on port 9000 is 
+2020-03-09 10:25:09,573:LinkamCMS:INFO:PID 4900: Device initialized; starting daemon.
+2020-03-09 10:25:09,573:LinkamCMS:INFO:PID 4900: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-09 10:25:09,573:LinkamCMS:INFO:PID 4900: Device UID on port 9000 is 
+2020-03-09 10:43:58,344:LinkamCMS:INFO:PID 4888: Device initialized; starting daemon.
+2020-03-09 10:43:58,344:LinkamCMS:INFO:PID 4888: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-09 10:43:58,344:LinkamCMS:INFO:PID 4888: Device UID on port 9000 is 
+2020-03-09 10:50:03,151:LinkamCMS:INFO:PID 3516: Device initialized; starting daemon.
+2020-03-09 10:50:03,151:LinkamCMS:INFO:PID 3516: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-09 10:50:03,151:LinkamCMS:INFO:PID 3516: Device UID on port 9000 is 
+2020-03-09 12:01:42,440:LinkamCMS:INFO:PID 4932: Device initialized; starting daemon.
+2020-03-09 12:01:42,440:LinkamCMS:INFO:PID 4932: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-09 12:01:42,440:LinkamCMS:INFO:PID 4932: Device UID on port 9000 is 
+2020-03-09 15:12:23,984:LinkamCMS:INFO:PID 3500: Device initialized; starting daemon.
+2020-03-09 15:12:23,984:LinkamCMS:INFO:PID 3500: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-09 15:12:23,984:LinkamCMS:INFO:PID 3500: Device UID on port 9000 is 
+2020-03-09 16:32:01,523:LinkamCMS:INFO:PID 724: Device initialized; starting daemon.
+2020-03-09 16:32:01,523:LinkamCMS:INFO:PID 724: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-09 16:32:01,523:LinkamCMS:INFO:PID 724: Device UID on port 9000 is 
+2020-03-10 11:21:14,470:LinkamCMS:INFO:PID 4924: Device initialized; starting daemon.
+2020-03-10 11:21:14,470:LinkamCMS:INFO:PID 4924: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-10 11:21:14,470:LinkamCMS:INFO:PID 4924: Device UID on port 9000 is 
+2020-03-10 11:35:10,148:LinkamCMS:INFO:PID 2324: Device initialized; starting daemon.
+2020-03-10 11:35:10,148:LinkamCMS:INFO:PID 2324: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-10 11:35:10,148:LinkamCMS:INFO:PID 2324: Device UID on port 9000 is 
+2020-03-10 11:40:32,928:LinkamCMS:INFO:PID 2260: Device initialized; starting daemon.
+2020-03-10 11:40:32,928:LinkamCMS:INFO:PID 2260: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-10 11:40:32,928:LinkamCMS:INFO:PID 2260: Device UID on port 9000 is 
+2020-03-10 14:35:41,871:LinkamCMS:INFO:PID 4724: Device initialized; starting daemon.
+2020-03-10 14:35:41,871:LinkamCMS:INFO:PID 4724: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-10 14:35:41,871:LinkamCMS:INFO:PID 4724: Device UID on port 9000 is 
+2020-03-10 15:11:15,861:LinkamCMS:INFO:PID 4308: Device initialized; starting daemon.
+2020-03-10 15:11:15,861:LinkamCMS:INFO:PID 4308: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-10 15:11:15,861:LinkamCMS:INFO:PID 4308: Device UID on port 9000 is 
+2020-03-10 15:42:55,726:LinkamCMS:INFO:PID 4720: Device initialized; starting daemon.
+2020-03-10 15:42:55,726:LinkamCMS:INFO:PID 4720: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-10 15:42:55,726:LinkamCMS:INFO:PID 4720: Device UID on port 9000 is 
+2020-03-11 10:30:39,020:LinkamCMS:INFO:PID 4376: Device initialized; starting daemon.
+2020-03-11 10:30:39,020:LinkamCMS:INFO:PID 4376: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-11 10:30:39,020:LinkamCMS:INFO:PID 4376: Device UID on port 9000 is 
+2020-03-11 11:56:16,827:LinkamCMS:INFO:PID 3684: Device initialized; starting daemon.
+2020-03-11 11:56:16,827:LinkamCMS:INFO:PID 3684: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-11 11:56:16,827:LinkamCMS:INFO:PID 3684: Device UID on port 9000 is 
+2020-03-11 12:35:42,727:LinkamCMS:INFO:PID 3768: Device initialized; starting daemon.
+2020-03-11 12:35:42,727:LinkamCMS:INFO:PID 3768: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-11 12:35:42,727:LinkamCMS:INFO:PID 3768: Device UID on port 9000 is 
+2020-03-11 16:30:39,692:LinkamCMS:INFO:PID 4092: Device initialized; starting daemon.
+2020-03-11 16:30:39,707:LinkamCMS:INFO:PID 4092: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-11 16:30:39,707:LinkamCMS:INFO:PID 4092: Device UID on port 9000 is 
+2020-03-12 11:28:36,722:LinkamCMS:INFO:PID 2300: Device initialized; starting daemon.
+2020-03-12 11:28:36,722:LinkamCMS:INFO:PID 2300: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-12 11:28:36,722:LinkamCMS:INFO:PID 2300: Device UID on port 9000 is 
+2020-03-13 08:45:13,589:LinkamCMS:INFO:PID 4720: Device initialized; starting daemon.
+2020-03-13 08:45:13,589:LinkamCMS:INFO:PID 4720: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-13 08:45:13,589:LinkamCMS:INFO:PID 4720: Device UID on port 9000 is 
+2020-03-13 08:56:45,014:LinkamCMS:INFO:PID 4160: Device initialized; starting daemon.
+2020-03-13 08:56:45,014:LinkamCMS:INFO:PID 4160: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-13 08:56:45,014:LinkamCMS:INFO:PID 4160: Device UID on port 9000 is 
+2020-03-17 09:33:46,766:LinkamCMS:INFO:PID 4680: Device initialized; starting daemon.
+2020-03-17 09:33:46,766:LinkamCMS:INFO:PID 4680: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-17 09:33:46,766:LinkamCMS:INFO:PID 4680: Device UID on port 9000 is 
+2020-03-17 11:02:38,637:LinkamCMS:INFO:PID 3496: Device initialized; starting daemon.
+2020-03-17 11:02:38,637:LinkamCMS:INFO:PID 3496: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-17 11:02:38,637:LinkamCMS:INFO:PID 3496: Device UID on port 9000 is 
+2020-03-19 12:55:14,273:LinkamCMS:INFO:PID 4456: Device initialized; starting daemon.
+2020-03-19 12:55:14,273:LinkamCMS:INFO:PID 4456: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-03-19 12:55:14,273:LinkamCMS:INFO:PID 4456: Device UID on port 9000 is 
+2020-06-19 12:19:52,088:LinkamCMS:INFO:PID 4180: Device initialized; starting daemon.
+2020-06-19 12:19:52,104:LinkamCMS:INFO:PID 4180: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-06-19 12:19:52,104:LinkamCMS:INFO:PID 4180: Device UID on port 9000 is 
+2020-06-19 12:29:02,800:LinkamCMS:INFO:PID 4612: Device initialized; starting daemon.
+2020-06-19 12:29:02,800:LinkamCMS:INFO:PID 4612: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-06-19 12:29:02,800:LinkamCMS:INFO:PID 4612: Device UID on port 9000 is 
+2020-06-19 12:40:19,530:LinkamCMS:INFO:PID 2492: Device initialized; starting daemon.
+2020-06-19 12:40:19,530:LinkamCMS:INFO:PID 2492: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-06-19 12:40:19,530:LinkamCMS:INFO:PID 2492: Device UID on port 9000 is 
+2020-06-19 12:51:31,329:LinkamCMS:INFO:PID 3636: Device initialized; starting daemon.
+2020-06-19 12:51:31,329:LinkamCMS:INFO:PID 3636: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-06-19 12:51:31,329:LinkamCMS:INFO:PID 3636: Device UID on port 9000 is 
+2020-08-26 11:21:23,928:LinkamCMS:INFO:PID 4328: Device initialized; starting daemon.
+2020-08-26 11:21:23,928:LinkamCMS:INFO:PID 4328: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-08-26 11:21:23,928:LinkamCMS:INFO:PID 4328: Device UID on port 9000 is 
+2020-09-09 11:24:29,384:LinkamCMS:INFO:PID 1292: Device initialized; starting daemon.
+2020-09-09 11:24:29,384:LinkamCMS:INFO:PID 1292: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-09-09 11:24:29,384:LinkamCMS:INFO:PID 1292: Device UID on port 9000 is 
+2020-09-10 12:19:05,377:LinkamCMS:INFO:PID 4936: Device initialized; starting daemon.
+2020-09-10 12:19:05,377:LinkamCMS:INFO:PID 4936: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-09-10 12:19:05,377:LinkamCMS:INFO:PID 4936: Device UID on port 9000 is 
+2020-09-11 10:27:14,435:LinkamCMS:INFO:PID 2580: Device initialized; starting daemon.
+2020-09-11 10:27:14,435:LinkamCMS:INFO:PID 2580: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-09-11 10:27:14,435:LinkamCMS:INFO:PID 2580: Device UID on port 9000 is 
+2020-09-28 11:10:46,067:LinkamCMS:INFO:PID 3576: Device initialized; starting daemon.
+2020-09-28 11:10:46,067:LinkamCMS:INFO:PID 3576: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-09-28 11:10:46,067:LinkamCMS:INFO:PID 3576: Device UID on port 9000 is 
+2020-10-08 18:17:36,453:LinkamCMS:INFO:PID 5024: Device initialized; starting daemon.
+2020-10-08 18:17:36,453:LinkamCMS:INFO:PID 5024: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-08 18:17:36,453:LinkamCMS:INFO:PID 5024: Device UID on port 9000 is 
+2020-10-14 10:18:11,217:LinkamCMS:INFO:PID 2352: Device initialized; starting daemon.
+2020-10-14 10:18:11,217:LinkamCMS:INFO:PID 2352: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-14 10:18:11,217:LinkamCMS:INFO:PID 2352: Device UID on port 9000 is 
+2020-10-14 10:48:41,396:LinkamCMS:INFO:PID 4724: Device initialized; starting daemon.
+2020-10-14 10:48:41,396:LinkamCMS:INFO:PID 4724: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-14 10:48:41,396:LinkamCMS:INFO:PID 4724: Device UID on port 9000 is 
+2020-10-14 16:19:57,641:LinkamCMS:INFO:PID 5076: Device initialized; starting daemon.
+2020-10-14 16:19:57,641:LinkamCMS:INFO:PID 5076: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-14 16:19:57,641:LinkamCMS:INFO:PID 5076: Device UID on port 9000 is 
+2020-10-15 18:07:20,408:LinkamCMS:INFO:PID 2492: Device initialized; starting daemon.
+2020-10-15 18:07:20,408:LinkamCMS:INFO:PID 2492: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-15 18:07:20,408:LinkamCMS:INFO:PID 2492: Device UID on port 9000 is 
+2020-10-22 15:52:59,614:LinkamCMS:INFO:PID 2696: Device initialized; starting daemon.
+2020-10-22 15:52:59,614:LinkamCMS:INFO:PID 2696: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-22 15:52:59,614:LinkamCMS:INFO:PID 2696: Device UID on port 9000 is 
+2020-10-22 16:23:13,336:LinkamCMS:INFO:PID 4400: Device initialized; starting daemon.
+2020-10-22 16:23:13,336:LinkamCMS:INFO:PID 4400: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-22 16:23:13,336:LinkamCMS:INFO:PID 4400: Device UID on port 9000 is 
+2020-10-22 16:31:06,781:LinkamCMS:INFO:PID 4900: Device initialized; starting daemon.
+2020-10-22 16:31:06,781:LinkamCMS:INFO:PID 4900: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-22 16:31:06,781:LinkamCMS:INFO:PID 4900: Device UID on port 9000 is 
+2020-10-22 16:31:35,235:LinkamCMS:INFO:PID 3792: Device initialized; starting daemon.
+2020-10-22 16:31:35,235:LinkamCMS:INFO:PID 3792: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-22 16:31:35,235:LinkamCMS:INFO:PID 3792: Device UID on port 9000 is 
+2020-10-22 16:36:11,137:LinkamCMS:INFO:PID 2284: Device initialized; starting daemon.
+2020-10-22 16:36:11,137:LinkamCMS:INFO:PID 2284: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-22 16:36:11,137:LinkamCMS:INFO:PID 2284: Device UID on port 9000 is 
+2020-10-22 17:04:19,014:LinkamCMS:INFO:PID 3204: Device initialized; starting daemon.
+2020-10-22 17:04:19,014:LinkamCMS:INFO:PID 3204: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-22 17:04:19,014:LinkamCMS:INFO:PID 3204: Device UID on port 9000 is 
+2020-10-26 11:35:58,706:LinkamCMS:INFO:PID 1756: Device initialized; starting daemon.
+2020-10-26 11:35:58,706:LinkamCMS:INFO:PID 1756: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-26 11:35:58,706:LinkamCMS:INFO:PID 1756: Device UID on port 9000 is 
+2020-10-30 10:55:06,259:LinkamCMS:INFO:PID 4596: Device initialized; starting daemon.
+2020-10-30 10:55:06,275:LinkamCMS:INFO:PID 4596: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-10-30 10:55:06,275:LinkamCMS:INFO:PID 4596: Device UID on port 9000 is 
+2020-11-02 14:54:11,038:LinkamCMS:INFO:PID 5100: Device initialized; starting daemon.
+2020-11-02 14:54:11,038:LinkamCMS:INFO:PID 5100: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-02 14:54:11,038:LinkamCMS:INFO:PID 5100: Device UID on port 9000 is 
+2020-11-03 12:18:40,493:LinkamCMS:INFO:PID 4676: Device initialized; starting daemon.
+2020-11-03 12:18:40,493:LinkamCMS:INFO:PID 4676: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-03 12:18:40,493:LinkamCMS:INFO:PID 4676: Device UID on port 9000 is 
+2020-11-04 10:29:10,068:LinkamCMS:INFO:PID 4232: Device initialized; starting daemon.
+2020-11-04 10:29:10,068:LinkamCMS:INFO:PID 4232: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-04 10:29:10,068:LinkamCMS:INFO:PID 4232: Device UID on port 9000 is 
+2020-11-05 10:23:09,417:LinkamCMS:INFO:PID 3436: Device initialized; starting daemon.
+2020-11-05 10:23:09,417:LinkamCMS:INFO:PID 3436: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-05 10:23:09,417:LinkamCMS:INFO:PID 3436: Device UID on port 9000 is 
+2020-11-05 10:27:39,016:LinkamCMS:INFO:PID 4132: Device initialized; starting daemon.
+2020-11-05 10:27:39,016:LinkamCMS:INFO:PID 4132: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-05 10:27:39,016:LinkamCMS:INFO:PID 4132: Device UID on port 9000 is 
+2020-11-05 11:07:31,390:LinkamCMS:INFO:PID 3244: Device initialized; starting daemon.
+2020-11-05 11:07:31,390:LinkamCMS:INFO:PID 3244: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-05 11:07:31,390:LinkamCMS:INFO:PID 3244: Device UID on port 9000 is 
+2020-11-05 11:51:26,718:LinkamCMS:INFO:PID 3612: Device initialized; starting daemon.
+2020-11-05 11:51:26,718:LinkamCMS:INFO:PID 3612: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-05 11:51:26,718:LinkamCMS:INFO:PID 3612: Device UID on port 9000 is 
+2020-11-05 12:02:34,071:LinkamCMS:INFO:PID 4724: Device initialized; starting daemon.
+2020-11-05 12:02:34,071:LinkamCMS:INFO:PID 4724: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-05 12:02:34,071:LinkamCMS:INFO:PID 4724: Device UID on port 9000 is 
+2020-11-05 12:23:09,796:LinkamCMS:INFO:PID 4216: Device initialized; starting daemon.
+2020-11-05 12:23:09,796:LinkamCMS:INFO:PID 4216: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-05 12:23:09,796:LinkamCMS:INFO:PID 4216: Device UID on port 9000 is 
+2020-11-09 15:13:54,068:LinkamCMS:INFO:PID 3752: Device initialized; starting daemon.
+2020-11-09 15:13:54,068:LinkamCMS:INFO:PID 3752: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-09 15:13:54,068:LinkamCMS:INFO:PID 3752: Device UID on port 9000 is 
+2020-11-09 15:14:31,930:LinkamCMS:INFO:PID 3300: Device initialized; starting daemon.
+2020-11-09 15:14:31,930:LinkamCMS:INFO:PID 3300: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-09 15:14:31,930:LinkamCMS:INFO:PID 3300: Device UID on port 9000 is 
+2020-11-12 09:40:46,277:LinkamCMS:INFO:PID 5028: Device initialized; starting daemon.
+2020-11-12 09:40:46,277:LinkamCMS:INFO:PID 5028: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-12 09:40:46,277:LinkamCMS:INFO:PID 5028: Device UID on port 9000 is 
+2020-11-13 10:14:32,333:LinkamCMS:INFO:PID 4148: Device initialized; starting daemon.
+2020-11-13 10:14:32,333:LinkamCMS:INFO:PID 4148: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-13 10:14:32,333:LinkamCMS:INFO:PID 4148: Device UID on port 9000 is 
+2020-11-16 10:32:25,335:LinkamCMS:INFO:PID 4596: Device initialized; starting daemon.
+2020-11-16 10:32:25,335:LinkamCMS:INFO:PID 4596: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-16 10:32:25,335:LinkamCMS:INFO:PID 4596: Device UID on port 9000 is 
+2020-11-20 10:33:41,101:LinkamCMS:INFO:PID 416: Device initialized; starting daemon.
+2020-11-20 10:33:41,101:LinkamCMS:INFO:PID 416: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-20 10:33:41,101:LinkamCMS:INFO:PID 416: Device UID on port 9000 is 
+2020-11-23 11:10:21,528:LinkamCMS:INFO:PID 5112: Device initialized; starting daemon.
+2020-11-23 11:10:21,528:LinkamCMS:INFO:PID 5112: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-23 11:10:21,528:LinkamCMS:INFO:PID 5112: Device UID on port 9000 is 
+2020-11-24 11:23:38,536:LinkamCMS:INFO:PID 3996: Device initialized; starting daemon.
+2020-11-24 11:23:38,552:LinkamCMS:INFO:PID 3996: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-24 11:23:38,552:LinkamCMS:INFO:PID 3996: Device UID on port 9000 is 
+2020-11-24 13:55:54,989:LinkamCMS:INFO:PID 4020: Device initialized; starting daemon.
+2020-11-24 13:55:54,989:LinkamCMS:INFO:PID 4020: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-24 13:55:54,989:LinkamCMS:INFO:PID 4020: Device UID on port 9000 is 
+2020-11-24 14:38:22,957:LinkamCMS:INFO:PID 4420: Device initialized; starting daemon.
+2020-11-24 14:38:22,957:LinkamCMS:INFO:PID 4420: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-24 14:38:22,957:LinkamCMS:INFO:PID 4420: Device UID on port 9000 is 
+2020-11-25 12:21:59,154:LinkamCMS:INFO:PID 4248: Device initialized; starting daemon.
+2020-11-25 12:21:59,154:LinkamCMS:INFO:PID 4248: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-25 12:21:59,154:LinkamCMS:INFO:PID 4248: Device UID on port 9000 is 
+2020-11-25 14:51:03,492:LinkamCMS:INFO:PID 1516: Device initialized; starting daemon.
+2020-11-25 14:51:03,492:LinkamCMS:INFO:PID 1516: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-25 14:51:03,492:LinkamCMS:INFO:PID 1516: Device UID on port 9000 is 
+2020-11-25 14:53:14,891:LinkamCMS:INFO:PID 4304: Device initialized; starting daemon.
+2020-11-25 14:53:14,891:LinkamCMS:INFO:PID 4304: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-25 14:53:14,891:LinkamCMS:INFO:PID 4304: Device UID on port 9000 is 
+2020-11-25 14:54:11,285:LinkamCMS:INFO:PID 3160: Device initialized; starting daemon.
+2020-11-25 14:54:11,285:LinkamCMS:INFO:PID 3160: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-25 14:54:11,285:LinkamCMS:INFO:PID 3160: Device UID on port 9000 is 
+2020-11-26 10:39:42,683:LinkamCMS:INFO:PID 3528: Device initialized; starting daemon.
+2020-11-26 10:39:42,699:LinkamCMS:INFO:PID 3528: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-26 10:39:42,699:LinkamCMS:INFO:PID 3528: Device UID on port 9000 is 
+2020-11-26 16:08:15,143:LinkamCMS:INFO:PID 4512: Device initialized; starting daemon.
+2020-11-26 16:08:15,143:LinkamCMS:INFO:PID 4512: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-26 16:08:15,143:LinkamCMS:INFO:PID 4512: Device UID on port 9000 is 
+2020-11-26 16:09:23,971:LinkamCMS:INFO:PID 2912: Device initialized; starting daemon.
+2020-11-26 16:09:23,971:LinkamCMS:INFO:PID 2912: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-26 16:09:23,971:LinkamCMS:INFO:PID 2912: Device UID on port 9000 is 
+2020-11-27 11:42:46,161:LinkamCMS:INFO:PID 4604: Device initialized; starting daemon.
+2020-11-27 11:42:46,161:LinkamCMS:INFO:PID 4604: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-27 11:42:46,161:LinkamCMS:INFO:PID 4604: Device UID on port 9000 is 
+2020-11-27 14:23:10,348:LinkamCMS:INFO:PID 1012: Device initialized; starting daemon.
+2020-11-27 14:23:10,348:LinkamCMS:INFO:PID 1012: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-27 14:23:10,364:LinkamCMS:INFO:PID 1012: Device UID on port 9000 is 
+2020-11-30 11:06:35,529:LinkamCMS:INFO:PID 4436: Device initialized; starting daemon.
+2020-11-30 11:06:35,529:LinkamCMS:INFO:PID 4436: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-11-30 11:06:35,529:LinkamCMS:INFO:PID 4436: Device UID on port 9000 is 
+2020-12-01 12:59:50,327:LinkamCMS:INFO:PID 4312: Device initialized; starting daemon.
+2020-12-01 12:59:50,327:LinkamCMS:INFO:PID 4312: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-01 12:59:50,327:LinkamCMS:INFO:PID 4312: Device UID on port 9000 is 
+2020-12-01 15:24:45,735:LinkamCMS:INFO:PID 3208: Device initialized; starting daemon.
+2020-12-01 15:24:45,735:LinkamCMS:INFO:PID 3208: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-01 15:24:45,735:LinkamCMS:INFO:PID 3208: Device UID on port 9000 is 
+2020-12-01 15:26:24,046:LinkamCMS:INFO:PID 4248: Device initialized; starting daemon.
+2020-12-01 15:26:24,046:LinkamCMS:INFO:PID 4248: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-01 15:26:24,046:LinkamCMS:INFO:PID 4248: Device UID on port 9000 is 
+2020-12-02 09:59:21,196:LinkamCMS:INFO:PID 4808: Device initialized; starting daemon.
+2020-12-02 09:59:21,196:LinkamCMS:INFO:PID 4808: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-02 09:59:21,212:LinkamCMS:INFO:PID 4808: Device UID on port 9000 is 
+2020-12-02 12:03:22,362:LinkamCMS:INFO:PID 4984: Device initialized; starting daemon.
+2020-12-02 12:03:22,362:LinkamCMS:INFO:PID 4984: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-02 12:03:22,362:LinkamCMS:INFO:PID 4984: Device UID on port 9000 is 
+2020-12-02 14:10:08,842:LinkamCMS:INFO:PID 4764: Device initialized; starting daemon.
+2020-12-02 14:10:08,842:LinkamCMS:INFO:PID 4764: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-02 14:10:08,842:LinkamCMS:INFO:PID 4764: Device UID on port 9000 is 
+2020-12-03 09:46:21,291:LinkamCMS:INFO:PID 4572: Device initialized; starting daemon.
+2020-12-03 09:46:21,291:LinkamCMS:INFO:PID 4572: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-03 09:46:21,291:LinkamCMS:INFO:PID 4572: Device UID on port 9000 is 
+2020-12-03 11:13:24,773:LinkamCMS:INFO:PID 3200: Device initialized; starting daemon.
+2020-12-03 11:13:24,773:LinkamCMS:INFO:PID 3200: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-03 11:13:24,773:LinkamCMS:INFO:PID 3200: Device UID on port 9000 is 
+2020-12-03 15:19:52,148:LinkamCMS:INFO:PID 4316: Device initialized; starting daemon.
+2020-12-03 15:19:52,148:LinkamCMS:INFO:PID 4316: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-03 15:19:52,148:LinkamCMS:INFO:PID 4316: Device UID on port 9000 is 
+2020-12-03 15:21:26,139:LinkamCMS:INFO:PID 4452: Device initialized; starting daemon.
+2020-12-03 15:21:26,139:LinkamCMS:INFO:PID 4452: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-03 15:21:26,139:LinkamCMS:INFO:PID 4452: Device UID on port 9000 is 
+2020-12-04 12:34:19,676:LinkamCMS:INFO:PID 3092: Device initialized; starting daemon.
+2020-12-04 12:34:19,676:LinkamCMS:INFO:PID 3092: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-04 12:34:19,676:LinkamCMS:INFO:PID 3092: Device UID on port 9000 is 
+2020-12-04 13:10:33,462:LinkamCMS:INFO:PID 4744: Device initialized; starting daemon.
+2020-12-04 13:10:33,462:LinkamCMS:INFO:PID 4744: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-04 13:10:33,462:LinkamCMS:INFO:PID 4744: Device UID on port 9000 is 
+2020-12-10 12:36:14,983:LinkamCMS:INFO:PID 1600: Device initialized; starting daemon.
+2020-12-10 12:36:14,983:LinkamCMS:INFO:PID 1600: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-10 12:36:14,983:LinkamCMS:INFO:PID 1600: Device UID on port 9000 is 
+2020-12-10 16:27:34,203:LinkamCMS:INFO:PID 4984: Device initialized; starting daemon.
+2020-12-10 16:27:34,203:LinkamCMS:INFO:PID 4984: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-10 16:27:34,203:LinkamCMS:INFO:PID 4984: Device UID on port 9000 is 
+2020-12-10 16:51:23,056:LinkamCMS:INFO:PID 4412: Device initialized; starting daemon.
+2020-12-10 16:51:23,056:LinkamCMS:INFO:PID 4412: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-10 16:51:23,056:LinkamCMS:INFO:PID 4412: Device UID on port 9000 is 
+2020-12-10 16:58:02,713:LinkamCMS:INFO:PID 4708: Device initialized; starting daemon.
+2020-12-10 16:58:02,713:LinkamCMS:INFO:PID 4708: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-10 16:58:02,713:LinkamCMS:INFO:PID 4708: Device UID on port 9000 is 
+2020-12-10 17:10:04,963:LinkamCMS:INFO:PID 4908: Device initialized; starting daemon.
+2020-12-10 17:10:04,963:LinkamCMS:INFO:PID 4908: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-10 17:10:04,963:LinkamCMS:INFO:PID 4908: Device UID on port 9000 is 
+2020-12-14 11:17:01,545:LinkamCMS:INFO:PID 4896: Device initialized; starting daemon.
+2020-12-14 11:17:01,546:LinkamCMS:INFO:PID 4896: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2020-12-14 11:17:01,546:LinkamCMS:INFO:PID 4896: Device UID on port 9000 is 
+2021-01-13 10:29:12,864:LinkamCMS:INFO:PID 5016: Device initialized; starting daemon.
+2021-01-13 10:29:12,864:LinkamCMS:INFO:PID 5016: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-13 10:29:12,864:LinkamCMS:INFO:PID 5016: Device UID on port 9000 is 
+2021-01-21 13:18:01,056:LinkamCMS:INFO:PID 4952: Device initialized; starting daemon.
+2021-01-21 13:18:01,056:LinkamCMS:INFO:PID 4952: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-21 13:18:01,056:LinkamCMS:INFO:PID 4952: Device UID on port 9000 is 
+2021-01-25 13:25:24,965:LinkamCMS:INFO:PID 3308: Device initialized; starting daemon.
+2021-01-25 13:25:24,965:LinkamCMS:INFO:PID 3308: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-25 13:25:24,965:LinkamCMS:INFO:PID 3308: Device UID on port 9000 is 
+2021-01-25 13:27:22,854:LinkamCMS:INFO:PID 1036: Device initialized; starting daemon.
+2021-01-25 13:27:22,854:LinkamCMS:INFO:PID 1036: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-25 13:27:22,854:LinkamCMS:INFO:PID 1036: Device UID on port 9000 is 
+2021-01-25 16:39:06,096:LinkamCMS:INFO:PID 4948: Device initialized; starting daemon.
+2021-01-25 16:39:06,096:LinkamCMS:INFO:PID 4948: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-25 16:39:06,096:LinkamCMS:INFO:PID 4948: Device UID on port 9000 is 
+2021-01-26 10:01:48,633:LinkamCMS:INFO:PID 4928: Device initialized; starting daemon.
+2021-01-26 10:01:48,633:LinkamCMS:INFO:PID 4928: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-26 10:01:48,633:LinkamCMS:INFO:PID 4928: Device UID on port 9000 is 
+2021-01-26 10:02:23,000:LinkamCMS:INFO:PID 4180: Device initialized; starting daemon.
+2021-01-26 10:02:23,000:LinkamCMS:INFO:PID 4180: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-26 10:02:23,000:LinkamCMS:INFO:PID 4180: Device UID on port 9000 is 
+2021-01-26 10:02:51,142:LinkamCMS:INFO:PID 4916: Device initialized; starting daemon.
+2021-01-26 10:02:51,142:LinkamCMS:INFO:PID 4916: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-26 10:02:51,142:LinkamCMS:INFO:PID 4916: Device UID on port 9000 is 
+2021-01-26 11:03:01,722:LinkamCMS:INFO:PID 384: Device initialized; starting daemon.
+2021-01-26 11:03:01,722:LinkamCMS:INFO:PID 384: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-26 11:03:01,722:LinkamCMS:INFO:PID 384: Device UID on port 9000 is 
+2021-01-26 15:09:44,058:LinkamCMS:INFO:PID 4544: Device initialized; starting daemon.
+2021-01-26 15:09:44,058:LinkamCMS:INFO:PID 4544: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-26 15:09:44,058:LinkamCMS:INFO:PID 4544: Device UID on port 9000 is 
+2021-01-29 15:31:21,911:LinkamCMS:INFO:PID 2576: Device initialized; starting daemon.
+2021-01-29 15:31:21,911:LinkamCMS:INFO:PID 2576: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-29 15:31:21,911:LinkamCMS:INFO:PID 2576: Device UID on port 9000 is 
+2021-01-29 16:02:12,370:LinkamCMS:INFO:PID 3768: Device initialized; starting daemon.
+2021-01-29 16:02:12,370:LinkamCMS:INFO:PID 3768: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-29 16:02:12,370:LinkamCMS:INFO:PID 3768: Device UID on port 9000 is 
+2021-01-29 16:41:50,282:LinkamCMS:INFO:PID 528: Device initialized; starting daemon.
+2021-01-29 16:41:50,282:LinkamCMS:INFO:PID 528: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-01-29 16:41:50,282:LinkamCMS:INFO:PID 528: Device UID on port 9000 is 
+2021-02-01 10:25:21,958:LinkamCMS:INFO:PID 6100: Device initialized; starting daemon.
+2021-02-01 10:25:21,958:LinkamCMS:INFO:PID 6100: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-01 10:25:21,958:LinkamCMS:INFO:PID 6100: Device UID on port 9000 is 
+2021-02-01 14:18:26,244:LinkamCMS:INFO:PID 5012: Device initialized; starting daemon.
+2021-02-01 14:18:26,244:LinkamCMS:INFO:PID 5012: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-01 14:18:26,244:LinkamCMS:INFO:PID 5012: Device UID on port 9000 is 
+2021-02-01 17:52:27,843:LinkamCMS:INFO:PID 5216: Device initialized; starting daemon.
+2021-02-01 17:52:27,843:LinkamCMS:INFO:PID 5216: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-01 17:52:27,843:LinkamCMS:INFO:PID 5216: Device UID on port 9000 is 
+2021-02-05 08:54:19,027:LinkamCMS:INFO:PID 4160: Device initialized; starting daemon.
+2021-02-05 08:54:19,043:LinkamCMS:INFO:PID 4160: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-05 08:54:19,043:LinkamCMS:INFO:PID 4160: Device UID on port 9000 is 
+2021-02-08 10:12:24,587:LinkamCMS:INFO:PID 4812: Device initialized; starting daemon.
+2021-02-08 10:12:24,587:LinkamCMS:INFO:PID 4812: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-08 10:12:24,587:LinkamCMS:INFO:PID 4812: Device UID on port 9000 is 
+2021-02-10 15:15:42,820:LinkamCMS:INFO:PID 5428: Device initialized; starting daemon.
+2021-02-10 15:15:42,820:LinkamCMS:INFO:PID 5428: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-10 15:15:42,820:LinkamCMS:INFO:PID 5428: Device UID on port 9000 is 
+2021-02-11 10:44:25,474:LinkamCMS:INFO:PID 4816: Device initialized; starting daemon.
+2021-02-11 10:44:25,474:LinkamCMS:INFO:PID 4816: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-11 10:44:25,474:LinkamCMS:INFO:PID 4816: Device UID on port 9000 is 
+2021-02-11 11:20:05,486:LinkamCMS:INFO:PID 4228: Device initialized; starting daemon.
+2021-02-11 11:20:05,486:LinkamCMS:INFO:PID 4228: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-11 11:20:05,486:LinkamCMS:INFO:PID 4228: Device UID on port 9000 is 
+2021-02-15 10:38:38,674:LinkamCMS:INFO:PID 5216: Device initialized; starting daemon.
+2021-02-15 10:38:38,674:LinkamCMS:INFO:PID 5216: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-15 10:38:38,674:LinkamCMS:INFO:PID 5216: Device UID on port 9000 is 
+2021-02-15 10:55:59,991:LinkamCMS:INFO:PID 5284: Device initialized; starting daemon.
+2021-02-15 10:55:59,991:LinkamCMS:INFO:PID 5284: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-15 10:55:59,991:LinkamCMS:INFO:PID 5284: Device UID on port 9000 is 
+2021-02-15 10:58:10,283:LinkamCMS:INFO:PID 5036: Device initialized; starting daemon.
+2021-02-15 10:58:10,283:LinkamCMS:INFO:PID 5036: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-15 10:58:10,283:LinkamCMS:INFO:PID 5036: Device UID on port 9000 is 
+2021-02-15 12:51:10,866:LinkamCMS:INFO:PID 1716: Device initialized; starting daemon.
+2021-02-15 12:51:10,866:LinkamCMS:INFO:PID 1716: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-15 12:51:10,866:LinkamCMS:INFO:PID 1716: Device UID on port 9000 is 
+2021-02-15 14:08:51,359:LinkamCMS:INFO:PID 6044: Device initialized; starting daemon.
+2021-02-15 14:08:51,359:LinkamCMS:INFO:PID 6044: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-15 14:08:51,359:LinkamCMS:INFO:PID 6044: Device UID on port 9000 is 
+2021-02-15 19:23:15,551:LinkamCMS:INFO:PID 2576: Device initialized; starting daemon.
+2021-02-15 19:23:15,551:LinkamCMS:INFO:PID 2576: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-15 19:23:15,551:LinkamCMS:INFO:PID 2576: Device UID on port 9000 is 
+2021-02-17 09:07:21,573:LinkamCMS:INFO:PID 5508: Device initialized; starting daemon.
+2021-02-17 09:07:21,573:LinkamCMS:INFO:PID 5508: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-17 09:07:21,573:LinkamCMS:INFO:PID 5508: Device UID on port 9000 is 
+2021-02-17 10:44:36,295:LinkamCMS:INFO:PID 6092: Device initialized; starting daemon.
+2021-02-17 10:44:36,295:LinkamCMS:INFO:PID 6092: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-17 10:44:36,295:LinkamCMS:INFO:PID 6092: Device UID on port 9000 is 
+2021-02-17 11:58:46,608:LinkamCMS:INFO:PID 2056: Device initialized; starting daemon.
+2021-02-17 11:58:46,608:LinkamCMS:INFO:PID 2056: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-17 11:58:46,608:LinkamCMS:INFO:PID 2056: Device UID on port 9000 is 
+2021-02-17 12:09:18,909:LinkamCMS:INFO:PID 4972: Device initialized; starting daemon.
+2021-02-17 12:09:18,909:LinkamCMS:INFO:PID 4972: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-17 12:09:18,909:LinkamCMS:INFO:PID 4972: Device UID on port 9000 is 
+2021-02-18 10:15:11,014:LinkamCMS:INFO:PID 5584: Device initialized; starting daemon.
+2021-02-18 10:15:11,014:LinkamCMS:INFO:PID 5584: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-18 10:15:11,014:LinkamCMS:INFO:PID 5584: Device UID on port 9000 is 
+2021-02-18 12:58:32,527:LinkamCMS:INFO:PID 5720: Device initialized; starting daemon.
+2021-02-18 12:58:32,527:LinkamCMS:INFO:PID 5720: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-18 12:58:32,527:LinkamCMS:INFO:PID 5720: Device UID on port 9000 is 
+2021-02-18 16:45:58,745:LinkamCMS:INFO:PID 4184: Device initialized; starting daemon.
+2021-02-18 16:45:58,745:LinkamCMS:INFO:PID 4184: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-18 16:45:58,745:LinkamCMS:INFO:PID 4184: Device UID on port 9000 is 
+2021-02-22 09:08:27,835:LinkamCMS:INFO:PID 4280: Device initialized; starting daemon.
+2021-02-22 09:08:27,835:LinkamCMS:INFO:PID 4280: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-22 09:08:27,835:LinkamCMS:INFO:PID 4280: Device UID on port 9000 is 
+2021-02-22 12:18:36,822:LinkamCMS:INFO:PID 4144: Device initialized; starting daemon.
+2021-02-22 12:18:36,822:LinkamCMS:INFO:PID 4144: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-22 12:18:36,822:LinkamCMS:INFO:PID 4144: Device UID on port 9000 is 
+2021-02-23 09:14:55,109:LinkamCMS:INFO:PID 5848: Device initialized; starting daemon.
+2021-02-23 09:14:55,109:LinkamCMS:INFO:PID 5848: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-23 09:14:55,109:LinkamCMS:INFO:PID 5848: Device UID on port 9000 is 
+2021-02-23 09:18:13,495:LinkamCMS:INFO:PID 3732: Device initialized; starting daemon.
+2021-02-23 09:18:13,495:LinkamCMS:INFO:PID 3732: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-23 09:18:13,495:LinkamCMS:INFO:PID 3732: Device UID on port 9000 is 
+2021-02-25 10:45:12,518:LinkamCMS:INFO:PID 4280: Device initialized; starting daemon.
+2021-02-25 10:45:12,518:LinkamCMS:INFO:PID 4280: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-25 10:45:12,519:LinkamCMS:INFO:PID 4280: Device UID on port 9000 is 
+2021-02-26 10:26:03,483:LinkamCMS:INFO:PID 5684: Device initialized; starting daemon.
+2021-02-26 10:26:03,483:LinkamCMS:INFO:PID 5684: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-02-26 10:26:03,483:LinkamCMS:INFO:PID 5684: Device UID on port 9000 is 
+2021-03-03 13:31:39,178:LinkamCMS:INFO:PID 3448: Device initialized; starting daemon.
+2021-03-03 13:31:39,193:LinkamCMS:INFO:PID 3448: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-03 13:31:39,193:LinkamCMS:INFO:PID 3448: Device UID on port 9000 is 
+2021-03-05 12:22:08,064:LinkamCMS:INFO:PID 2904: Device initialized; starting daemon.
+2021-03-05 12:22:08,064:LinkamCMS:INFO:PID 2904: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-05 12:22:08,064:LinkamCMS:INFO:PID 2904: Device UID on port 9000 is 
+2021-03-09 11:50:17,884:LinkamCMS:INFO:PID 4228: Device initialized; starting daemon.
+2021-03-09 11:50:17,884:LinkamCMS:INFO:PID 4228: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-09 11:50:17,885:LinkamCMS:INFO:PID 4228: Device UID on port 9000 is 
+2021-03-10 12:56:35,500:LinkamCMS:INFO:PID 3648: Device initialized; starting daemon.
+2021-03-10 12:56:35,500:LinkamCMS:INFO:PID 3648: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-10 12:56:35,500:LinkamCMS:INFO:PID 3648: Device UID on port 9000 is 
+2021-03-11 16:32:42,511:LinkamCMS:INFO:PID 4364: Device initialized; starting daemon.
+2021-03-11 16:32:42,511:LinkamCMS:INFO:PID 4364: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-11 16:32:42,511:LinkamCMS:INFO:PID 4364: Device UID on port 9000 is 
+2021-03-11 18:16:36,641:LinkamCMS:INFO:PID 5048: Device initialized; starting daemon.
+2021-03-11 18:16:36,641:LinkamCMS:INFO:PID 5048: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-11 18:16:36,641:LinkamCMS:INFO:PID 5048: Device UID on port 9000 is 
+2021-03-18 09:29:48,010:LinkamCMS:INFO:PID 5624: Device initialized; starting daemon.
+2021-03-18 09:29:48,011:LinkamCMS:INFO:PID 5624: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-18 09:29:48,011:LinkamCMS:INFO:PID 5624: Device UID on port 9000 is 
+2021-03-19 09:17:20,697:LinkamCMS:INFO:PID 4540: Device initialized; starting daemon.
+2021-03-19 09:17:20,697:LinkamCMS:INFO:PID 4540: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-19 09:17:20,697:LinkamCMS:INFO:PID 4540: Device UID on port 9000 is 
+2021-03-22 11:37:40,026:LinkamCMS:INFO:PID 3572: Device initialized; starting daemon.
+2021-03-22 11:37:40,026:LinkamCMS:INFO:PID 3572: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-22 11:37:40,026:LinkamCMS:INFO:PID 3572: Device UID on port 9000 is 
+2021-03-22 11:44:04,363:LinkamCMS:INFO:PID 1716: Device initialized; starting daemon.
+2021-03-22 11:44:04,363:LinkamCMS:INFO:PID 1716: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-22 11:44:04,363:LinkamCMS:INFO:PID 1716: Device UID on port 9000 is 
+2021-03-22 12:52:02,569:LinkamCMS:INFO:PID 5908: Device initialized; starting daemon.
+2021-03-22 12:52:02,569:LinkamCMS:INFO:PID 5908: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-22 12:52:02,569:LinkamCMS:INFO:PID 5908: Device UID on port 9000 is 
+2021-03-22 17:22:35,958:LinkamCMS:INFO:PID 6044: Device initialized; starting daemon.
+2021-03-22 17:22:35,958:LinkamCMS:INFO:PID 6044: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-22 17:22:35,958:LinkamCMS:INFO:PID 6044: Device UID on port 9000 is 
+2021-03-22 18:48:05,247:LinkamCMS:INFO:PID 5240: Device initialized; starting daemon.
+2021-03-22 18:48:05,247:LinkamCMS:INFO:PID 5240: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-22 18:48:05,247:LinkamCMS:INFO:PID 5240: Device UID on port 9000 is 
+2021-03-23 12:42:38,569:LinkamCMS:INFO:PID 2328: Device initialized; starting daemon.
+2021-03-23 12:42:38,569:LinkamCMS:INFO:PID 2328: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-23 12:42:38,569:LinkamCMS:INFO:PID 2328: Device UID on port 9000 is 
+2021-03-23 15:02:13,459:LinkamCMS:INFO:PID 5996: Device initialized; starting daemon.
+2021-03-23 15:02:13,459:LinkamCMS:INFO:PID 5996: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-23 15:02:13,459:LinkamCMS:INFO:PID 5996: Device UID on port 9000 is 
+2021-03-25 11:12:05,101:LinkamCMS:INFO:PID 5392: Device initialized; starting daemon.
+2021-03-25 11:12:05,101:LinkamCMS:INFO:PID 5392: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-25 11:12:05,101:LinkamCMS:INFO:PID 5392: Device UID on port 9000 is 
+2021-03-25 12:25:59,783:LinkamCMS:INFO:PID 5708: Device initialized; starting daemon.
+2021-03-25 12:25:59,783:LinkamCMS:INFO:PID 5708: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-25 12:25:59,799:LinkamCMS:INFO:PID 5708: Device UID on port 9000 is 
+2021-03-26 11:46:46,007:LinkamCMS:INFO:PID 1176: Device initialized; starting daemon.
+2021-03-26 11:46:46,007:LinkamCMS:INFO:PID 1176: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-26 11:46:46,007:LinkamCMS:INFO:PID 1176: Device UID on port 9000 is 
+2021-03-29 11:07:53,994:LinkamCMS:INFO:PID 5348: Device initialized; starting daemon.
+2021-03-29 11:07:53,994:LinkamCMS:INFO:PID 5348: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-29 11:07:53,994:LinkamCMS:INFO:PID 5348: Device UID on port 9000 is 
+2021-03-29 12:01:53,964:LinkamCMS:INFO:PID 4660: Device initialized; starting daemon.
+2021-03-29 12:01:53,964:LinkamCMS:INFO:PID 4660: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-29 12:01:53,964:LinkamCMS:INFO:PID 4660: Device UID on port 9000 is 
+2021-03-30 10:18:55,701:LinkamCMS:INFO:PID 6080: Device initialized; starting daemon.
+2021-03-30 10:18:55,701:LinkamCMS:INFO:PID 6080: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-30 10:18:55,701:LinkamCMS:INFO:PID 6080: Device UID on port 9000 is 
+2021-03-30 10:43:56,283:LinkamCMS:INFO:PID 6132: Device initialized; starting daemon.
+2021-03-30 10:43:56,283:LinkamCMS:INFO:PID 6132: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-30 10:43:56,283:LinkamCMS:INFO:PID 6132: Device UID on port 9000 is 
+2021-03-30 16:29:41,808:LinkamCMS:INFO:PID 5812: Device initialized; starting daemon.
+2021-03-30 16:29:41,808:LinkamCMS:INFO:PID 5812: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-30 16:29:41,808:LinkamCMS:INFO:PID 5812: Device UID on port 9000 is 
+2021-03-31 12:28:37,138:LinkamCMS:INFO:PID 6072: Device initialized; starting daemon.
+2021-03-31 12:28:37,138:LinkamCMS:INFO:PID 6072: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-03-31 12:28:37,138:LinkamCMS:INFO:PID 6072: Device UID on port 9000 is 
+2021-04-01 09:42:01,220:LinkamCMS:INFO:PID 5096: Device initialized; starting daemon.
+2021-04-01 09:42:01,220:LinkamCMS:INFO:PID 5096: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-01 09:42:01,220:LinkamCMS:INFO:PID 5096: Device UID on port 9000 is 
+2021-04-01 09:42:58,862:LinkamCMS:INFO:PID 2112: Device initialized; starting daemon.
+2021-04-01 09:42:58,862:LinkamCMS:INFO:PID 2112: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-01 09:42:58,862:LinkamCMS:INFO:PID 2112: Device UID on port 9000 is 
+2021-04-01 15:21:01,722:LinkamCMS:INFO:PID 1984: Device initialized; starting daemon.
+2021-04-01 15:21:01,722:LinkamCMS:INFO:PID 1984: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-01 15:21:01,722:LinkamCMS:INFO:PID 1984: Device UID on port 9000 is 
+2021-04-01 16:14:25,468:LinkamCMS:INFO:PID 3068: Device initialized; starting daemon.
+2021-04-01 16:14:25,468:LinkamCMS:INFO:PID 3068: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-01 16:14:25,468:LinkamCMS:INFO:PID 3068: Device UID on port 9000 is 
+2021-04-01 16:15:05,420:LinkamCMS:INFO:PID 4816: Device initialized; starting daemon.
+2021-04-01 16:15:05,420:LinkamCMS:INFO:PID 4816: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-01 16:15:05,420:LinkamCMS:INFO:PID 4816: Device UID on port 9000 is 
+2021-04-07 08:49:55,884:LinkamCMS:INFO:PID 296: Device initialized; starting daemon.
+2021-04-07 08:49:55,884:LinkamCMS:INFO:PID 296: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-07 08:49:55,884:LinkamCMS:INFO:PID 296: Device UID on port 9000 is 
+2021-04-07 12:02:36,924:LinkamCMS:INFO:PID 1624: Device initialized; starting daemon.
+2021-04-07 12:02:36,924:LinkamCMS:INFO:PID 1624: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-07 12:02:36,924:LinkamCMS:INFO:PID 1624: Device UID on port 9000 is 
+2021-04-07 12:21:55,366:LinkamCMS:INFO:PID 3480: Device initialized; starting daemon.
+2021-04-07 12:21:55,366:LinkamCMS:INFO:PID 3480: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-07 12:21:55,366:LinkamCMS:INFO:PID 3480: Device UID on port 9000 is 
+2021-04-07 16:21:13,616:LinkamCMS:INFO:PID 5240: Device initialized; starting daemon.
+2021-04-07 16:21:13,616:LinkamCMS:INFO:PID 5240: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-07 16:21:13,616:LinkamCMS:INFO:PID 5240: Device UID on port 9000 is 
+2021-04-08 10:00:16,427:LinkamCMS:INFO:PID 5960: Device initialized; starting daemon.
+2021-04-08 10:00:16,427:LinkamCMS:INFO:PID 5960: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-08 10:00:16,427:LinkamCMS:INFO:PID 5960: Device UID on port 9000 is 
+2021-04-08 10:48:25,443:LinkamCMS:INFO:PID 5696: Device initialized; starting daemon.
+2021-04-08 10:48:25,443:LinkamCMS:INFO:PID 5696: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-08 10:48:25,443:LinkamCMS:INFO:PID 5696: Device UID on port 9000 is 
+2021-04-13 09:11:39,468:LinkamCMS:INFO:PID 5396: Device initialized; starting daemon.
+2021-04-13 09:11:39,468:LinkamCMS:INFO:PID 5396: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-13 09:11:39,468:LinkamCMS:INFO:PID 5396: Device UID on port 9000 is 
+2021-04-13 15:50:46,867:LinkamCMS:INFO:PID 4600: Device initialized; starting daemon.
+2021-04-13 15:50:46,867:LinkamCMS:INFO:PID 4600: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-13 15:50:46,867:LinkamCMS:INFO:PID 4600: Device UID on port 9000 is 
+2021-04-14 10:07:10,014:LinkamCMS:INFO:PID 4124: Device initialized; starting daemon.
+2021-04-14 10:07:10,014:LinkamCMS:INFO:PID 4124: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-14 10:07:10,014:LinkamCMS:INFO:PID 4124: Device UID on port 9000 is 
+2021-04-14 12:05:28,854:LinkamCMS:INFO:PID 5904: Device initialized; starting daemon.
+2021-04-14 12:05:28,854:LinkamCMS:INFO:PID 5904: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-14 12:05:28,854:LinkamCMS:INFO:PID 5904: Device UID on port 9000 is 
+2021-04-14 13:38:23,555:LinkamCMS:INFO:PID 5936: Device initialized; starting daemon.
+2021-04-14 13:38:23,555:LinkamCMS:INFO:PID 5936: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-14 13:38:23,555:LinkamCMS:INFO:PID 5936: Device UID on port 9000 is 
+2021-04-15 09:36:30,852:LinkamCMS:INFO:PID 5280: Device initialized; starting daemon.
+2021-04-15 09:36:30,852:LinkamCMS:INFO:PID 5280: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-15 09:36:30,852:LinkamCMS:INFO:PID 5280: Device UID on port 9000 is 
+2021-04-19 10:56:07,450:LinkamCMS:INFO:PID 6132: Device initialized; starting daemon.
+2021-04-19 10:56:07,450:LinkamCMS:INFO:PID 6132: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-19 10:56:07,450:LinkamCMS:INFO:PID 6132: Device UID on port 9000 is 
+2021-04-19 12:04:43,876:LinkamCMS:INFO:PID 1632: Device initialized; starting daemon.
+2021-04-19 12:04:43,876:LinkamCMS:INFO:PID 1632: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-19 12:04:43,876:LinkamCMS:INFO:PID 1632: Device UID on port 9000 is 
+2021-04-19 12:11:20,928:LinkamCMS:INFO:PID 5408: Device initialized; starting daemon.
+2021-04-19 12:11:20,928:LinkamCMS:INFO:PID 5408: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-19 12:11:20,928:LinkamCMS:INFO:PID 5408: Device UID on port 9000 is 
+2021-04-19 12:21:15,320:LinkamCMS:INFO:PID 4524: Device initialized; starting daemon.
+2021-04-19 12:21:15,320:LinkamCMS:INFO:PID 4524: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-19 12:21:15,320:LinkamCMS:INFO:PID 4524: Device UID on port 9000 is 
+2021-04-20 13:56:56,664:LinkamCMS:INFO:PID 5064: Device initialized; starting daemon.
+2021-04-20 13:56:56,664:LinkamCMS:INFO:PID 5064: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-20 13:56:56,664:LinkamCMS:INFO:PID 5064: Device UID on port 9000 is 
+2021-04-22 11:13:22,724:LinkamCMS:INFO:PID 6572: Device initialized; starting daemon.
+2021-04-22 11:13:22,724:LinkamCMS:INFO:PID 6572: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-22 11:13:22,724:LinkamCMS:INFO:PID 6572: Device UID on port 9000 is 
+2021-04-23 09:41:45,043:LinkamCMS:INFO:PID 6968: Device initialized; starting daemon.
+2021-04-23 09:41:45,043:LinkamCMS:INFO:PID 6968: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-23 09:41:45,043:LinkamCMS:INFO:PID 6968: Device UID on port 9000 is 
+2021-04-26 09:23:01,713:LinkamCMS:INFO:PID 6168: Device initialized; starting daemon.
+2021-04-26 09:23:01,713:LinkamCMS:INFO:PID 6168: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-26 09:23:01,713:LinkamCMS:INFO:PID 6168: Device UID on port 9000 is 
+2021-04-26 10:14:54,823:LinkamCMS:INFO:PID 5472: Device initialized; starting daemon.
+2021-04-26 10:14:54,823:LinkamCMS:INFO:PID 5472: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-26 10:14:54,823:LinkamCMS:INFO:PID 5472: Device UID on port 9000 is 
+2021-04-26 13:58:46,821:LinkamCMS:INFO:PID 5892: Device initialized; starting daemon.
+2021-04-26 13:58:46,821:LinkamCMS:INFO:PID 5892: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-26 13:58:46,821:LinkamCMS:INFO:PID 5892: Device UID on port 9000 is 
+2021-04-28 12:45:57,587:LinkamCMS:INFO:PID 6448: Device initialized; starting daemon.
+2021-04-28 12:45:57,587:LinkamCMS:INFO:PID 6448: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-28 12:45:57,587:LinkamCMS:INFO:PID 6448: Device UID on port 9000 is 
+2021-04-30 13:59:11,590:LinkamCMS:INFO:PID 384: Device initialized; starting daemon.
+2021-04-30 13:59:11,590:LinkamCMS:INFO:PID 384: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-30 13:59:11,590:LinkamCMS:INFO:PID 384: Device UID on port 9000 is 
+2021-04-30 15:56:24,472:LinkamCMS:INFO:PID 772: Device initialized; starting daemon.
+2021-04-30 15:56:24,472:LinkamCMS:INFO:PID 772: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-04-30 15:56:24,472:LinkamCMS:INFO:PID 772: Device UID on port 9000 is 
+2021-05-04 12:42:35,058:LinkamCMS:INFO:PID 5424: Device initialized; starting daemon.
+2021-05-04 12:42:35,058:LinkamCMS:INFO:PID 5424: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-04 12:42:35,058:LinkamCMS:INFO:PID 5424: Device UID on port 9000 is 
+2021-05-05 09:58:23,955:LinkamCMS:INFO:PID 472: Device initialized; starting daemon.
+2021-05-05 09:58:23,955:LinkamCMS:INFO:PID 472: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-05 09:58:23,955:LinkamCMS:INFO:PID 472: Device UID on port 9000 is 
+2021-05-07 12:41:30,871:LinkamCMS:INFO:PID 5016: Device initialized; starting daemon.
+2021-05-07 12:41:30,887:LinkamCMS:INFO:PID 5016: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-07 12:41:30,887:LinkamCMS:INFO:PID 5016: Device UID on port 9000 is 
+2021-05-07 13:49:18,189:LinkamCMS:INFO:PID 4496: Device initialized; starting daemon.
+2021-05-07 13:49:18,189:LinkamCMS:INFO:PID 4496: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-07 13:49:18,189:LinkamCMS:INFO:PID 4496: Device UID on port 9000 is 
+2021-05-07 14:23:53,788:LinkamCMS:INFO:PID 3904: Device initialized; starting daemon.
+2021-05-07 14:23:53,788:LinkamCMS:INFO:PID 3904: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-07 14:23:53,788:LinkamCMS:INFO:PID 3904: Device UID on port 9000 is 
+2021-05-10 10:37:57,965:LinkamCMS:INFO:PID 4476: Device initialized; starting daemon.
+2021-05-10 10:37:57,965:LinkamCMS:INFO:PID 4476: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-10 10:37:57,965:LinkamCMS:INFO:PID 4476: Device UID on port 9000 is 
+2021-05-10 11:07:09,989:LinkamCMS:INFO:PID 4048: Device initialized; starting daemon.
+2021-05-10 11:07:09,989:LinkamCMS:INFO:PID 4048: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-10 11:07:09,989:LinkamCMS:INFO:PID 4048: Device UID on port 9000 is 
+2021-05-10 12:03:52,355:LinkamCMS:INFO:PID 1676: Device initialized; starting daemon.
+2021-05-10 12:03:52,355:LinkamCMS:INFO:PID 1676: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-10 12:03:52,355:LinkamCMS:INFO:PID 1676: Device UID on port 9000 is 
+2021-05-11 12:36:18,149:LinkamCMS:INFO:PID 584: Device initialized; starting daemon.
+2021-05-11 12:36:18,149:LinkamCMS:INFO:PID 584: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-11 12:36:18,149:LinkamCMS:INFO:PID 584: Device UID on port 9000 is 
+2021-05-11 12:51:15,135:LinkamCMS:INFO:PID 2812: Device initialized; starting daemon.
+2021-05-11 12:51:15,135:LinkamCMS:INFO:PID 2812: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-11 12:51:15,135:LinkamCMS:INFO:PID 2812: Device UID on port 9000 is 
+2021-05-11 12:55:21,241:LinkamCMS:INFO:PID 3384: Device initialized; starting daemon.
+2021-05-11 12:55:21,241:LinkamCMS:INFO:PID 3384: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-11 12:55:21,241:LinkamCMS:INFO:PID 3384: Device UID on port 9000 is 
+2021-05-11 13:06:19,905:LinkamCMS:INFO:PID 4596: Device initialized; starting daemon.
+2021-05-11 13:06:19,905:LinkamCMS:INFO:PID 4596: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-11 13:06:19,905:LinkamCMS:INFO:PID 4596: Device UID on port 9000 is 
+2021-05-11 14:52:59,614:LinkamCMS:INFO:PID 3600: Device initialized; starting daemon.
+2021-05-11 14:52:59,614:LinkamCMS:INFO:PID 3600: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-11 14:52:59,614:LinkamCMS:INFO:PID 3600: Device UID on port 9000 is 
+2021-05-11 15:59:47,588:LinkamCMS:INFO:PID 476: Device initialized; starting daemon.
+2021-05-11 15:59:47,588:LinkamCMS:INFO:PID 476: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-11 15:59:47,588:LinkamCMS:INFO:PID 476: Device UID on port 9000 is 
+2021-05-13 16:01:59,446:LinkamCMS:INFO:PID 3240: Device initialized; starting daemon.
+2021-05-13 16:01:59,446:LinkamCMS:INFO:PID 3240: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-13 16:01:59,446:LinkamCMS:INFO:PID 3240: Device UID on port 9000 is 
+2021-05-17 11:15:23,679:LinkamCMS:INFO:PID 4248: Device initialized; starting daemon.
+2021-05-17 11:15:23,679:LinkamCMS:INFO:PID 4248: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-17 11:15:23,679:LinkamCMS:INFO:PID 4248: Device UID on port 9000 is 
+2021-05-18 10:52:46,526:LinkamCMS:INFO:PID 2896: Device initialized; starting daemon.
+2021-05-18 10:52:46,526:LinkamCMS:INFO:PID 2896: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-18 10:52:46,526:LinkamCMS:INFO:PID 2896: Device UID on port 9000 is 
+2021-05-18 13:30:33,964:LinkamCMS:INFO:PID 2272: Device initialized; starting daemon.
+2021-05-18 13:30:33,964:LinkamCMS:INFO:PID 2272: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-18 13:30:33,964:LinkamCMS:INFO:PID 2272: Device UID on port 9000 is 
+2021-05-18 16:44:53,441:LinkamCMS:INFO:PID 4984: Device initialized; starting daemon.
+2021-05-18 16:44:53,441:LinkamCMS:INFO:PID 4984: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-18 16:44:53,441:LinkamCMS:INFO:PID 4984: Device UID on port 9000 is 
+2021-05-18 16:46:52,282:LinkamCMS:INFO:PID 4928: Device initialized; starting daemon.
+2021-05-18 16:46:52,282:LinkamCMS:INFO:PID 4928: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-18 16:46:52,282:LinkamCMS:INFO:PID 4928: Device UID on port 9000 is 
+2021-05-19 13:58:23,592:LinkamCMS:INFO:PID 3644: Device initialized; starting daemon.
+2021-05-19 13:58:23,592:LinkamCMS:INFO:PID 3644: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-19 13:58:23,592:LinkamCMS:INFO:PID 3644: Device UID on port 9000 is 
+2021-05-19 14:19:43,496:LinkamCMS:INFO:PID 3744: Device initialized; starting daemon.
+2021-05-19 14:19:43,496:LinkamCMS:INFO:PID 3744: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-19 14:19:43,496:LinkamCMS:INFO:PID 3744: Device UID on port 9000 is 
+2021-05-21 12:20:33,713:LinkamCMS:INFO:PID 1088: Device initialized; starting daemon.
+2021-05-21 12:20:33,713:LinkamCMS:INFO:PID 1088: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-21 12:20:33,713:LinkamCMS:INFO:PID 1088: Device UID on port 9000 is 
+2021-05-21 14:43:06,605:LinkamCMS:INFO:PID 4312: Device initialized; starting daemon.
+2021-05-21 14:43:06,620:LinkamCMS:INFO:PID 4312: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-21 14:43:06,620:LinkamCMS:INFO:PID 4312: Device UID on port 9000 is 
+2021-05-27 09:10:42,262:LinkamCMS:INFO:PID 4380: Device initialized; starting daemon.
+2021-05-27 09:10:42,262:LinkamCMS:INFO:PID 4380: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-27 09:10:42,262:LinkamCMS:INFO:PID 4380: Device UID on port 9000 is 
+2021-05-27 15:36:12,157:LinkamCMS:INFO:PID 2744: Device initialized; starting daemon.
+2021-05-27 15:36:12,157:LinkamCMS:INFO:PID 2744: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-27 15:36:12,157:LinkamCMS:INFO:PID 2744: Device UID on port 9000 is 
+2021-05-27 15:52:58,453:LinkamCMS:INFO:PID 4212: Device initialized; starting daemon.
+2021-05-27 15:52:58,453:LinkamCMS:INFO:PID 4212: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-27 15:52:58,453:LinkamCMS:INFO:PID 4212: Device UID on port 9000 is 
+2021-05-27 15:59:15,028:LinkamCMS:INFO:PID 444: Device initialized; starting daemon.
+2021-05-27 15:59:15,029:LinkamCMS:INFO:PID 444: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-27 15:59:15,029:LinkamCMS:INFO:PID 444: Device UID on port 9000 is 
+2021-05-27 16:03:50,078:LinkamCMS:INFO:PID 452: Device initialized; starting daemon.
+2021-05-27 16:03:50,078:LinkamCMS:INFO:PID 452: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-27 16:03:50,078:LinkamCMS:INFO:PID 452: Device UID on port 9000 is 
+2021-05-27 16:14:29,757:LinkamCMS:INFO:PID 184: Device initialized; starting daemon.
+2021-05-27 16:14:29,804:LinkamCMS:INFO:PID 184: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-27 16:14:29,804:LinkamCMS:INFO:PID 184: Device UID on port 9000 is 
+2021-05-28 09:48:20,633:LinkamCMS:INFO:PID 4732: Device initialized; starting daemon.
+2021-05-28 09:48:20,633:LinkamCMS:INFO:PID 4732: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-05-28 09:48:20,633:LinkamCMS:INFO:PID 4732: Device UID on port 9000 is 
+2021-06-10 13:25:53,690:LinkamCMS:INFO:PID 4732: Shutting down ... ... ...
+2021-06-10 13:25:53,690:LinkamCMS:INFO:PID 4732: ... ... ... ... shut down completed.
+2021-06-10 14:15:57,678:LinkamCMS:INFO:PID 4808: Device initialized; starting daemon.
+2021-06-10 14:15:57,679:LinkamCMS:INFO:PID 4808: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-06-10 14:15:57,679:LinkamCMS:INFO:PID 4808: Device UID on port 9000 is 
+2021-06-10 14:16:47,574:LinkamCMS:INFO:PID 4808: Shutting down ... ... ...
+2021-06-10 14:16:47,574:LinkamCMS:INFO:PID 4808: ... ... ... ... shut down completed.
+2021-06-10 14:35:05,361:LinkamCMS:INFO:PID 4504: Device initialized; starting daemon.
+2021-06-10 14:35:05,362:LinkamCMS:INFO:PID 4504: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-06-10 14:35:05,362:LinkamCMS:INFO:PID 4504: Device UID on port 9000 is 
+2021-06-15 11:44:45,163:LinkamCMS:INFO:PID 4504: Shutting down ... ... ...
+2021-06-15 11:44:45,163:LinkamCMS:INFO:PID 4504: ... ... ... ... shut down completed.
+2021-06-15 12:00:08,612:LinkamCMS:INFO:PID 4708: Device initialized; starting daemon.
+2021-06-15 12:00:08,622:LinkamCMS:INFO:PID 4708: Serving PYRO:LinkamCMS@ixon1.b24:9000
+2021-06-15 12:00:08,623:LinkamCMS:INFO:PID 4708: Device UID on port 9000 is 
+2021-06-15 13:07:14,227:LinkamCMS:INFO:PID 4708: Shutting down ... ... ...
+2021-06-15 13:07:14,227:LinkamCMS:INFO:PID 4708: ... ... ... ... shut down completed.
