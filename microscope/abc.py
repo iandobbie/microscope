@@ -1555,3 +1555,83 @@ class Stage(Device, metaclass=abc.ABCMeta):
 
         """
         raise NotImplementedError()
+
+class DigitalIO(Device, metaclass=abc.ABCMeta):
+    """ABC for digital IO devices.
+
+    Digital IO devices (DIO) have a num,ber of digital lines that can
+    be for output, or optionally input and can switch between a on and
+    off state.
+
+    Args:
+        numLines: total number of digital lines numberes 0 to n-1. 
+
+    """
+
+    def __init__(self, numLines: int, **kwargs) -> None:
+        super().__init__(**kwargs)
+        if numLines < 1:
+            raise ValueError(
+                "NumLines must be a positive number (was %d)" % positions
+            )
+        self._numLines = numLines
+
+        #array to map wether lines are input or output
+        # true is output, startt with all lines defined for output. 
+        self._IOmap = [True]*self._numLines
+
+    # required functions 
+    # init - done
+    # How many lines available
+    # read state one line
+    # write state one line
+    # read state many/all lines
+    # write state many/all lines
+    # set a line to be read/write
+    # set many lines to be read/write
+
+    def get_num_lines(self):
+        return self._numLines
+
+    def set_line(self, line, state):
+        raise NotImplementedError()
+
+    def get_line(self, line):
+        raise NotImplementedError()
+
+    def set_all_lines(self, stateArray):
+        for i, state in enumerate(stateArray):
+            if(self._iIOmap[i]==True):
+                #line is set to output
+                set_line(i,state)
+            
+
+    def get_all_lines(self):
+        stateArray=[None]*self._numLines
+        for i in range[self._numLines):
+            if(self._iIOmap[i]==False):
+                #line is set to input
+                stateArray[i]=self.get_line(i)
+        return stateArray
+
+    def set_output(self,line,ouput):
+       raise NotImplementedError()
+
+    def set_all_output(self,IOMap):
+        if len(IOMap) != self._numLines :
+            raise("IOMap array must be numLines in length")
+        for i in range(self.IOMap):
+            #set line i to the IOMap entry, true for output false for input.
+            self.set_output(i,IOMap[i])
+        
+                
+        # # The  as an integer.
+        # # Deprecated: clients should call get_position and set_position;
+        # # still exposed as a setting until cockpit uses set_position.
+        # self.add_setting(
+        #     "position",
+        #     "int",
+        #     self.get_position,
+        #     self.set_position,
+        #     lambda: (0, self.get_num_positions()),
+        # )
