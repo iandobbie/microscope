@@ -2,6 +2,7 @@
 
 ## Copyright (C) 2020 David Miguel Susano Pinto <carandraug@gmail.com>
 ## Copyright (C) 2020 Mick Phillips <mick.phillips@gmail.com>
+## Copyright (C) 2022 Ian Dobbie <ian.dobbie@gmail.com>
 ##
 ## This file is part of Microscope.
 ##
@@ -479,3 +480,26 @@ class SimulatedStage(microscope.abc.Stage):
     def move_to(self, position: typing.Mapping[str, float]) -> None:
         for name, pos in position.items():
             self.axes[name].move_to(pos)
+
+class SimulatedDigitalIO(microscope.abc.DigitalIO):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._cache=[None]*self._numLines
+
+    def set_line(self, line: int, state: bool) -> None:
+        _logger.info("Line %s set to %s", (line,state))
+        self._cache[line] = state
+        return
+
+    def get_line(self,line: int) -> bool:
+        _logger.info("Line %s retunrs %s", (line,self._cache[line]))
+        return self._cache[line]
+
+    def _do_set_position(self, position):
+        _logger.info("Setting position to %s", position)
+        self._position = position
+
+    def _do_shutdown(self) -> None:
+        pass
+
+

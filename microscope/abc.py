@@ -1593,7 +1593,7 @@ class DigitalIO(Device, metaclass=abc.ABCMeta):
     def get_num_lines(self):
         return self._numLines
 
-    def set_line(self, line, state):
+    def set_line(self, line: int, state: bool):
         raise NotImplementedError()
 
     def get_line(self, line):
@@ -1601,17 +1601,17 @@ class DigitalIO(Device, metaclass=abc.ABCMeta):
 
     def set_all_lines(self, stateArray):
         for i, state in enumerate(stateArray):
-            if(self._iIOmap[i]==True):
+            if(self._IOmap[i]==True):
                 #line is set to output
                 set_line(i,state)
             
 
     def get_all_lines(self):
         stateArray=[None]*self._numLines
-        for i in range[self._numLines):
-            if(self._iIOmap[i]==False):
-                #line is set to input
-                stateArray[i]=self.get_line(i)
+        for i in range(self._numLines):
+##            if(self._IOmap[i]==False):
+##                #line is set to input
+              stateArray[i]=self.get_line(i)
         return stateArray
 
     def set_output(self,line,ouput):
