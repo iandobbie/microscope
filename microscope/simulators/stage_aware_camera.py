@@ -118,27 +118,27 @@ class StageAwareCamera(SimulatedCamera):
         # Use filter wheel position to select the image channel.
         channel = self._filterwheel.position
         
-        #check if outside bound
+        #check if any of image is outside bounds to pad with zeros
         if(xstart< 0 or ystart< 0 or xend>self._image.shape[0] or
            yend>self._image.shape[0]):
-            #need to pad so make zero fiulled image
+            #need to pad with zeros so make zero filled image
             subsection = np.zeros((width,height))
-            #fill the relevant part of the image in
+            #work out the relevant parts of inoput image
             ileft=max(0,xstart)
             iright=min(xend,self._image.shape[0])
             ibottom=max(0,ystart)
             itop=min(yend,self._image.shape[0])
-            sleft= min(abs(xstart),0)
-            sbottom= min(abs(ystart),0)
-            sright=min(width,(iright-ileft))
-            stop=min(height,(itop-ibottom))
-            print("pixels",xstart,xend,ystart,yend)
-            print("input",ileft,iright,ibottom,itop)
-            print("output",sleft,sright,sbottom,stop)
+            #and work out where to place it in output image.
+            sleft= max(-xstart,0)
+            sbottom= max(-ystart,0)
+            sright=sleft+(iright-ileft)
+            stop=sbottom+(itop-ibottom)
+            #then copy over the relevant ectangle to to zero array
             subsection[sbottom:stop,sleft:sright]=self._image[ibottom:itop,
                                                               ileft:iright,
                                                               channel]
         else:
+            #just return the width x height subsection of main image
             subsection = self._image[ystart : ystart + height, xstart : xstart + width, channel]
 
         # Gaussian filter on abs Z position to simulate being out of
