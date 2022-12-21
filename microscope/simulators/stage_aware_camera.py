@@ -106,13 +106,40 @@ class StageAwareCamera(SimulatedCamera):
         # Use stage position to compute bounding box.
         width = self._roi.width // self._binning.h
         height = self._roi.height // self._binning.v
-        x = int((self._stage.position["x"] / self._pixel_size) - (width / 2))
-        y = int((self._stage.position["y"] / self._pixel_size) - (height / 2))
+
+        #need to check that the bounding box in entirely within the
+        #source image.
+        #calc start and end positions in x and y
+        xstart=int((self._stage.position["x"] / self._pixel_size) - (width / 2))
+        xend=int((self._stage.position["x"] / self._pixel_size) + (width / 2))
+        ystart=int((self._stage.position["y"] / self._pixel_size) - (height / 2))
+        yend=int((self._stage.position["y"] / self._pixel_size) + (height / 2))
 
         # Use filter wheel position to select the image channel.
         channel = self._filterwheel.position
-
-        subsection = self._image[y : y + height, x : x + width, channel]
+        
+        #check if outside bound
+        if(xstart< 0 or ystart< 0 or xend>self._image.shape[0] or
+           yend>self._image.shape[0]):
+            #need to pad so make zero fiulled image
+            subsection = np.zeros((width,height))
+            #fill the relevant part of the image in
+            ileft=max(0,xstart)
+            iright=min(xend,self._image.shape[0])
+            ibottom=max(0,ystart)
+            itop=min(yend,self._image.shape[0])
+            sleft= min(abs(xstart),0)
+            sbottom= min(abs(ystart),0)
+            sright=min(width,(iright-ileft))
+            stop=min(height,(itop-ibottom))
+            print("pixels",xstart,xend,ystart,yend)
+            print("input",ileft,iright,ibottom,itop)
+            print("output",sleft,sright,sbottom,stop)
+            subsection[sbottom:stop,sleft:sright]=self._image[ibottom:itop,
+                                                              ileft:iright,
+                                                              channel]
+        else:
+            subsection = self._image[ystart : ystart + height, xstart : xstart + width, channel]
 
         # Gaussian filter on abs Z position to simulate being out of
         # focus (Z position zero is in focus).
