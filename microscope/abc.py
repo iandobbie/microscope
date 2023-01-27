@@ -1578,7 +1578,7 @@ class DigitalIO(Device, metaclass=abc.ABCMeta):
 
         #array to map wether lines are input or output
         # true is output, startt with all lines defined for output. 
-        self._IOmap = [True]*self._numLines
+        self._IOMap = [True]*self._numLines
 
     # required functions 
     # init - done
@@ -1593,37 +1593,45 @@ class DigitalIO(Device, metaclass=abc.ABCMeta):
     def get_num_lines(self):
         return self._numLines
 
-    def set_line(self, line: int, state: bool):
+    def set_IO_state(self, line: int, state: bool):
         raise NotImplementedError()
 
-    def get_line(self, line):
+    def get_IO_state(self, line):
         raise NotImplementedError()
 
-    def set_all_lines(self, stateArray):
+    def set_all_IO_state(self, stateArray):
         for i, state in enumerate(stateArray):
-            if(self._IOmap[i]==True):
-                #line is set to output
-                set_line(i,state)
+                #set each line as defined in stateArray
+                set_IO_state(i,state)
             
 
-    def get_all_lines(self):
+    def get_all_IO_state(self):
         stateArray=[None]*self._numLines
         for i in range(self._numLines):
-##            if(self._IOmap[i]==False):
-##                #line is set to input
-              stateArray[i]=self.get_line(i)
+              stateArray[i]=self.get_IO_state(i)
         return stateArray
 
-    def set_output(self,line,ouput):
+    def write_line(self,line,ouput):
        raise NotImplementedError()
 
-    def set_all_output(self,IOMap):
-        if len(IOMap) != self._numLines :
-            raise("IOMap array must be numLines in length")
-        for i in range(self.IOMap):
+    def write_all_lines(self,ouput_array):
+        if len(output_array) != self._numLines :
+            raise("Output array must be numLines in length")
+        for i in range(self._numLines):
             #set line i to the IOMap entry, true for output false for input.
-            self.set_output(i,IOMap[i])
-        
+            if(not self._IOMap[i]):
+                self.write_line(i,output_array[i])
+
+    def read_line(self,line):
+        raise NotImplementedError()
+
+    def read_all_lines(self):
+        readarray=[None]*self._numLines
+        for i in range(self._numLines):
+            #set line i to the IOMap entry, true for output false for input.
+            if(self._IOMap[i]):
+                readarray[i]=self.read_line(i)
+        return(readarray)
                 
         # # The  as an integer.
         # # Deprecated: clients should call get_position and set_position;

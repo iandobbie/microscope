@@ -486,20 +486,27 @@ class SimulatedDigitalIO(microscope.abc.DigitalIO):
         super().__init__(**kwargs)
         self._cache=[None]*self._numLines
 
-    def set_line(self, line: int, state: bool) -> None:
-        _logger.info("Line %s set to %s", (line,state))
-        self._cache[line] = state
-        return
+    def set_IO_state(self, line: int, state: bool) -> None:
+        _logger.info("Line %d set IO state %s"% (line,str(state)))
+        self._IOMap[line] = state
 
-    def get_line(self,line: int) -> bool:
-        _logger.info("Line %s retunrs %s", (line,self._cache[line]))
+    def get_IO_state(self, line: int) -> bool:
+        return(self._IOMap[line])
+
+    def write_line(self,line: int, state: bool):
+        _logger.info("Line %d set IO state %s"% (line,str(state)))
+        self._cache[line]=state
+        
+    def read_line(self,line: int) -> bool:
+        _logger.info("Line %d returns %s" % (line,str(self._cache[line])))
         return self._cache[line]
-
-    def _do_set_position(self, position):
-        _logger.info("Setting position to %s", position)
-        self._position = position
 
     def _do_shutdown(self) -> None:
         pass
 
 
+#DIO still to do:
+# raise exception if writing to a read line and vis-versa
+# raise exception if line <0 or line>num_lines
+# read all lines to return True,Flase if readable and None if an output
+#
