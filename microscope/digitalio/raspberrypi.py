@@ -42,7 +42,7 @@ import RPi.GPIO as GPIO
 # instead of physical pin numbers on the Raspberry Pi board
 GPIO.setmode(GPIO.BCM)
 
-class RPiDIO(microsocpe.abc.DigitalIO):
+class RPiDIO(microscope.abc.DigitalIO):
     '''Digital IO device implementation for a Raspberry Pi
 
     gpioMap input arrtay maps line numbers to specific GPIO pins
