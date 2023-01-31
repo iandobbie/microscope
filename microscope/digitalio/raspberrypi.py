@@ -70,7 +70,7 @@ class RPiDIO(microscope.abc.DigitalIO):
         #  Flase if Input
         #  None in other cases (i2c, spi etc)
         pinmode=GPIO.gpio_function(self._gpioMap[line])
-        if func==GPIO.OUT:
+        if pinmode==GPIO.OUT:
             return True
         elif pinmode==GPIO.IN:
             return False
