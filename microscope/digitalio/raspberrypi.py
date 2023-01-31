@@ -81,7 +81,7 @@ class RPiDIO(microsocpe.abc.DigitalIO):
         GPIO.output(gpioMap[line],state)
         
     def read_line(self,line: int) -> bool:
-         _logger.info("Line %d returns %s" % (line,str(self._cache[line])))
+        _logger.info("Line %d returns %s" % (line,str(self._cache[line])))
         return GPIO.input(gpioMap[line])
 
     def _do_shutdown(self) -> None:
