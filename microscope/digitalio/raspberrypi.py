@@ -48,14 +48,24 @@ _logger = logging.getLogger(__name__)
 class RPiDIO(microscope.abc.DigitalIO):
     '''Digital IO device implementation for a Raspberry Pi
 
-    gpioMap input arrtay maps line numbers to specific GPIO pins
+    gpioMap input array maps line numbers to specific GPIO pins
     [GPIO pin, GPIO pin]
-    [27,25,29,...]  line 0 in pin 27, 1 is pin 25 etc....'''
+    [27,25,29,...]  line 0 in pin 27, 1 is pin 25 etc....
+
+    gpioState input array maps output and input lines.
+    True maps to output
+    False maps to input
+
+    with the gpioMap above [True,False,True,..] would map:
+    27 to out, 
+    25 to in 
+    29 to out'''
     
-    def __init__(self,gpioMap = [], **kwargs):
+    def __init__(self,gpioMap = [], gpioState = [], **kwargs):
         #setup io lines 1-n mapped to GPIO lines
         self._gpioMap=gpioMap
         self._numLines=len(self._gpioMap)
+        self.set_all_IO_state(gpioState)
 
     #functions needed
 
