@@ -60,16 +60,16 @@ class RPiDIO(microscope.abc.DigitalIO):
         _logger.info("Line %d set IO state %s"% (line,str(state)))
         if state:
             #true maps to output
-            GPIO.setup(gpioMap[line],GPIO.OUT)
+            GPIO.setup(self._gpioMap[line],GPIO.OUT)
         else:
-            GPIO.setup(gpioMap[line],GPIO.IN)
+            GPIO.setup(self._gpioMap[line],GPIO.IN)
 
     def get_IO_state(self, line: int) -> bool:
         #returns
         #  True if the line is Output
         #  Flase if Input
         #  None in other cases (i2c, spi etc)
-        pinmode=GPIO.gpio_function(gpioMap[line])
+        pinmode=GPIO.gpio_function(self._gpioMap[line])
         if func==GPIO.OUT:
             return True
         elif pinmode==GPIO.IN:
@@ -78,11 +78,11 @@ class RPiDIO(microscope.abc.DigitalIO):
 
     def write_line(self,line: int, state: bool):
         _logger.info("Line %d set IO state %s"% (line,str(state)))
-        GPIO.output(gpioMap[line],state)
+        GPIO.output(self._gpioMap[line],state)
         
     def read_line(self,line: int) -> bool:
         _logger.info("Line %d returns %s" % (line,str(self._cache[line])))
-        return GPIO.input(gpioMap[line])
+        return GPIO.input(self._gpioMap[line])
 
     def _do_shutdown(self) -> None:
         pass
