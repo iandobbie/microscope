@@ -80,12 +80,15 @@ class RPiDIO(microscope.abc.DigitalIO):
         return None
 
     def write_line(self,line: int, state: bool):
+        #Do we need to check if the line can be written?
         _logger.debug("Line %d set IO state %s"% (line,str(state)))
         GPIO.output(self._gpioMap[line],state)
         
     def read_line(self,line: int) -> bool:
-        _logger.debug("Line %d returns %s" % (line,str(self._cache[line])))
-        return GPIO.input(self._gpioMap[line])
+        # Should we check if the line is set to input first?
+        state=GPIO.input(self._gpioMap[line])
+        _logger.debug("Line %d returns %s" % (line,str(state)))
+        return state
 
     def _do_shutdown(self) -> None:
         pass
