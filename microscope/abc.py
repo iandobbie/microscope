@@ -1602,7 +1602,7 @@ class DigitalIO(Device, metaclass=abc.ABCMeta):
     def set_all_IO_state(self, stateArray):
         for i, state in enumerate(stateArray):
                 #set each line as defined in stateArray
-                set_IO_state(i,state)
+                self.set_IO_state(i,state)
             
 
     def get_all_IO_state(self):
