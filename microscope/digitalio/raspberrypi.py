@@ -27,7 +27,7 @@ import re
 import threading
 import time
 import typing
-
+import logging
 
 import microscope.abc
 
@@ -41,6 +41,9 @@ import RPi.GPIO as GPIO
 # Use BCM GPIO references (naming convention for GPIO pins from Broadcom)
 # instead of physical pin numbers on the Raspberry Pi board
 GPIO.setmode(GPIO.BCM)
+_logger = logging.getLogger(__name__)
+
+
 
 class RPiDIO(microscope.abc.DigitalIO):
     '''Digital IO device implementation for a Raspberry Pi
@@ -57,7 +60,7 @@ class RPiDIO(microscope.abc.DigitalIO):
     #functions needed
 
     def set_IO_state(self, line: int, state: bool) -> None:
-        _logger.info("Line %d set IO state %s"% (line,str(state)))
+        _logger.debug("Line %d set IO state %s"% (line,str(state)))
         if state:
             #true maps to output
             GPIO.setup(self._gpioMap[line],GPIO.OUT)
@@ -77,11 +80,11 @@ class RPiDIO(microscope.abc.DigitalIO):
         return None
 
     def write_line(self,line: int, state: bool):
-        _logger.info("Line %d set IO state %s"% (line,str(state)))
+        _logger.debug("Line %d set IO state %s"% (line,str(state)))
         GPIO.output(self._gpioMap[line],state)
         
     def read_line(self,line: int) -> bool:
-        _logger.info("Line %d returns %s" % (line,str(self._cache[line])))
+        _logger.debug("Line %d returns %s" % (line,str(self._cache[line])))
         return GPIO.input(self._gpioMap[line])
 
     def _do_shutdown(self) -> None:
