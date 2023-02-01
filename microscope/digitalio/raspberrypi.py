@@ -108,7 +108,7 @@ class RPiDIO(microscope.abc.DigitalIO):
     def read_line(self,line: int) -> bool:
         # Should we check if the line is set to input first?
         #If input read the real state
-        if (not self._IOMap):
+        if (not self._IOMap[line]):
             state=GPIO.input(self._gpioMap[line])
             _logger.debug("Line %d returns %s" % (line,str(state)))
             return state
