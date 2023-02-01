@@ -1628,9 +1628,7 @@ class DigitalIO(Device, metaclass=abc.ABCMeta):
     def read_all_lines(self):
         readarray=[None]*self._numLines
         for i in range(self._numLines):
-            #set line i to the IOMap entry, true for output false for input.
-            if(self._IOMap[i]):
-                readarray[i]=self.read_line(i)
+            readarray[i]=self.read_line(i)
         return(readarray)
                 
         # # The  as an integer.
