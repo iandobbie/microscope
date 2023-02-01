@@ -67,6 +67,7 @@ class RPiDIO(microscope.abc.DigitalIO):
         self._IOMap=gpioState
         self._numLines=len(self._gpioMap)
         self.set_all_IO_state(self._IOMap)
+        super.__init__(numLines=self._numLines)
 
     #functions needed
 
@@ -76,6 +77,9 @@ class RPiDIO(microscope.abc.DigitalIO):
             #true maps to output
             GPIO.setup(self._gpioMap[line],GPIO.OUT)
             self._IOMap[line] = True
+            #restore state from cache.
+            state=self._outputCache[line]
+            GPIO.output(self._gpioMap[line],state)
         else:
             GPIO.setup(self._gpioMap[line],GPIO.IN)
             self._IOMap[line] = False
@@ -95,13 +99,19 @@ class RPiDIO(microscope.abc.DigitalIO):
     def write_line(self,line: int, state: bool):
         #Do we need to check if the line can be written?
         _logger.debug("Line %d set IO state %s"% (line,str(state)))
+        self._outputCache[line]=state
         GPIO.output(self._gpioMap[line],state)
         
     def read_line(self,line: int) -> bool:
         # Should we check if the line is set to input first?
-        state=GPIO.input(self._gpioMap[line])
-        _logger.debug("Line %d returns %s" % (line,str(state)))
-        return state
+        #If input read the real state
+        if (not self._IOMap):
+            state=GPIO.input(self._gpioMap[line])
+            _logger.debug("Line %d returns %s" % (line,str(state)))
+            return state
+        else:
+            #line is an outout so returned cached state
+            return self._outputCache[line]
 
     def _do_shutdown(self) -> None:
         pass
