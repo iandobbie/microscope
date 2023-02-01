@@ -1579,8 +1579,7 @@ class DigitalIO(Device, metaclass=abc.ABCMeta):
         #array to map wether lines are input or output
         # true is output, start with all lines defined for output. 
         self._IOMap = [True]*self._numLines
-        self._outputCache = [False]*self._numLines
-
+  
     # required functions 
     # init - done
     # How many lines available
