@@ -75,9 +75,10 @@ class RPiDIO(microscope.abc.DigitalIO):
         if state:
             #true maps to output
             GPIO.setup(self._gpioMap[line],GPIO.OUT)
-            self._
+            self._IOMap[line] = True
         else:
             GPIO.setup(self._gpioMap[line],GPIO.IN)
+            self._IOMap[line] = False
 
     def get_IO_state(self, line: int) -> bool:
         #returns
