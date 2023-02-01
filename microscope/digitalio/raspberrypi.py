@@ -62,7 +62,7 @@ class RPiDIO(microscope.abc.DigitalIO):
     29 to out'''
     
     def __init__(self,gpioMap = [], gpioState = [], **kwargs):
-        super.__init__(numLines=len(gpioMap))
+        super().__init__(numLines=len(gpioMap),**kwargs)
         #setup io lines 1-n mapped to GPIO lines
         self._gpioMap=gpioMap
         self._IOMap=gpioState
