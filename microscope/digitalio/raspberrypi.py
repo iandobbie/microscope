@@ -67,8 +67,8 @@ class RPiDIO(microscope.abc.DigitalIO):
         self._gpioMap=gpioMap
         self._IOMap=gpioState
         self._numLines=len(self._gpioMap)
-        self.set_all_IO_state(self._IOMap)
         self._outputCache = [False]*self._numLines
+        self.set_all_IO_state(self._IOMap)
 
 
 
