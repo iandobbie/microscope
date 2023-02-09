@@ -489,6 +489,11 @@ class SimulatedDigitalIO(microscope.abc.DigitalIO):
     def set_IO_state(self, line: int, state: bool) -> None:
         _logger.info("Line %d set IO state %s"% (line,str(state)))
         self._IOMap[line] = state
+        if not state:
+            #this is an input so needs to have a definite value,
+            #default to False if not already set. If set leave alone
+            if self._cache[line]== None:
+                self._cache[line]=False
 
     def get_IO_state(self, line: int) -> bool:
         return(self._IOMap[line])
