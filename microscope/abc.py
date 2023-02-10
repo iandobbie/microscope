@@ -1556,7 +1556,7 @@ class Stage(Device, metaclass=abc.ABCMeta):
         """
         raise NotImplementedError()
 
-class DigitalIO(Device, metaclass=abc.ABCMeta):
+class DigitalIO(DataDevice, metaclass=abc.ABCMeta):
     """ABC for digital IO devices.
 
     Digital IO devices (DIO) have a num,ber of digital lines that can

@@ -485,6 +485,8 @@ class SimulatedDigitalIO(microscope.abc.DigitalIO):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self._cache=[None]*self._numLines
+        self.testinput=False
+        self.inputtime=time.time()
 
     def set_IO_state(self, line: int, state: bool) -> None:
         _logger.info("Line %d set IO state %s"% (line,str(state)))
@@ -509,7 +511,23 @@ class SimulatedDigitalIO(microscope.abc.DigitalIO):
     def _do_shutdown(self) -> None:
         pass
 
+    
+    # functions required as we are DataDevice returning data to the server. 
+    def _fetch_data(self):
+        if (time.time()-self.inputtime) >5.0 :
+            self.testinput= not self.testinput
+            self.inputtime=time.time()
+            _logger.info("Line %d returns %s" % (3, self.testinput))
+            self._cache[3]=self.testinput
+            return (3,self.testinput)
+        return None
 
+    def abort(self):
+        pass
+
+    def _do_enable(self):
+        return True
+    
 #DIO still to do:
 # raise exception if writing to a read line and vis-versa
 # raise exception if line <0 or line>num_lines
