@@ -68,9 +68,10 @@ class RPiDIO(microscope.abc.DigitalIO):
         self._gpioMap=gpioMap
         self._IOMap=gpioState
         self._numLines=len(self._gpioMap)
+        self.inputQ=queue.Queue()
         self._outputCache = [False]*self._numLines
         self.set_all_IO_state(self._IOMap)
-        self.inputQ=queue.Queue()
+
 
 
     #functions needed
@@ -86,19 +87,23 @@ class RPiDIO(microscope.abc.DigitalIO):
             GPIO.output(self._gpioMap[line],state)
         else:
             GPIO.setup(self._gpioMap[line],GPIO.IN)
+            
             self._IOMap[line] = False
+            time.sleep(0.5)
+            print ("line,state ",line,state)
+            print(GPIO.gpio_function(line))
             self.register_HW_interupt(line)
             
     def register_HW_interupt(self,line):
+        GPIO.remove_event_detect(self._gpioMap[line])
         GPIO.add_event_detect(
-            GPIO_Trigger,
+            self._gpioMap[line],
             GPIO.BOTH,
-            callback=self.HW_trigger(line),
-            bouncetime=0,
-        )
+            callback=self.HW_trigger,
+         )
 
     def HW_trigger(self,line):
-        state=GPIO.inout(self._gpioMap[line])
+        state=GPIO.input(self._gpioMap[line])
         self.inputQ.put((line,state))
     
     def get_IO_state(self, line: int) -> bool:
@@ -144,9 +149,9 @@ class RPiDIO(microscope.abc.DigitalIO):
 
     def _do_enable(self):
         for i in range(self._numLines):
-            if not self._IOMap[line]:
-                #this is an inout line so remove its subscription
-                self.register_HW_interupt(line):
+            if not self._gpioMap[line]:
+                #this is an input line so remove its subscription
+                self.register_HW_interupt(self._gpioMap[line])
                 
         
         return True
@@ -158,6 +163,6 @@ class RPiDIO(microscope.abc.DigitalIO):
         _logger.info("Disabling DIO module.")
         #remove interupt subscriptions
         for i in range(self._numLines):
-            if not slef._IOMap[line]:
-                #this is an inout line so remove its subscription
-                GPIO.remove_event_detect(i)
+            if not self._gpioMap[i]:
+                #this is an input line so remove its subscription
+                GPIO.remove_event_detect(self._gpioMap[i])
