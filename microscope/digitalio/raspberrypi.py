@@ -89,9 +89,6 @@ class RPiDIO(microscope.abc.DigitalIO):
             GPIO.setup(self._gpioMap[line],GPIO.IN)
             
             self._IOMap[line] = False
-            time.sleep(0.5)
-            print ("line,state ",line,state)
-            print(GPIO.gpio_function(line))
             self.register_HW_interupt(line)
             
     def register_HW_interupt(self,line):
@@ -102,9 +99,13 @@ class RPiDIO(microscope.abc.DigitalIO):
             callback=self.HW_trigger,
          )
 
-    def HW_trigger(self,line):
-        state=GPIO.input(self._gpioMap[line])
+    def HW_trigger(self,pin):
+        state=GPIO.input(pin)
+        line=self._gpioMap.index(pin)
+        print (pin,state,line)
         self.inputQ.put((line,state))
+        print (self.inputQ.empty())
+        
     
     def get_IO_state(self, line: int) -> bool:
         #returns
@@ -138,22 +139,25 @@ class RPiDIO(microscope.abc.DigitalIO):
     def _do_shutdown(self) -> None:
         self.abort()
 
+    def debug_ret_Q(self):
+        if not self.inputQ.empty():
+            return(self.inputQ.get())
+        
     #functions required for a data device.
     def _fetch_data(self):
         #need to return data fetched from interupt driven state chnages.
         if self.inputQ.empty():
             return None
         (line,state)=self.inputQ.get()
-        _logger.debug("Line %d chnaged to %s" % (line,str(state)))
+       # print(self.inputQ.get())
+        _logger.info("Line %d chnaged to %s" % (line,str(state)))
         return (line,state)
 
     def _do_enable(self):
         for i in range(self._numLines):
-            if not self._gpioMap[line]:
+            if not self._gpioMap[i]:
                 #this is an input line so remove its subscription
-                self.register_HW_interupt(self._gpioMap[line])
-                
-        
+                self.register_HW_interupt(self._gpioMap[i])
         return True
 
     def _do_disable(self):
