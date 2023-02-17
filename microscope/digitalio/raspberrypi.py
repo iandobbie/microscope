@@ -49,6 +49,9 @@ _logger = logging.getLogger(__name__)
 class RPiDIO(microscope.abc.DigitalIO):
     '''Digital IO device implementation for a Raspberry Pi
 
+    Requires the raspberry pi RPi.GPIO library and the user must be 
+    in the gpio group to allow access to the io pins. 
+
     gpioMap input array maps line numbers to specific GPIO pins
     [GPIO pin, GPIO pin]
     [27,25,29,...]  line 0 in pin 27, 1 is pin 25 etc....
