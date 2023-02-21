@@ -501,11 +501,11 @@ class SimulatedDigitalIO(microscope.abc.DigitalIO):
         return(self._IOMap[line])
 
     def write_line(self,line: int, state: bool):
-        _logger.info("Line %d set IO state %s"% (line,str(state)))
+        _logger.debug("Line %d set IO state %s"% (line,str(state)))
         self._cache[line]=state
         
     def read_line(self,line: int) -> bool:
-        _logger.info("Line %d returns %s" % (line,str(self._cache[line])))
+        _logger.debug("Line %d returns %s" % (line,str(self._cache[line])))
         return self._cache[line]
 
     def _do_shutdown(self) -> None:
@@ -517,7 +517,7 @@ class SimulatedDigitalIO(microscope.abc.DigitalIO):
         if (time.time()-self.inputtime) >5.0 :
             self.testinput= not self.testinput
             self.inputtime=time.time()
-            _logger.info("Line %d returns %s" % (3, self.testinput))
+            _logger.debug("Line %d returns %s" % (3, self.testinput))
             self._cache[3]=self.testinput
             return (3,self.testinput)
         return None

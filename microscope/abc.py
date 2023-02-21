@@ -1635,7 +1635,7 @@ class DigitalIO(DataDevice, metaclass=abc.ABCMeta):
         
         raise NotImplementedError()
 
-    def write_all_lines(self,ouput_array):
+    def write_all_lines(self, ouput_array):
         """Sets the output level of every output line.
 
         Args:
@@ -1643,12 +1643,12 @@ class DigitalIO(DataDevice, metaclass=abc.ABCMeta):
                           False for low, array entries for lines set 
                           as inputs are ignored."""
         
-        if len(output_array) != self._numLines :
+        if len(ouput_array) != self._numLines :
             raise("Output array must be numLines in length")
         for i in range(self._numLines):
             #set line i to the IOMap entry, true for output false for input.
             if(not self._IOMap[i]):
-                self.write_line(i,output_array[i])
+                self.write_line(i, ouput_array[i])
 
     @abc.abstractmethod    
     def read_line(self,line):
