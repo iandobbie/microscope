@@ -29,6 +29,7 @@ hardware behaviour.  They implement the different ABC.
 import logging
 import random
 import time
+import math
 import typing
 from typing import Tuple
 
@@ -552,8 +553,11 @@ class SimulatedValueLogger(microscope.abc.ValueLogger):
     def _fetch_data(self):
         if (time.time() - self.lastDataTime) > 5.0:
             for i in range(self._numSensors):
-                self._cache[i]=19.5+i+random.random()
-                _logger.debug("Line %d returns %s" % (i, self._cache[i]))
+                
+                self._cache[i]=(19.5+i+5
+                                *math.sin(self.lastDataTime/100)
+                                +random.random())
+                _logger.debug("Sensors %d returns %s" % (i, self._cache[i]))
             self.lastDataTime = time.time()
             print(self._cache)
             return (self._cache)
