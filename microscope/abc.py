@@ -1667,7 +1667,7 @@ class DigitalIO(DataDevice, metaclass=abc.ABCMeta):
         readarray = [None] * self._numLines
         for i in range(self._numLines):
             readarray[i] = self.read_line(i)
-        return readarra
+        return readarray
 
 class ValueLogger(DataDevice, metaclass=abc.ABCMeta):
     """ABC for Value logging device.
@@ -1693,3 +1693,7 @@ class ValueLogger(DataDevice, metaclass=abc.ABCMeta):
     def initialize(self):
         """Inialize sensors to start sending data back."""
         raise NotImplementedError()
+
+    def get_num_sensors(self):
+        """Returns the number of sensors lines present in this instance"""
+        return self._numSensors
