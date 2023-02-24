@@ -534,3 +534,33 @@ class SimulatedDigitalIO(microscope.abc.DigitalIO):
 # raise exception if line <0 or line>num_lines
 # read all lines to return True,Flase if readable and None if an output
 #
+
+class SimulatedValueLogger(microscope.abc.ValueLogger):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._cache = [None] * self._numLines
+        self.lastDataTime = time.time()
+
+    def initialize(self):
+        #init simulated sensors
+        for i in range(self._numLines):
+            self._cache[i]=20+i
+
+
+
+    # functions required as we are DataDevice returning data to the server.
+    def _fetch_data(self):
+        if (time.time() - self.lastDataTime) > 5.0:
+            for i in range(self._numnLines):
+                self._cache[i]=19.5+i+random.random()
+                _logger.info("Line %d returns %s" % (3, self.testinput))
+            self.lastDataTime = time.time()
+            return (self._cache)
+        return None
+
+
+    def abort(self):
+        pass
+
+    def _do_enable(self):
+        return True
