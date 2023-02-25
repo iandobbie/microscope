@@ -51,22 +51,14 @@ _logger = logging.getLogger(__name__)
 
 class RPiValueLogger(microscope.abc.ValueLogger):
     """ValueLogger device for a Raspberry Pi with support for 
-MCP9808 and TSYS01 I2C thermometer chips. 
-    
+    MCP9808 and TSYS01 I2C thermometer chips."""
 
-    29 to out"""
-
-    def __init__(self, sensors=[], **kwargs):
-        super().__init__(numSensors=1, **kwargs)
+    def __init__(self, **kwargs):
+        super().__init__(numSensors=1, sensors=[],**kwargs)
         # setup io lines 1-n mapped to GPIO lines
-        self._sensors = Sensors
-
-
-        temp_sensors_linesString = config.get(CONFIG_NAME, 'temp_sensors')
-        self.sensors = []
-        for line in temp_sensors_linesString.split(','):
-            if line:
-                sensor_type,i2c_address =line.split(':')
+        self._sensors = sensors
+        for sensor in sensors:
+            sensor_type,i2c_address = sensor
                 i2c_address=int(i2c_address,0) 
                 print ("adding sensor: "+sensor_type +" Adress: %d " % i2c_address)
                 if (sensor_type == 'MCP9808'):
@@ -77,14 +69,6 @@ MCP9808 and TSYS01 I2C thermometer chips.
                 elif (sensor_type == 'TSYS01'):
                     self.sensors.append(TSYS01.TSYS01(address=i2c_address))
                     print (self.sensors[-1].readTempC())
-
-
-                    
-    def initialize(self):
-        #init simulated sensors
-        for sensor in range(self.sensors):
-            self._cache[i]=sensor.
-
 
 
     # functions required as we are DataDevice returning data to the server.
