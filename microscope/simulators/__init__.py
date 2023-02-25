@@ -572,3 +572,4 @@ class SimulatedValueLogger(microscope.abc.ValueLogger):
 
     def _do_shutdown(self) -> None:
         pass
+
