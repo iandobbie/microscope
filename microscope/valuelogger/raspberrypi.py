@@ -31,12 +31,9 @@ import logging
 import queue
 import Adafruit_MCP9808.MCP9808 as MCP9808
 #library for TSYS01 sensor
-import TSYS01.TSYS01 as TSYS01
+#import TSYS01.TSYS01 as TSYS01
 
 import microscope.abc
-
-import RPi.GPIO as GPIO
-
 
 
 # Support for async digital IO control on the Raspberryy Pi.
@@ -45,7 +42,7 @@ import RPi.GPIO as GPIO
 
 # Use BCM GPIO references (naming convention for GPIO pins from Broadcom)
 # instead of physical pin numbers on the Raspberry Pi board
-GPIO.setmode(GPIO.BCM)
+
 _logger = logging.getLogger(__name__)
 
 
