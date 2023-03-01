@@ -50,38 +50,50 @@ class RPiValueLogger(microscope.abc.ValueLogger):
     """ValueLogger device for a Raspberry Pi with support for 
     MCP9808 and TSYS01 I2C thermometer chips."""
 
-    def __init__(self, **kwargs):
-        super().__init__(numSensors=1, sensors=[],**kwargs)
-        # setup io lines 1-n mapped to GPIO lines
-        self._sensors = sensors
+    def __init__(self, sensors=[], **kwargs):
+        super().__init__(**kwargs)
+        # setup Q for fetching data. 
+        self.inputQ = queue.Queue()
+        self._sensors = []
         for sensor in sensors:
             sensor_type,i2c_address = sensor
-                i2c_address=int(i2c_address,0) 
-                print ("adding sensor: "+sensor_type +" Adress: %d " % i2c_address)
-                if (sensor_type == 'MCP9808'):
-                    self.sensors.append(MCP9808.MCP9808(address=i2c_address))
-                    #starts the last one added
-                    self.sensors[-1].begin()
-                    print (self.sensors[-1].readTempC())
-                elif (sensor_type == 'TSYS01'):
-                    self.sensors.append(TSYS01.TSYS01(address=i2c_address))
-                    print (self.sensors[-1].readTempC())
+            print ("adding sensor: "+sensor_type +" Adress: %d " % i2c_address)
+            if (sensor_type == 'MCP9808'):
+                self._sensors.append(MCP9808.MCP9808(address=i2c_address))
+                #starts the last one added
+                self._sensors[-1].begin()
+                print (self._sensors[-1].readTempC())
+            elif (sensor_type == 'TSYS01'):
+                self._sensors.append(TSYS01.TSYS01(address=i2c_address))
+                print (self._sensors[-1].readTempC())
 
+    def initialize(self):
+        self.updatePeriod=1.0
+        self.readsPerUpdate=10
+        #Open and start all temp sensors
+        # A thread to record periodic temperature readings
+        # This reads temperatures and logs them
+        if self._sensors:
+            #only strart thread if we have a sensor
+            self.statusThread = threading.Thread(target=self.updateTemps)
+            self.statusThread.Daemon = True
+            self.statusThread.start()
+            
+    def debug_ret_Q(self):
+        if not self.inputQ.empty():
+            return self.inputQ.get()
 
-    # functions required as we are DataDevice returning data to the server.
+    # functions required for a data device.
     def _fetch_data(self):
-        if (time.time() - self.lastDataTime) > 5.0:
-            for i in range(self._numSensors):
-                
-                self._cache[i]=(19.5+i+5
-                                *math.sin(self.lastDataTime/100)
-                                +random.random())
-                _logger.debug("Sensors %d returns %s" % (i, self._cache[i]))
-            self.lastDataTime = time.time()
-            print(self._cache)
-            return (self._cache)
-        return None
+        # need to return data fetched from interupt driven state chnages.
+        if self.inputQ.empty():
+            return None
+        temps = self.inputQ.get()
+        # print(self.inputQ.get())
+        _logger.debug("Temp readings are %s" % str(temps))
+        return (temps)
 
+ 
 
     def abort(self):
         pass
@@ -91,8 +103,6 @@ class RPiValueLogger(microscope.abc.ValueLogger):
 
     def _do_shutdown(self) -> None:
         pass
-
-
     
         #return the list of current temperatures.     
     def get_temperature(self):
@@ -113,27 +123,28 @@ class RPiValueLogger(microscope.abc.ValueLogger):
     #runs in a separate thread.
     def updateTemps(self):
         """Runs in a separate thread publish status updates."""
-        self.temperature = [None] * len(self.sensors)
-        tempave = [None] * len(self.sensors)
+        self.temperature = [None] * len(self._sensors)
+        tempave = [None] * len(self._sensors)
 
-        self.create_rotating_log()
+#        self.create_rotating_log()
 
-        if len(self.sensors == 0) :
+        if len(self._sensors) == 0 :
             return()
         
         while True:
             #zero the new averages.
-            for i in xrange(len(self.sensors)):
+            for i in range(len(self._sensors)):
                 tempave[i]=0.0
             #take readsPerUpdate measurements and average to reduce digitisation
             #errors and give better accuracy.
             for i in range(int(self.readsPerUpdate)):
-                for i in xrange(len(self.sensors)):
+                for i in range(len(self._sensors)):
                     try:
-                        tempave[i]+=self.sensors[i].readTempC()
+                        tempave[i]+=self._sensors[i].readTempC()
                     except:
                         localTemperature=None
                 time.sleep(self.updatePeriod/self.readsPerUpdate)
-            for i in xrange(len(self.sensors)):    
+            for i in range(len(self._sensors)):    
                 self.temperature[i]=tempave[i]/self.readsPerUpdate
-                self.logger.info("Temperature-%s =  %s" %(i,self.temperature[i]))
+                _logger.debug("Temperature-%s =  %s" %(i,self.temperature[i]))
+            self.inputQ.put(self.temperature)
