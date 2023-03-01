@@ -559,7 +559,6 @@ class SimulatedValueLogger(microscope.abc.ValueLogger):
                                 +random.random())
                 _logger.debug("Sensors %d returns %s" % (i, self._cache[i]))
             self.lastDataTime = time.time()
-            print(self._cache)
             return (self._cache)
         return None
 
