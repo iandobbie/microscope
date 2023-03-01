@@ -66,7 +66,8 @@ class RPiValueLogger(microscope.abc.ValueLogger):
             elif (sensor_type == 'TSYS01'):
                 self._sensors.append(TSYS01.TSYS01(address=i2c_address))
                 print (self._sensors[-1].readTempC())
-
+            self.initialize()
+            
     def initialize(self):
         self.updatePeriod=1.0
         self.readsPerUpdate=10
@@ -76,6 +77,7 @@ class RPiValueLogger(microscope.abc.ValueLogger):
         if self._sensors:
             #only strart thread if we have a sensor
             self.statusThread = threading.Thread(target=self.updateTemps)
+            self.stopEvent = threading.Event()
             self.statusThread.Daemon = True
             self.statusThread.start()
             
@@ -89,9 +91,13 @@ class RPiValueLogger(microscope.abc.ValueLogger):
         if self.inputQ.empty():
             return None
         temps = self.inputQ.get()
+        if len(temps)==1:
+            outtemps=temps[0]
+        else:
+            outtemps=temps
         # print(self.inputQ.get())
-        _logger.debug("Temp readings are %s" % str(temps))
-        return (temps)
+        _logger.debug("Temp readings are %s" % str(outtemps))
+        return (outtemps)
 
  
 
@@ -102,7 +108,9 @@ class RPiValueLogger(microscope.abc.ValueLogger):
         return True
 
     def _do_shutdown(self) -> None:
-        pass
+        #need to kill threads.
+        self.stopEvent.set()
+    
     
         #return the list of current temperatures.     
     def get_temperature(self):
@@ -132,6 +140,8 @@ class RPiValueLogger(microscope.abc.ValueLogger):
             return()
         
         while True:
+            if self.stopEvent.is_set():
+                break
             #zero the new averages.
             for i in range(len(self._sensors)):
                 tempave[i]=0.0
