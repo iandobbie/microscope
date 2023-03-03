@@ -1669,12 +1669,13 @@ class DigitalIO(DataDevice, metaclass=abc.ABCMeta):
             readarray[i] = self.read_line(i)
         return readarray
 
+
 class ValueLogger(DataDevice, metaclass=abc.ABCMeta):
     """ABC for Value logging device.
 
-    Value logging Devices utilise the DataDevice infrastrucrure to send 
-    values to a receiving client. A typical example of data is temperature 
-    measurements. 
+    Value logging Devices utilise the DataDevice infrastrucrure to send
+    values to a receiving client. A typical example of data is temperature
+    measurements.
 
     Args:
         numSensors: total number of measurements.

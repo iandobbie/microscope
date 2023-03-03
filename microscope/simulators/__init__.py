@@ -536,6 +536,7 @@ class SimulatedDigitalIO(microscope.abc.DigitalIO):
 # read all lines to return True,Flase if readable and None if an output
 #
 
+
 class SimulatedValueLogger(microscope.abc.ValueLogger):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -543,25 +544,24 @@ class SimulatedValueLogger(microscope.abc.ValueLogger):
         self.lastDataTime = time.time()
 
     def initialize(self):
-        #init simulated sensors
+        # init simulated sensors
         for i in range(self._numSensors):
-            self._cache[i]=20+i
-
-
+            self._cache[i] = 20 + i
 
     # functions required as we are DataDevice returning data to the server.
     def _fetch_data(self):
         if (time.time() - self.lastDataTime) > 5.0:
             for i in range(self._numSensors):
-                
-                self._cache[i]=(19.5+i+5
-                                *math.sin(self.lastDataTime/100)
-                                +random.random())
+                self._cache[i] = (
+                    19.5
+                    + i
+                    + 5 * math.sin(self.lastDataTime / 100)
+                    + random.random()
+                )
                 _logger.debug("Sensors %d returns %s" % (i, self._cache[i]))
             self.lastDataTime = time.time()
-            return (self._cache)
+            return self._cache
         return None
-
 
     def abort(self):
         pass
@@ -571,4 +571,3 @@ class SimulatedValueLogger(microscope.abc.ValueLogger):
 
     def _do_shutdown(self) -> None:
         pass
-
