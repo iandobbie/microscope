@@ -203,14 +203,14 @@ class _ASIController:
     def readline(self) -> bytes:
         """Read a line from the device connection until ``\\r\\n``."""
         with self._lock:
-            return self._serial.read_until(b"\r\n")
+            return self._serial.read_until(b"\r")
 
     def read_multiline(self):
         output = []
         line = True
         while line:
             line = self.readline()
-            output.append(line.strip())
+            output.append(line.strip(b'\r'))
             if line:
                 #was there any data on this line? 
                 if line == b"N" or line[0:2] == b":A":
@@ -270,6 +270,7 @@ class _ASIController:
         self.move_command(
             bytes(f"MOVREL {axisname}={str(delta)}", "ascii")
         )
+        self.wait_for_motor_stop(axis)
 
     def move_to_absolute_position(self, axis: bytes, pos: float) -> None:
         """Send a relative movement command to stated axis"""
@@ -277,6 +278,7 @@ class _ASIController:
         self.move_command(
             bytes(f"MOVE {axisname}={str(pos)}", "ascii")
         )
+        self.wait_for_motor_stop(axis)
 
     def move_to_limit(self, axis: bytes, speed: int):
         axisname = AXIS_MAPPER[axis]
@@ -354,7 +356,10 @@ class _ASIStageAxis(microscope.abc.StageAxis):
         self._dev_conn.move_by_relative_position(self._axis, int(delta))
 
     def move_to(self, pos: float) -> None:
+        print("axis",self._axis)
+        print("go to ",pos)
         self._dev_conn.move_to_absolute_position(self._axis, int(pos))
+        print("got to ",self.position)
 
     @property
     def position(self) -> float:
@@ -375,6 +380,7 @@ class _ASIStageAxis(microscope.abc.StageAxis):
     def home(self) -> None:
         self.find_limits()
         self.move_to(self.max_limit / 2)
+        self._dev_conn.wait_for_motor_stop(self._axis)
 
     def set_speed(self, speed: int) -> None:
         self.speed = speed
@@ -387,16 +393,18 @@ class _ASIStageAxis(microscope.abc.StageAxis):
         # status byte
         self._dev_conn.wait_for_motor_stop(self._axis)
         # reset positon to zero.
-        print("axis",self.axes)
+        print("axis",self._axis)
         print("min=",self.position)
         self._dev_conn.reset_position(self._axis)
-        self.min_limit = 0.0
+        self.min_limit = self.position
+        print("minpos",self.min_limit)
         self._dev_conn.homed = True
         # move to positive limit
         self._dev_conn.move_to_limit(self._axis, speed)
         self._dev_conn.wait_for_motor_stop(self._axis)
         print("max=",self.position)
         self.max_limit = self.position
+        print (self.limits)
         return self.limits
 
 
@@ -419,8 +427,11 @@ class _ASIStage(microscope.abc.Stage):
         # unless we home it first.
         if not self.homed:
             axes = self.axes
+            print(axes)
             for axis in axes:
+                print (axis, self.axes[axis])
                 self.axes[axis].home()
+                print(axis,"homed")
             self.homed = True
         return True
 
