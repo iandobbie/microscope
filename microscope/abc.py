@@ -1705,7 +1705,7 @@ class ValueLogger(DataDevice, metaclass=abc.ABCMeta):
             )
         self._numSensors = numSensors
         #if pull data is True data will be pulled from the server if False
-        # data will be pushed from microsocpe (default) 
+        # data will be pushed from microsocpe (default)
         self.pullData = pullData
 
     @abc.abstractmethod
@@ -1720,4 +1720,4 @@ class ValueLogger(DataDevice, metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def getValues(self):
         """Returns values from all sensors"""
-        raise NotImplementedError()        
+        raise NotImplementedError()

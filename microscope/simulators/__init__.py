@@ -565,7 +565,7 @@ class SimulatedValueLogger(microscope.abc.ValueLogger):
             )
             _logger.debug("Sensors %d returns %s" % (i, self._cache[i]))
         return self._cache
-    
+
     def abort(self):
         pass
 
