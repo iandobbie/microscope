@@ -258,6 +258,16 @@ class PiCamera(microscope.abc.Camera):
         res = self.camera.resolution
         return (res.width, res.height)
 
+    def zoom(self,roi):
+        #picamera zoom parameter returns an roi but defined as floats and not
+        #in pixels
+        x=roi[0]/self.camera.resolution.width
+        width=(roi[2])/self.camera.resolution.width
+        y=roi[1]/self.camera.resolution.height
+        height=(roi[3])/self.camera.resolution.height
+        print("using roi to set zoom",roi,(x,y,width,height))
+        self.camera.zoom=(x,y,width,height)
+
     def _do_trigger(self):
         self.soft_trigger()
 
