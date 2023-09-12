@@ -160,6 +160,10 @@ class PiCamera(microscope.abc.Camera):
         self.setLED(False)
         self.set_awb_mode(0)  # set auto white balance to off
         self._get_sensor_shape()
+        #default to full image at init. 
+        self._set_roi(ROI(0, 0, self.self.camera.resolution.width,
+                          self.camera.resolution.height))
+
 
     def make_safe(self):
         if self._acquiring:
@@ -252,8 +256,18 @@ class PiCamera(microscope.abc.Camera):
             self.camera.resolution = (2592, 1944)
         # faqll back to defualt if not set above.
         res = self.camera.resolution
-        self._set_roi(ROI(0, 0, res[0], res[1]))
-        return res
+        return (res.width, res.height)
+
+    #This functionality works but doesn't speed up acquisition
+    def zoom(self,roi):
+        #picamera zoom parameter returns an roi but defined as floats and not
+        #in pixels
+        x=roi[0]/self.camera.resolution.width
+        width=(roi[2])/self.camera.resolution.width
+        y=roi[1]/self.camera.resolution.height
+        height=(roi[3])/self.camera.resolution.height
+        print("using roi to set zoom",roi,(x,y,width,height))
+        self.camera.zoom=(x,y,width,height)
 
     def _do_trigger(self):
         self.soft_trigger()
@@ -265,13 +279,8 @@ class PiCamera(microscope.abc.Camera):
         if self._acquiring:
             with picamera.array.PiYUVArray(self.camera) as output:
                 self.camera.capture(output, format="yuv", use_video_port=False)
-                self._queue.put(
-                    output.array[
-                        self.roi.top : self.roi.top + self.roi.height,
-                        self.roi.left : self.roi.left + self.roi.width,
-                        0,
-                    ]
-                )
+                self._queue.put(output.array[self.roi[1]:self.roi[1]+self.roi[3],
+                                             self.roi[0]:self.roi[0]+self.roi[2], 0])
 
 
 # ongoing implemetation notes
