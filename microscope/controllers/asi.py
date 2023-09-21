@@ -33,15 +33,14 @@ import serial
 import microscope.abc
 
 
-
-# Started to develop by copying from the ludl driver. 
+# Started to develop by copying from the ludl driver.
 # no support for filter, shutters, or slide loader as I dont have hardware
 
 # Note:
 # commands end in a '\r' but replies return ending in '\r\n'!
 
 # Quick Reference – Main Operating Commands
-#------------------------------------------
+# ------------------------------------------
 # <del> or <bs> - Abort current command and flush input buffer
 # Command Shortcut Description
 # CDATE CD Returns Date/Time current firmware was compiled
@@ -128,7 +127,7 @@ import microscope.abc
 # Bit 4: 0 = Motor not ramping, 1 = Motor ramping
 # Bit 5: 0 = Ramping up, 1= Ramping down
 # Bit 6: Upper limit switch: 0 = open, 1 = closed
-# Bit 7: Lower limit switch: 0 = open, 1 = closed 
+# Bit 7: Lower limit switch: 0 = open, 1 = closed
 
 
 AXIS_MAPPER = {
@@ -173,7 +172,9 @@ class _ASIController:
                 self.command(b"INFO X")
                 answer = self.read_multiline()
             except:
-                print("Unable to read configuration. Is ASI controller connected?")
+                print(
+                    "Unable to read configuration. Is ASI controller connected?"
+                )
                 return
             # parse config responce which tells us what devices are present
             # on this controller.
@@ -198,14 +199,14 @@ class _ASIController:
     def command(self, command: bytes) -> None:
         """Send command to device."""
         with self._lock:
-            print("send %s",command)
+            print("send %s", command)
             self._serial.write(command + b"\r")
 
     def readline(self) -> bytes:
         """Read a line from the device connection until ``\\r\\n``."""
         with self._lock:
             line = self._serial.read_until(b"\r")
-#            _logger.warning
+            #            _logger.warning
             print("read line %s" % line)
             return line
 
@@ -214,9 +215,9 @@ class _ASIController:
         line = True
         while line:
             line = self.readline()
-            output.append(line.strip(b'\r'))
+            output.append(line.strip(b"\r"))
             if line:
-                #was there any data on this line? 
+                # was there any data on this line?
                 if line == b"N" or line[0:2] == b":A":
                     # this means an end of command strings doesnt require an
                     # additional timeout before it returns
@@ -263,32 +264,26 @@ class _ASIController:
         self._command_and_validate(command, b"N")
         #
         # No Following is not true as Cockpit expects moves to happen
-        # before the return. 
+        # before the return.
         # actully beter to just issue the move command and rely on
         # other process to check position
-        #self.get_command(command)
+        # self.get_command(command)
 
     def move_by_relative_position(self, axis: bytes, delta: float) -> None:
         """Send a relative movement command to stated axis"""
         axisname = AXIS_MAPPER[axis]
-        self.move_command(
-            bytes(f"MOVREL {axisname}={str(delta)}", "ascii")
-        )
+        self.move_command(bytes(f"MOVREL {axisname}={str(delta)}", "ascii"))
         self.wait_for_motor_stop(axis)
 
     def move_to_absolute_position(self, axis: bytes, pos: float) -> None:
         """Send a relative movement command to stated axis"""
         axisname = AXIS_MAPPER[axis]
-        self.move_command(
-            bytes(f"MOVE {axisname}={str(pos)}", "ascii")
-        )
+        self.move_command(bytes(f"MOVE {axisname}={str(pos)}", "ascii"))
         self.wait_for_motor_stop(axis)
 
     def move_to_limit(self, axis: bytes, speed: int):
         axisname = AXIS_MAPPER[axis]
-        self.get_command(
-            bytes(f"SPIN {axisname}={speed}", "ascii")
-        )
+        self.get_command(bytes(f"SPIN {axisname}={speed}", "ascii"))
 
     def motor_moving(self, axis: bytes) -> int:
         axisname = AXIS_MAPPER[axis]
@@ -298,12 +293,10 @@ class _ASIController:
 
     def set_speed(self, axis: bytes, speed: int) -> None:
         axisname = AXIS_MAPPER[axis]
-        self.get_command(
-            bytes(f"SPEED {axisname}={speed}", "ascii")
-        )
+        self.get_command(bytes(f"SPEED {axisname}={speed}", "ascii"))
 
     def wait_for_motor_stop(self, axis: bytes):
-        #give axis a chnace to start maybe? 
+        # give axis a chnace to start maybe?
         time.sleep(0.2)
         while self.motor_moving(axis):
             time.sleep(0.1)
@@ -314,13 +307,9 @@ class _ASIController:
 
     def get_absolute_position(self, axis: bytes) -> float:
         axisname = AXIS_MAPPER[axis]
-        position = self.get_command(
-            bytes(f"WHERE {axisname}", "ascii")
-        )
+        position = self.get_command(bytes(f"WHERE {axisname}", "ascii"))
         if position[3:4] == b"N":
-            print(
-                f"Error: {position} : {LUDL_ERRORS[int(position[4:6])]}"
-            )
+            print(f"Error: {position} : {LUDL_ERRORS[int(position[4:6])]}")
         else:
             return float(position.strip()[2:])
 
@@ -356,18 +345,18 @@ class _ASIStageAxis(microscope.abc.StageAxis):
         # mosaic etc... Maybe we just need to know it!
         self.min_limit = 0.0
         self.max_limit = 100000.0
-        #arbitary speed of 5 mm/s 10 is too fast for y but X appears
-        #to be fine on my stage at this speed. 
+        # arbitary speed of 5 mm/s 10 is too fast for y but X appears
+        # to be fine on my stage at this speed.
         self.set_speed(5)
 
     def move_by(self, delta: float) -> None:
         self._dev_conn.move_by_relative_position(self._axis, int(delta))
 
     def move_to(self, pos: float) -> None:
-        print("axis",self._axis)
-        print("go to ",pos)
+        print("axis", self._axis)
+        print("go to ", pos)
         self._dev_conn.move_to_absolute_position(self._axis, int(pos))
-        print("got to ",self.position)
+        print("got to ", self.position)
 
     @property
     def position(self) -> float:
@@ -396,24 +385,24 @@ class _ASIStageAxis(microscope.abc.StageAxis):
 
     def find_limits(self, speed=100):
         # drive axis to minimum pos, zero and then drive to max position
-        #spin speed is limited to +/- 128 100 chosen as fast but not maximum.
+        # spin speed is limited to +/- 128 100 chosen as fast but not maximum.
         self._dev_conn.move_to_limit(self._axis, -speed)
         # spin moves dont set the status info need to query the motor
         # status byte
         self._dev_conn.wait_for_motor_stop(self._axis)
         # reset positon to zero.
-        print("axis",self._axis)
-        print("min=",self.position)
+        print("axis", self._axis)
+        print("min=", self.position)
         self._dev_conn.reset_position(self._axis)
         self.min_limit = self.position
-        print("minpos",self.min_limit)
+        print("minpos", self.min_limit)
         self._dev_conn.homed = True
         # move to positive limit
         self._dev_conn.move_to_limit(self._axis, speed)
         self._dev_conn.wait_for_motor_stop(self._axis)
-        print("max=",self.position)
+        print("max=", self.position)
         self.max_limit = self.position
-        print (self.limits)
+        print(self.limits)
         return self.limits
 
 
@@ -438,9 +427,9 @@ class _ASIStage(microscope.abc.Stage):
             axes = self.axes
             print(axes)
             for axis in axes:
-                print (axis, self.axes[axis])
+                print(axis, self.axes[axis])
                 self.axes[axis].home()
-                print(axis,"homed")
+                print(axis, "homed")
             self.homed = True
         return True
 
@@ -535,9 +524,6 @@ class ASIMS2000(microscope.abc.Controller):
         self._devices: typing.Mapping[str, microscope.abc.Device] = {}
         self._devices["stage"] = _ASIStage(self._conn)
 
-
     @property
     def devices(self) -> typing.Mapping[str, microscope.abc.Device]:
         return self._devices
-
-
