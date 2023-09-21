@@ -198,12 +198,16 @@ class _ASIController:
     def command(self, command: bytes) -> None:
         """Send command to device."""
         with self._lock:
+            print("send %s",command)
             self._serial.write(command + b"\r")
 
     def readline(self) -> bytes:
         """Read a line from the device connection until ``\\r\\n``."""
         with self._lock:
-            return self._serial.read_until(b"\r")
+            line = self._serial.read_until(b"\r")
+#            _logger.warning
+            print("read line %s" % line)
+            return line
 
     def read_multiline(self):
         output = []
@@ -299,6 +303,8 @@ class _ASIController:
         )
 
     def wait_for_motor_stop(self, axis: bytes):
+        #give axis a chnace to start maybe? 
+        time.sleep(0.2)
         while self.motor_moving(axis):
             time.sleep(0.1)
 
@@ -350,7 +356,9 @@ class _ASIStageAxis(microscope.abc.StageAxis):
         # mosaic etc... Maybe we just need to know it!
         self.min_limit = 0.0
         self.max_limit = 100000.0
-        self.set_speed(100000)
+        #arbitary speed of 5 mm/s 10 is too fast for y but X appears
+        #to be fine on my stage at this speed. 
+        self.set_speed(5)
 
     def move_by(self, delta: float) -> None:
         self._dev_conn.move_by_relative_position(self._axis, int(delta))
@@ -386,8 +394,9 @@ class _ASIStageAxis(microscope.abc.StageAxis):
         self.speed = speed
         self._dev_conn.set_speed(self._axis, speed)
 
-    def find_limits(self, speed=100000):
+    def find_limits(self, speed=100):
         # drive axis to minimum pos, zero and then drive to max position
+        #spin speed is limited to +/- 128 100 chosen as fast but not maximum.
         self._dev_conn.move_to_limit(self._axis, -speed)
         # spin moves dont set the status info need to query the motor
         # status byte
