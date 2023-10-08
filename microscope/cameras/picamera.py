@@ -242,10 +242,10 @@ class PiCamera(microscope.abc.Camera):
         # frame rate has to be adjusted as well as max exposure time is
         # 1/framerate.
         #picam v1.3 I have has limit 1/6 to 90 fps
+        #exposure time can be shorter than frame rate bound but not longer
         value = min(value, 6.0)
-        value = max(value, 1.0/90.0)
-             
-        self.set_framerate(1.0/value)
+        fr = max(value, 1.0/90.0)
+        self.set_framerate(1.0/fr)
         # exposure times are set in us.
         self.camera.shutter_speed = int(value * 1.0e6)
 
@@ -256,7 +256,7 @@ class PiCamera(microscope.abc.Camera):
     def get_cycle_time(self):
         # fudge to make it work initially
         # exposure times are in us, so multiple by 1E-6 to get seconds.
-        return self.camera.exposure_speed * 1.0e-6 + 0.1
+        return self.camera.exposure_speed * 1.0e-6 + 1.0
 
 
     def get_framerate(self):
@@ -264,8 +264,6 @@ class PiCamera(microscope.abc.Camera):
 
     
     def set_framerate(self, rate):
-        print(self.camera.framerate_range.low,
-              self.camera.framerate_range.high)
  #       rate= max (rate, self.camera.framerate_range.low)
  #       rate= min (rate, self.camera.framerate_range.high)
         self.camera.framerate = rate
