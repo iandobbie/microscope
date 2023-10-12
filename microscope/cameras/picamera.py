@@ -135,8 +135,7 @@ class PiCamera(microscope.abc.Camera):
                 output.array[
                     self.roi.top : self.roi.top + self.roi.height,
                     self.roi.left : self.roi.left + self.roi.width,
-                    0,
-                ]
+                    0,])
 
     def _fetch_data(self):
         if self._queue.qsize() is not 0:
