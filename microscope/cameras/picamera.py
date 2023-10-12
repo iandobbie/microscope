@@ -131,7 +131,12 @@ class PiCamera(microscope.abc.Camera):
         """Function called by GPIO interupt, needs to trigger image capture"""
         with picamera.array.PiYUVArray(self.camera) as output:
             self.camera.capture(output, format="yuv", use_video_port=False)
-            self._queue.put(output.array[:, :, 0])
+            self._queue.put(
+                output.array[
+                    self.roi.top : self.roi.top + self.roi.height,
+                    self.roi.left : self.roi.left + self.roi.width,
+                    0,
+                ]
 
     def _fetch_data(self):
         if self._queue.qsize() is not 0:
@@ -256,7 +261,9 @@ class PiCamera(microscope.abc.Camera):
     def get_cycle_time(self):
         # fudge to make it work initially
         # exposure times are in us, so multiple by 1E-6 to get seconds.
-        return self.camera.exposure_speed * 1.0e-6 + 1.0
+        # pi 4 camera module v 1.3 minimum reliable time to capture and
+        # download a frame appears to be .7 s.
+        return self.camera.exposure_speed * 1.0e-6 + 0.7
 
 
     def get_framerate(self):
