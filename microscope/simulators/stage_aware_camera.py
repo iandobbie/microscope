@@ -18,8 +18,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Simulation of a full setup based on a given image file.
-"""
+"""Simulation of a full setup based on a given image file."""
 
 import logging
 import time

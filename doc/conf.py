@@ -127,8 +127,8 @@ napoleon_include_special_with_doc = False
 todo_include_todos = True
 
 # Configuration for sphinxcontrib.apidoc
-apidoc_module_dir = '../microscope'
-apidoc_output_dir = 'api'
+apidoc_module_dir = "../microscope"
+apidoc_output_dir = "api"
 apidoc_excluded_paths = [
     # Exclude the testsuite
     "microscope/testsuite/",

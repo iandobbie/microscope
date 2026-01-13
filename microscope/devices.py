@@ -17,8 +17,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""This module is deprecated and only kept for backwards compatibility.
-"""
+"""This module is deprecated and only kept for backwards compatibility."""
 
 from microscope import ROI, AxisLimits, Binning, TriggerMode, TriggerType
 from microscope.abc import Camera as CameraDevice

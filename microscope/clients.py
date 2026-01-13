@@ -17,8 +17,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""TODO: complete this docstring
-"""
+"""TODO: complete this docstring"""
 
 import inspect
 import itertools

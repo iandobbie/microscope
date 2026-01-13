@@ -17,8 +17,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Boston MicroMachines Corporation deformable mirrors.
-"""
+"""Boston MicroMachines Corporation deformable mirrors."""
 
 import ctypes
 import os

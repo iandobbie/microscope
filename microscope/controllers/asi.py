@@ -19,8 +19,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""ASI ms2000 controller.
-"""
+"""ASI ms2000 controller."""
 
 import contextlib
 import logging
@@ -185,12 +184,14 @@ def parse_info(info: List[str]) -> Dict[str, Dict[str, Optional[str]]]:
             continue
         settings[name.strip()] = {
             "value": value,
-            "command": None
-            if not match.group("command")
-            else match.group("command")[1:-1],
-            "units": match.group("units")
-            if len(match.group("units"))
-            else None,
+            "command": (
+                None
+                if not match.group("command")
+                else match.group("command")[1:-1]
+            ),
+            "units": (
+                match.group("units") if len(match.group("units")) else None
+            ),
         }
 
     return settings
@@ -432,7 +433,9 @@ class _ASIController:
             )
         position = self.get_command(bytes(f"WHERE {axis}", "ascii"))
         if position[3:4] == b"N":
-            raise DeviceError(f"Error: {position} : {_ASI_ERRORS[int(position[4:6])]}")
+            raise DeviceError(
+                f"Error: {position} : {_ASI_ERRORS[int(position[4:6])]}"
+            )
         else:
             return float(position.strip()[2:])
 

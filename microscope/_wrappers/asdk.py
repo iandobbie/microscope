@@ -17,8 +17,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Alpao deformable mirrors SDK.
-"""
+"""Alpao deformable mirrors SDK."""
 
 import ctypes
 import os

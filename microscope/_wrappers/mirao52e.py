@@ -17,8 +17,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Wrapper to the Imagine Optic Mirao 52-e API.
-"""
+"""Wrapper to the Imagine Optic Mirao 52-e API."""
 
 import ctypes
 

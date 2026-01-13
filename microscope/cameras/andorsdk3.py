@@ -65,7 +65,7 @@ SDK3_STRING_TO_TRIGGER = {
 # Convert from SDK3 electronic shuttering modes names to Microscope shuttering mode
 SDK3_STRING_TO_SHUTTERING_MODE = {
     "global": microscope.ElectronicShutteringMode.GLOBAL,
-    "rolling": microscope.ElectronicShutteringMode.ROLLING
+    "rolling": microscope.ElectronicShutteringMode.ROLLING,
 }
 
 SDK_NAMES = {
@@ -606,7 +606,9 @@ class AndorSDK3(
         self._software_trigger()
 
     def _get_shuttering_mode(self):
-        return SDK3_STRING_TO_SHUTTERING_MODE[self._electronic_shuttering_mode.get_string().lower()]
+        return SDK3_STRING_TO_SHUTTERING_MODE[
+            self._electronic_shuttering_mode.get_string().lower()
+        ]
 
     def _get_binning(self):
         as_text = self._aoi_binning.get_string().split("x")

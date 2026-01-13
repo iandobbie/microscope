@@ -337,6 +337,7 @@ class TestCopyOfDeviceConf(BaseTestServeDevices):
         uids_to_pick = multiprocessing.Queue()
         uids_to_pick.put("foo")
         uids_to_pick.put("bar")
+
         class FloatingDeviceX(TestFloatingDevice):
             def __init__(self, **kwargs):
                 super().__init__(uid=uids_to_pick.get(), **kwargs)
@@ -363,7 +364,7 @@ class TestCopyOfDeviceConf(BaseTestServeDevices):
         """
         self.assertFalse(
             "index" in self.conf,
-            "injected 'index' key found on original - conf not copied"
+            "injected 'index' key found on original - conf not copied",
         )
 
     def test_independent_conf_copies(self):
@@ -385,7 +386,7 @@ class TestCopyOfDeviceConf(BaseTestServeDevices):
         self.assertNotEqual(
             d1.get_index(),
             d2.get_index(),
-            "both devices assigned the same index (sharing the same conf?)"
+            "both devices assigned the same index (sharing the same conf?)",
         )
 
 

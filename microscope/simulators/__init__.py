@@ -293,12 +293,10 @@ class SimulatedCamera(
     def _get_sensor_shape(self):
         return self._sensor_shape
 
-
     def _get_shuttering_mode(self):
         return self._shuttering_mode
 
-    def _set_shuttering_mode(self,
-                             mode: microscope.ElectronicShutteringMode):
+    def _set_shuttering_mode(self, mode: microscope.ElectronicShutteringMode):
         self._shuttering_mode = mode
 
     def soft_trigger(self):

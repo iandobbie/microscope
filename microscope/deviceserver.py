@@ -17,7 +17,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""This module is deprecated and only kept for backwards compatibility.
-"""
+"""This module is deprecated and only kept for backwards compatibility."""
 
 from microscope.device_server import *

@@ -290,8 +290,9 @@ class XimeaCamera(microscope.abc.Camera):
         else:
             return True
 
-    def _get_setting_values(self, setting_name: str) -> \
-            Optional[Tuple[Union[int, float, None], Union[int, float, None]]]:
+    def _get_setting_values(
+        self, setting_name: str
+    ) -> Optional[Tuple[Union[int, float, None], Union[int, float, None]]]:
         if self._is_setting_readonly(setting_name):
             return None, None
         else:
@@ -320,7 +321,9 @@ class XimeaCamera(microscope.abc.Camera):
             self._handle.set_param(setting_name, value)
         except xiapi.Xi_error as err:
             if err.status in [_XI_UNKNOWN_PARAM, _XI_READ_ONLY_PARAM]:
-                _logger.debug(f"Failed setting {setting_name} Error {err.status}")
+                _logger.debug(
+                    f"Failed setting {setting_name} Error {err.status}"
+                )
 
     def _get_float_setting(self, setting_name: str) -> float:
         return self._handle.get_param(setting_name)
@@ -330,7 +333,9 @@ class XimeaCamera(microscope.abc.Camera):
             self._handle.set_param(setting_name, value)
         except xiapi.Xi_error as err:
             if err.status in [_XI_UNKNOWN_PARAM, _XI_READ_ONLY_PARAM]:
-                _logger.debug(f"Failed setting {setting_name} Error {err.status}")
+                _logger.debug(
+                    f"Failed setting {setting_name} Error {err.status}"
+                )
 
     def _get_str_setting(self, setting_name: str) -> str:
         return self._handle.get_param(setting_name)
@@ -343,19 +348,29 @@ class XimeaCamera(microscope.abc.Camera):
             self._handle.set_param(setting_name, value)
         except xiapi.Xi_error as err:
             if err.status in [_XI_UNKNOWN_PARAM, _XI_READ_ONLY_PARAM]:
-                _logger.debug(f"Failed setting {setting_name} Error {err.status}")
+                _logger.debug(
+                    f"Failed setting {setting_name} Error {err.status}"
+                )
 
     def _get_enum_setting(self, setting_name: str) -> int:
         try:
-            values_to_idx = {val: idx.value for val, idx in xidefs.ASSOC_ENUM[setting_name].items()}
+            values_to_idx = {
+                val: idx.value
+                for val, idx in xidefs.ASSOC_ENUM[setting_name].items()
+            }
         except KeyError as err:
-            _logger.error(f"The Ximea API does not define the enum values for the setting {setting_name}")
+            _logger.error(
+                f"The Ximea API does not define the enum values for the setting {setting_name}"
+            )
             raise err
         return values_to_idx[self._handle.get_param(setting_name)]
 
     def _get_enum_values(self, setting_name: str) -> dict:
         try:
-            values = {i.value: val for val, i in xidefs.ASSOC_ENUM[setting_name].items()}
+            values = {
+                i.value: val
+                for val, i in xidefs.ASSOC_ENUM[setting_name].items()
+            }
         except KeyError as err:
             _logger.error(f"Failed getting values for {setting_name}")
             raise err
@@ -363,7 +378,10 @@ class XimeaCamera(microscope.abc.Camera):
 
     def _set_enum_setting(self, setting_name: str, value: enum) -> None:
         try:
-            idx_to_values = {i.value: val for val, i in xidefs.ASSOC_ENUM[setting_name].items()}
+            idx_to_values = {
+                i.value: val
+                for val, i in xidefs.ASSOC_ENUM[setting_name].items()
+            }
             self._handle.set_param(setting_name, idx_to_values[value])
         except KeyError as err:
             _logger.error(f"Failed setting {setting_name}. Error {err.status}")
@@ -425,7 +443,7 @@ class XimeaCamera(microscope.abc.Camera):
                 get_func=lambda name=name: self._get_int_setting(name),
                 set_func=lambda v, name=name: self._set_int_setting(name, v),
                 values=lambda name=name: self._get_setting_values(name),
-                readonly=lambda name=name: self._is_setting_readonly(name)
+                readonly=lambda name=name: self._is_setting_readonly(name),
             )
 
         def _add_float_setting(name):
@@ -435,7 +453,7 @@ class XimeaCamera(microscope.abc.Camera):
                 get_func=lambda name=name: self._get_float_setting(name),
                 set_func=lambda v, name=name: self._set_float_setting(name, v),
                 values=lambda name=name: self._get_setting_values(name),
-                readonly=lambda name=name: self._is_setting_readonly(name)
+                readonly=lambda name=name: self._is_setting_readonly(name),
             )
 
         def _add_str_setting(name):
@@ -448,7 +466,7 @@ class XimeaCamera(microscope.abc.Camera):
                 # This is definitely not enough for many settings. The Ximea API fails to provide proper string size
                 # and a reference has to be found in the C library.
                 values=256,
-                readonly=lambda name=name: self._is_setting_readonly(name)
+                readonly=lambda name=name: self._is_setting_readonly(name),
             )
 
         def _add_enum_setting(name):
@@ -458,7 +476,7 @@ class XimeaCamera(microscope.abc.Camera):
                 get_func=lambda name=name: self._get_enum_setting(name),
                 set_func=lambda v, name=name: self._set_enum_setting(name, v),
                 values=lambda name=name: self._get_enum_values(name),
-                readonly=lambda name=name: self._is_setting_readonly(name)
+                readonly=lambda name=name: self._is_setting_readonly(name),
             )
 
         def _add_bool_setting(name):
@@ -468,7 +486,7 @@ class XimeaCamera(microscope.abc.Camera):
                 get_func=lambda name=name: self._get_bool_setting(name),
                 set_func=lambda v, name=name: self._set_bool_setting(name, v),
                 values=None,
-                readonly=lambda name=name: self._is_setting_readonly(name)
+                readonly=lambda name=name: self._is_setting_readonly(name),
             )
 
         def _add_cmd_setting(name):
@@ -501,9 +519,11 @@ class XimeaCamera(microscope.abc.Camera):
                     _XI_NOT_IMPLEMENTED,
                     _XI_UNKNOWN_PARAM,
                     _XI_UNSUPPORTED_PARAM,
-                    _XI_UNSUPPORTED_INFO_PARAM
+                    _XI_UNSUPPORTED_INFO_PARAM,
                 ]:
-                    _logger.debug(f"The setting {setting_name} failed to be added")
+                    _logger.debug(
+                        f"The setting {setting_name} failed to be added"
+                    )
                     raise err
                 else:
                     continue
@@ -534,7 +554,9 @@ class XimeaCamera(microscope.abc.Camera):
         elif shutter_type == "XI_SHUTTER_GLOBAL_RESET_RELEASE":
             return microscope.ElectronicShutteringMode.ROLLING
         else:
-            raise microscope.UnsupportedFeatureError(f"{shutter_type} shuttering mode is not supported.")
+            raise microscope.UnsupportedFeatureError(
+                f"{shutter_type} shuttering mode is not supported."
+            )
 
     def set_exposure_time(self, value: float) -> None:
         # exposure times are set in us.

@@ -18,8 +18,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Abstract Base Classes for the different device types.
-"""
+"""Abstract Base Classes for the different device types."""
 
 import abc
 import functools

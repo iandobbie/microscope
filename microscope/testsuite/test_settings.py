@@ -17,8 +17,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Tests for the microscope devices settings.
-"""
+"""Tests for the microscope devices settings."""
 
 import enum
 import unittest

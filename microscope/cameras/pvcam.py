@@ -1748,9 +1748,11 @@ class PVCamera(
                 p.name,
                 p.dtype,
                 lambda p=p: p.current,
-                p.set_value
-                if p.access in [ACC_READ_WRITE, ACC_WRITE_ONLY]
-                else None,
+                (
+                    p.set_value
+                    if p.access in [ACC_READ_WRITE, ACC_WRITE_ONLY]
+                    else None
+                ),
                 lambda p=p: p.values,
             )
         if PARAM_GAIN_MULT_FACTOR in self._params:

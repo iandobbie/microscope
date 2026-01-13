@@ -17,8 +17,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Microscope.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Interactive tests for hardware.
-"""
+"""Interactive tests for hardware."""
 
 import time
 
